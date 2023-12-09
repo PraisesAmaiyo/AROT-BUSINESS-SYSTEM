@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+   <meta name="description" content="AROT" />
+
+   <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,600|Nunito:300,300i,400,600&display=swap"
+      rel="stylesheet" />
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css" />
+   <!-- <link rel="shortcut icon" type="image/png" href="img/favicon.png" /> -->
+   <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+   <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+
+   <script defer type="module" src="JS/script.js"></script>
+
+   <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
+   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+</head>
+
+<body class="container">
+
+
+   <nav class="sidebar">
+      <div class="sidebar-fixed">
+
+         <div class="sidebar-header">
+            <a href="/index.html" class="sidebar-header-link">
+               <img src="img/logo.png" alt="Logo" class="sidebar-header-logo" />
+               <span>AROT</span>
+            </a>
+         </div>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item active">
+                  <i class="fas fa-exchange-alt icon"></i>
+                  <span>POS</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-cart-shopping icon"></i>
+                  <span>GOODS</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item">
+                  <i class="fas fa-file-invoice-dollar icon"></i>
+                  <span>CHARGING</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-folder icon"></i>
+                  <span>SIM REGISTRATION</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-folder icon"></i>
+                  <span>REPORTS</span>
+               </li>
+            </a>
+         </ul>
+      </div>
+   </nav>
+
+   <header class="navigation-header">
+
+      <!-- <nav class="main-nav">
+         <ul class="main-nav-list">
+            <li><a class="main-nav-link" href="/index.html">POS</a></li>
+            <li><a class="main-nav-link" href="#about">GOODS</a></li>
+            <li>
+               <a class="main-nav-link" href="#features">ACCESSORIES</a>
+            </li>
+            <li><a class="main-nav-link" href="/blog.html">REPORT</a></li>
+            <a href="/login.html">
+               <button class="hero-btn-dark">Login</button>
+            </a>
+         </ul>
+      </nav> -->
+
+      <button class="btn-mobile-nav">
+         <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+         <ion-icon class="icon-mobile-nav dark" name="close-outline"></ion-icon>
+      </button>
+   </header>
+
+   <main class="main">
+      <div class="main-heading card">
+         <div class="main-heading_intro">
+            <h2 class="main-welcome">HELLO, <span class="main-name">USER NAME </span></h2>
+         </div>
+
+         <div class="main-heading_left">
+            <div class="main-heading_side">
+               <h2 class="main-date">Sept 10th, 2023</h2>
+               <h2 class="main-time">3:14PM</h2>
+            </div>
+
+            <div class="main-heading_profile">
+               <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
+            </div>
+         </div>
+      </div>
+
+      <div class="pos card">
+         <div class="pos-method">
+            <h2 class="pos-method-heading">
+               POS TRANSACTION
+            </h2>
+
+            <form class="pos-method-form" name="card-payments" netlify>
+
+               <div class="pos-method-form_input">
+                  <label for="transactionType">Select Transaction Type:</label>
+
+                  <select id="transactionType" name="transactionType">
+                     <option value="wthdraw">Withdraw</option>
+                     <option value="deposit">Deposit</option>
+                  </select>
+               </div>
+
+               <div class="pos-method-form_input">
+                  <label for="withdrawalType">Select Withdrawal Type:</label>
+
+                  <select id="withdrawalType" name="withdrawalType">
+                     <option value="card">Card</option>
+                     <option value="transfer">Transfer</option>
+                  </select>
+               </div>
+
+               <div class="pos-method-form_input">
+                  <label for="amount">Set Amount</label>
+                  <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
+                     required>
+               </div>
+
+               <div class="pos-method-form_input">
+                  <label for="fee">Set Fee</label>
+                  <input id="posTransactionFee" type="text" placeholder="Enter Fee" name="posTransactionFee" required>
+               </div>
+
+               <button class="hero-btn-dark">Process Transaction</button>
+            </form>
+         </div>
+
+
+      </div>
+
+   </main>
+
+</body>
+
+</html>
