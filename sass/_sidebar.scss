@@ -56,55 +56,32 @@
       // }
 
       &_item {
-         position: relative;
+         background-image: linear-gradient($color-secondary-dark 0 0);
          padding: 1rem 1.5rem;
          color: $color-secondary-dark;
          font-weight: 600;
-         transform: perspective(1px) translateZ(0);
-         box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-         transition-property: color;
-         transition-duration: 0.5s;
-
-         // padding: 5px 0;
-         // margin-left: 1rem;
+         background-size: 200% .3rem;
+         background-position: 200% 100%;
+         background-repeat: no-repeat;
+         transition: background-size .3s, background-position .3s .3s;
 
          @media only screen and (max-width:$bp-small) {
             padding: 1rem 0 1rem 1rem;
          }
 
-         &::before {
-            position: absolute;
-            content: '';
-            background-color: $color-secondary-dark;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: 0 50%;
-            transition-property: transform;
-            transition-duration: 0.5s;
-            transition-timing-function: ease-out;
-         }
-
          &.active {
             color: $color-primary-light-1;
-         }
-
-         &:hover {
-            color: $color-primary-light-1;
-         }
-
-         &:hover::before,
-         &.active::before,
-         &:active::before,
-         &:focus::before {
-            transform: scaleX(1);
-            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+            background-color: $color-secondary-dark;
          }
       }
+
+      &_item:hover {
+         transition: background-size .3s .3s, background-position .3s;
+         background-size: 200% 100%;
+         background-position: 100% 100%;
+         color: $color-primary-light-1;
+      }
+
 
       &_link:link,
       &_link:visited {
@@ -113,7 +90,6 @@
 
          .icon {
             margin-right: 1rem;
-
 
             @media only screen and (max-width:$bp-small) {
                margin-right: .5rem;

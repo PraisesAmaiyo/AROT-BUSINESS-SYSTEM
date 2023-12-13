@@ -142,3 +142,20 @@ sideNavs.forEach((nav) => {
     });
   });
 });
+
+// JavaScript to toggle withdrawal methods
+const withdrawalType = document.querySelector('.withdrawalTransactionType');
+
+const transactionType = document.getElementById('transactionType');
+
+if (transactionType) {
+  transactionType.addEventListener('change', function (e) {
+    const selectedType = e.target.value;
+
+    if (selectedType === 'withdraw') {
+      withdrawalType.style.display = 'block';
+    } else if (selectedType === 'deposit') {
+      withdrawalType.style.display = 'none';
+    }
+  });
+}

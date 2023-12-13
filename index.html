@@ -30,7 +30,6 @@
 
 <body class="container">
 
-
    <nav class="sidebar">
       <div class="sidebar-fixed">
 
@@ -51,7 +50,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/goods.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-cart-shopping icon"></i>
                   <span>GOODS</span>
@@ -62,7 +61,7 @@
          <ul class="side-nav">
             <a href="/index.html" class="side-nav_link">
                <li class="side-nav_item">
-                  <i class="fas fa-file-invoice-dollar icon"></i>
+                  <i class="fas fa-bolt icon"></i>
                   <span>CHARGING</span>
                </li>
             </a>
@@ -71,7 +70,7 @@
          <ul class="side-nav">
             <a href="/index.html" class="side-nav_link">
                <li class="side-nav_item ">
-                  <i class="fas fa-folder icon"></i>
+                  <i class="fas fa-sim-card icon"></i>
                   <span>SIM REGISTRATION</span>
                </li>
             </a>
@@ -80,7 +79,7 @@
          <ul class="side-nav">
             <a href="/index.html" class="side-nav_link">
                <li class="side-nav_item ">
-                  <i class="fas fa-folder icon"></i>
+                  <i class="fas fa-chart-pie icon"></i>
                   <span>REPORTS</span>
                </li>
             </a>
@@ -130,22 +129,22 @@
 
       <div class="pos card">
          <div class="pos-method">
-            <h2 class="pos-method-heading">
+            <h2 class="heading-text">
                POS TRANSACTION
             </h2>
 
-            <form class="pos-method-form" name="card-payments" netlify>
+            <form class="pos-method-form" name="pos-transaction" netlify>
 
                <div class="pos-method-form_input">
                   <label for="transactionType">Select Transaction Type:</label>
 
                   <select id="transactionType" name="transactionType">
-                     <option value="wthdraw">Withdraw</option>
+                     <option value="withdraw">Withdraw</option>
                      <option value="deposit">Deposit</option>
                   </select>
                </div>
 
-               <div class="pos-method-form_input">
+               <div class="pos-method-form_input withdrawalTransactionType">
                   <label for="withdrawalType">Select Withdrawal Type:</label>
 
                   <select id="withdrawalType" name="withdrawalType">
@@ -156,24 +155,29 @@
 
                <div class="pos-method-form_input">
                   <label for="amount">Set Amount</label>
-                  <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
-                     required>
+
+                  <div class="naira-input-container">
+                     <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
+                        required>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
                </div>
 
                <div class="pos-method-form_input">
                   <label for="fee">Set Fee</label>
-                  <input id="posTransactionFee" type="text" placeholder="Enter Fee" name="posTransactionFee" required>
+
+                  <div class="naira-input-container">
+                     <input id="posTransactionFee" type="text" placeholder="Enter Fee" name="posTransactionFee"
+                        required>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
                </div>
 
                <button class="hero-btn-dark">Process Transaction</button>
             </form>
          </div>
-
-
       </div>
-
    </main>
-
 </body>
 
 </html>

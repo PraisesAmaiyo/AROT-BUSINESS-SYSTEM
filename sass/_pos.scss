@@ -2,41 +2,32 @@
    height: min-content;
    color: $color-secondary-dark;
 
-   .card-white.pos-method {
-
-      & input,
-      select {
-         background-color: rgba($color-secondary-dark, .36);
-         color: red;
-
-         &:focus,
-         &:valid {
-            background-color: $color-secondary-light;
-            box-shadow: 0 0 0 0.8rem rgba($color-primary, .56);
-         }
-
-         &::placeholder {
-            color: $color-primary;
-         }
-      }
-   }
-
    &-method {
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1rem 2rem;
       overflow: hidden;
-
-      &-heading {
-         position: relative;
-         font-size: 1.8rem;
-      }
-
-
 
       &-form {
 
          &_input {
             margin-top: 2rem;
+
+            .naira-input-container {
+               position: relative;
+               display: flex;
+               align-items: center;
+            }
+
+            .naira {
+               position: absolute;
+               font-family: inherit;
+               font-weight: 500;
+               color: $color-secondary-dark;
+               font-size: 1.6rem;
+               left: 10px;
+               // top: 50%;
+               // transform: translateY(-50%);
+            }
 
             label {
                display: block;
@@ -53,6 +44,7 @@
                width: 60%;
                outline: none;
                padding: 1rem;
+               padding-left: 3rem;
                font-size: 1.6rem;
                font-family: inherit;
                font-weight: 500;
@@ -72,6 +64,7 @@
 
             select {
                padding: .5rem;
+               width: max-content;
 
                &:focus,
                &:valid {
@@ -85,26 +78,10 @@
                   box-shadow: 0 0 0.3rem 0.5rem rgba($color-primary-light, .36);
                }
             }
-
-            select {
-               width: max-content
-            }
-
-            .wallet-name_usdt {
-               margin-top: 2rem;
-            }
-         }
-
-         .usdt-ER20 {
-            display: none
          }
 
          .hero-btn-dark {
             margin-top: 3rem;
-
-            // &:hover {
-            //    transform: translateX(2rem) scale(1.06);
-            // }
          }
       }
    }

@@ -81,6 +81,9 @@ body {
    padding: 1rem 1.5rem;
    box-shadow: rgba($color-primary-light, 0.3) 0px 1px 1px;
    margin-bottom: 2rem;
+   // display: flex;
+   // flex-direction: column;
+   // align-items: center;
 }
 
 .modal {
@@ -91,7 +94,7 @@ body {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   width: max-content;
+   width: 60%;
    max-width: 100rem;
    height: max-content;
    z-index: 1000000;
