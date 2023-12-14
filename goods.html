@@ -51,7 +51,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/goods.html" class="side-nav_link">
                <li class="side-nav_item active">
                   <i class="fas fa-cart-shopping icon"></i>
                   <span>GOODS</span>
@@ -60,7 +60,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/charging.html" class="side-nav_link">
                <li class="side-nav_item">
                   <i class="fas fa-bolt icon"></i>
                   <span>CHARGING</span>
@@ -69,7 +69,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/simRegistration.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-sim-card icon"></i>
                   <span>SIM REGISTRATION</span>
@@ -78,7 +78,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/reports.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-chart-pie icon"></i>
                   <span>REPORTS</span>
@@ -137,7 +137,7 @@
             <div class="product-table-container">
                <div class="table-header">
                   <div>
-                     <button class="hero-btn-dark addProduct-button">Add Product</button>
+                     <button class="hero-btn-dark addProductButton">Add Product</button>
                      <h2 class="heading-subtext"> Available Products</h2>
                   </div>
 
@@ -165,7 +165,7 @@
                         <td class="py-1">43</td>
                         <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;4,000</td>
-                        <td class="py-1"><button class="hero-btn-light">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
                   </tbody>
 
@@ -177,7 +177,7 @@
                         <td class="py-1">21</td>
                         <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;18,000</td>
-                        <td class="py-1"><button class="hero-btn-light">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
                   </tbody>
 
@@ -189,28 +189,27 @@
                         <td class="py-1">28</td>
                         <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;320,000</td>
-                        <td class="py-1"><button class="hero-btn-light">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
                   </tbody>
                </table>
-
+               <!-- 
                <div class="pagination-container">
                   <button class="pagination-button">Previous</button>
                   <p>Page 1 of 10</p>
                   <button class="pagination-button">Next</button>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>
 
       <form name="sell-product" netlify>
-         <div class="card sellProduct ">
+         <div class="card sellProduct modal ">
 
             <div>
                <h1 class="heading-text">Sell Item</h1>
                <h2 class="heading-subtext">Infinix Charger</h2>
             </div>
-
 
             <div class="sellProduct-form_input">
                <label for="productBoughtPrice">Amount Bought</label>
@@ -227,7 +226,7 @@
 
                <div class="naira-input-container">
                   <input id="soldProductPrice" type="text" placeholder="Enter Sold Price" name="soldProductPrice"
-                     required>
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
                   <span class="naira">&#x20A6;</span>
                </div>
             </div>
@@ -235,12 +234,12 @@
             <!-- <div class="sellProduct-form_input"> -->
             <div class="checkbox">
                <div class="checkbox-container">
-                  <input id="completedCheckbox" type="checkbox" name="completedCheckbox">
+                  <input id="completedCheckbox" type="checkbox" name="completedCheckbox" required>
                   <label for="completedCheckbox">Completed</label>
                </div>
 
                <div class="checkbox-container">
-                  <input id="pendingCheckbox" type="checkbox" name="pendingCheckbox">
+                  <input id="pendingCheckbox" type="checkbox" name="pendingCheckbox" required>
                   <label for="pendingCheckbox">Pending</label>
                </div>
             </div>
@@ -251,7 +250,7 @@
 
                <div class="naira-input-container">
                   <input id="productBalancePrice" type="text" placeholder="Enter Balance Amount"
-                     name="productBalancePrice" required>
+                     name="productBalancePrice" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
                   <span class="naira">&#x20A6;</span>
                </div>
             </div>
@@ -265,13 +264,19 @@
             </div>
 
             <div class="center-button">
-               <button class="hero-btn-dark sellProductButton">Sell</button>
+               <button class="hero-btn-dark sellProductActionButton">Sell</button>
             </div>
+
+            <div class="close closeModal" id="">&times;</div>
          </div>
       </form>
 
-      <form name="sell-product" netlify>
-         <div class="card addProduct ">
+      <form name="add-product" netlify>
+         <div class="card addProduct modal ">
+            <div>
+               <h1 class="heading-text">Add product</h1>
+            </div>
+
             <div class="addProduct-form_input">
                <label for="productName">Item Name</label>
 
@@ -285,7 +290,7 @@
 
                <div class="naira-input-container">
                   <input id="addProductBoughtPrice" type="text" placeholder="Enter Buying Price"
-                     name="addProductBoughtPrice" required>
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductBoughtPrice" required>
                   <span class="naira">&#x20A6;</span>
                </div>
             </div>
@@ -295,7 +300,7 @@
 
                <div class="naira-input-container">
                   <input id="addProductSellingPrice" type="text" placeholder="Enter Selling Price"
-                     name="addProductSellingPrice" required>
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductSellingPrice" required>
                   <span class="naira">&#x20A6;</span>
                </div>
             </div>
@@ -303,6 +308,8 @@
             <div class="center-button">
                <button class="hero-btn-dark saveProductButton">SAVE</button>
             </div>
+
+            <div class="close closeModal" id="">&times;</div>
          </div>
       </form>
    </main>

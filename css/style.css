@@ -36,7 +36,7 @@ body {
   margin-bottom: 2rem; }
 
 .modal {
-  padding: 2rem 6rem;
+  padding: 5rem;
   opacity: 0;
   visibility: hidden;
   position: fixed;
@@ -80,6 +80,115 @@ body {
 @media only screen and (max-width: 50.3em) {
   .sidebar.blur::before {
     background-color: none; } }
+
+.naira-input-container input {
+  padding-left: 3rem; }
+
+.naira-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; }
+
+.naira {
+  position: absolute;
+  font-family: inherit;
+  font-weight: 500;
+  color: #205329;
+  font-size: 1.6rem;
+  left: 10px; }
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+  color: #205329; }
+
+input,
+select {
+  height: 100%;
+  width: 70%;
+  outline: none;
+  padding: 1rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: #205329;
+  border: none;
+  background-color: #e9eff6;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(32, 83, 41, 0.5);
+  transition: all 0.3s ease; }
+  input:focus, input:valid,
+  select:focus,
+  select:valid {
+    background-color: #eef1f6;
+    box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
+
+.double-input {
+  display: flex;
+  gap: 2rem;
+  align-items: center; }
+  .double-input .simReg-method-form_input {
+    width: 34%; }
+  .double-input input {
+    width: 100%; }
+
+select {
+  padding: .5rem;
+  width: max-content; }
+  select:focus, select:valid {
+    background-color: #eef1f6;
+    box-shadow: 0 0 0.3rem 0.1rem rgba(16, 171, 43, 0.36); }
+  select:active, select:focus {
+    background-color: #eef1f6;
+    box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
+
+.checkbox {
+  margin-left: 3rem;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+  font-weight: 500; }
+  .checkbox-container {
+    display: flex;
+    align-items: center; }
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem; }
+
+.checkbox-container input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  border: 2px solid #51cf66;
+  background-color: #fff;
+  margin-right: 1rem;
+  cursor: pointer; }
+
+.checkbox-container input:checked {
+  background-color: #51cf66;
+  box-shadow: inset 0 0 0 1.5px #ebfbee; }
+
+.checkbox-container label {
+  cursor: pointer; }
+
+.close {
+  position: absolute;
+  top: 0rem;
+  right: 1.5rem;
+  color: #205329;
+  font-size: 3rem;
+  padding: 1rem;
+  font-weight: bold;
+  cursor: pointer; }
 
 .hero-btn-dark,
 .hero-btn-light,
@@ -502,54 +611,6 @@ body {
     overflow: hidden; }
     .pos-method-form_input {
       margin-top: 2rem; }
-      .pos-method-form_input .naira-input-container {
-        position: relative;
-        display: flex;
-        align-items: center; }
-      .pos-method-form_input .naira {
-        position: absolute;
-        font-family: inherit;
-        font-weight: 500;
-        color: #205329;
-        font-size: 1.6rem;
-        left: 10px; }
-      .pos-method-form_input label {
-        display: block;
-        text-align: left;
-        font-size: 1.8rem;
-        font-weight: 500;
-        margin-bottom: .5rem;
-        color: #205329; }
-      .pos-method-form_input input,
-      .pos-method-form_input select {
-        height: 100%;
-        width: 60%;
-        outline: none;
-        padding: 1rem;
-        padding-left: 3rem;
-        font-size: 1.6rem;
-        font-family: inherit;
-        font-weight: 500;
-        color: #205329;
-        border: none;
-        background-color: #e9eff6;
-        border-radius: 9px;
-        box-shadow: 0 1px 2px rgba(32, 83, 41, 0.5);
-        transition: all 0.3s ease; }
-        .pos-method-form_input input:focus, .pos-method-form_input input:valid,
-        .pos-method-form_input select:focus,
-        .pos-method-form_input select:valid {
-          background-color: #eef1f6;
-          box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
-      .pos-method-form_input select {
-        padding: .5rem;
-        width: max-content; }
-        .pos-method-form_input select:focus, .pos-method-form_input select:valid {
-          background-color: #eef1f6;
-          box-shadow: 0 0 0.3rem 0.1rem rgba(16, 171, 43, 0.36); }
-        .pos-method-form_input select:active, .pos-method-form_input select:focus {
-          background-color: #eef1f6;
-          box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
     .pos-method-form .hero-btn-dark {
       margin-top: 3rem; }
 
@@ -610,55 +671,14 @@ body {
   margin-top: 2rem;
   display: flex;
   align-items: center; }
-  .addProduct-form_input .naira-input-container,
-  .sellProduct-form_input .naira-input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%; }
-  .addProduct-form_input .naira,
-  .sellProduct-form_input .naira {
-    position: absolute;
-    font-family: inherit;
-    font-weight: 500;
-    color: #205329;
-    font-size: 1.6rem;
-    left: 10px; }
   .addProduct-form_input label,
   .sellProduct-form_input label {
-    display: block;
-    text-align: left;
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: #205329;
     width: 20rem; }
   .addProduct-form_input input,
   .addProduct-form_input select,
   .sellProduct-form_input input,
   .sellProduct-form_input select {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    padding: 1rem;
-    padding-left: 3rem;
-    font-size: 1.6rem;
-    font-family: inherit;
-    font-weight: 500;
-    color: #205329;
-    border: none;
-    background-color: #e9eff6;
-    border-radius: 9px;
-    box-shadow: 0 1px 2px rgba(32, 83, 41, 0.5);
-    transition: all 0.3s ease; }
-    .addProduct-form_input input:focus, .addProduct-form_input input:valid,
-    .addProduct-form_input select:focus,
-    .addProduct-form_input select:valid,
-    .sellProduct-form_input input:focus,
-    .sellProduct-form_input input:valid,
-    .sellProduct-form_input select:focus,
-    .sellProduct-form_input select:valid {
-      background-color: #eef1f6;
-      box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
+    width: 100%; }
     .addProduct-form_input input:disabled,
     .addProduct-form_input select:disabled,
     .sellProduct-form_input input:disabled,
@@ -668,32 +688,6 @@ body {
       color: #999;
       border: 1px solid #ddd;
       cursor: not-allowed; }
-  .addProduct-form_input select,
-  .sellProduct-form_input select {
-    padding: .5rem;
-    width: max-content; }
-    .addProduct-form_input select:focus, .addProduct-form_input select:valid,
-    .sellProduct-form_input select:focus,
-    .sellProduct-form_input select:valid {
-      background-color: #eef1f6;
-      box-shadow: 0 0 0.3rem 0.1rem rgba(16, 171, 43, 0.36); }
-    .addProduct-form_input select:active, .addProduct-form_input select:focus,
-    .sellProduct-form_input select:active,
-    .sellProduct-form_input select:focus {
-      background-color: #eef1f6;
-      box-shadow: 0 0 0.3rem 0.5rem rgba(16, 171, 43, 0.36); }
-
-.addProduct .checkbox,
-.sellProduct .checkbox {
-  margin-left: 3rem;
-  margin-top: 2rem;
-  font-size: 1.8rem;
-  font-family: inherit;
-  font-weight: 500; }
-  .addProduct .checkbox-container,
-  .sellProduct .checkbox-container {
-    display: flex;
-    align-items: center; }
 
 .addProduct .hero-btn-dark,
 .sellProduct .hero-btn-dark {
@@ -702,26 +696,34 @@ body {
   align-self: center;
   padding: 1rem 3rem; }
 
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  padding-bottom: 1rem; }
+.charging {
+  height: min-content;
+  color: #205329; }
+  .charging-method {
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    overflow: hidden; }
+    .charging-method-form_input {
+      margin-top: 2rem; }
+    .charging-method-form .hero-btn-dark {
+      display: inline;
+      margin-top: 3rem;
+      align-self: center;
+      padding: 1rem 3rem; }
 
-.checkbox-container input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 100%;
-  border: 2px solid #51cf66;
-  background-color: #fff;
-  margin-right: 1rem;
-  cursor: pointer; }
-
-.checkbox-container input:checked {
-  background-color: #51cf66;
-  box-shadow: inset 0 0 0 1.5px #ebfbee; }
-
-.checkbox-container label {
-  cursor: pointer; }
+.simReg {
+  height: min-content;
+  color: #205329; }
+  .simReg-method {
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    overflow: hidden; }
+    .simReg-method-form_input {
+      margin-top: 2rem; }
+    .simReg-method-form .hero-btn-dark {
+      margin-top: 3rem; }
+  .simReg .hero-btn-dark {
+    display: inline;
+    margin-top: 3rem;
+    align-self: center;
+    padding: 1rem 3rem; }

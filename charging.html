@@ -42,7 +42,7 @@
 
          <ul class="side-nav">
             <a href="/index.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-exchange-alt icon"></i>
                   <span>POS</span>
                </li>
@@ -60,7 +60,7 @@
 
          <ul class="side-nav">
             <a href="/charging.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item active">
                   <i class="fas fa-bolt icon"></i>
                   <span>CHARGING</span>
                </li>
@@ -127,53 +127,62 @@
          </div>
       </div>
 
-      <div class="pos card">
-         <div class="pos-method">
+      <div class="charging card">
+         <div class="charging-method">
             <h2 class="heading-text">
-               POS TRANSACTION
+               Charging
             </h2>
 
-            <form class="pos-method-form" name="pos-transaction" netlify>
+            <form class="charging-method-form" name="charging-transaction" netlify>
 
-               <div class="pos-method-form_input">
-                  <label for="transactionType">Select Transaction Type:</label>
+               <div class="charging-method-form_input">
+                  <label for="deviceType">Select Device Type:</label>
 
-                  <select id="transactionType" name="transactionType">
-                     <option value="withdraw">Withdraw</option>
-                     <option value="deposit">Deposit</option>
+                  <select id="deviceType" name="deviceType">
+                     <option value="withdraw">Phone</option>
+                     <option value="laptop">Laptop</option>
+                     <option value="battery">Battery</option>
+                     <option value="powerBank">Power Bank</option>
+                     <option value="rechargeableLight">Rechargeable Light</option>
+                     <option value="musicPlayer">MP3 (Music Player)</option>
                   </select>
                </div>
 
-               <div class="pos-method-form_input withdrawalTransactionType">
-                  <label for="withdrawalType">Select Withdrawal Type:</label>
+               <div class="charging-method-form_input">
+                  <label for="deviceId">Tag No/ID</label>
 
-                  <select id="withdrawalType" name="withdrawalType">
-                     <option value="card">Card</option>
-                     <option value="transfer">Transfer</option>
-                  </select>
+                  <input id="deviceId" type="text" placeholder="Enter Device ID" name="deviceId" required>
                </div>
 
-               <div class="pos-method-form_input">
-                  <label for="amount">Set Amount</label>
+               <div class="charging-method-form_input">
+                  <label for="alternativeNo">Alternative No</label>
+
+                  <input id="alternativeNo" type="text" placeholder="Enter Fee" name="alternativeNo" required>
+               </div>
+
+               <div class="charging-method-form_input">
+                  <label for="deviceChargefee">Set Fee</label>
 
                   <div class="naira-input-container">
-                     <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                     <input id="deviceChargefee" type="text" placeholder="Enter Charging Fee"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="chargingTransactionFee" required>
                      <span class="naira">&#x20A6;</span>
                   </div>
                </div>
 
-               <div class="pos-method-form_input">
-                  <label for="fee">Set Fee</label>
+               <div class="charging-method-form_input">
+                  <label for="deviceStatus">Select Device Type:</label>
 
-                  <div class="naira-input-container">
-                     <input id="posTransactionFee" type="text" placeholder="Enter Fee"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="posTransactionFee" required>
-                     <span class="naira">&#x20A6;</span>
-                  </div>
+                  <select id="deviceStatus" name="deviceStatus">
+                     <option value="withdraw">Collected</option>
+                     <option value="laptop">Charging</option>
+                     <option value="battery">Charged (Not Collected)</option>
+                  </select>
                </div>
 
-               <button class="hero-btn-dark">Process Transaction</button>
+               <div class="center-button">
+                  <button class="hero-btn-dark">OK</button>
+               </div>
             </form>
          </div>
       </div>

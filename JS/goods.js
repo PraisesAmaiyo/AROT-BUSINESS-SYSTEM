@@ -14,10 +14,12 @@ const details = [
   },
 ];
 
-const completedCheckbox = document.getElementById('completedCheckbox');
-const balancePayment = document.querySelector('.balancePayment');
-
 document.addEventListener('DOMContentLoaded', function () {
+  const completedCheckbox = document.getElementById('completedCheckbox');
+  const pendingCheckbox = document.getElementById('pendingCheckbox');
+  const balancePayment = document.querySelector('.balancePayment');
+  const balancePaymentInput = document.getElementById('productBalancePrice');
+
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
   checkboxes.forEach((checkbox) => {
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       checkboxes.forEach((otherCheckbox) => {
         if (otherCheckbox !== checkbox) {
           otherCheckbox.checked = false;
+          otherCheckbox.removeAttribute('required');
         }
       });
       if (checkbox === completedCheckbox) {
@@ -36,18 +39,54 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  balancePaymentInput.addEventListener('input', function () {
+    if (parseFloat(balancePaymentInput.value) > 0) {
+      console.log(balancePaymentInput.value);
+      pendingCheckbox.checked = true;
+    } else {
+      pendingCheckbox.checked = false;
+    }
+  });
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const addButton = document.querySelector('.addProductButton');
+const addProductContainer = document.querySelector('.addProduct');
 
-//   checkboxes.forEach((checkbox) => {
-//     checkbox.addEventListener('change', function () {
-//       checkboxes.forEach((otherCheckbox) => {
-//         if (otherCheckbox !== checkbox) {
-//           otherCheckbox.checked = false;
-//         }
-//       });
-//     });
-//   });
-// });
+addButton.addEventListener('click', function () {
+  console.log('object');
+  addProductContainer.classList.add('active');
+});
+
+const sellProductContainer = document.querySelector('.sellProduct');
+const sellButtons = document.querySelectorAll('.sellButton');
+
+sellButtons.forEach((button, index) => {
+  button.addEventListener('click', function (e) {
+    sellProductContainer.classList.add('active');
+
+    const target = e.target;
+    console.log(index);
+  });
+});
+
+const main = document.querySelector('.main');
+const sidebar = document.querySelector('.sidebar');
+
+const closeModalButton = document.querySelectorAll('.closeModal');
+const closeImageModalBtn = document.querySelectorAll('.closeImageModal');
+
+closeModalButton.forEach((closeButton) => {
+  closeButton.addEventListener('click', function () {
+    closeModal();
+  });
+});
+
+function closeModal() {
+  sellProductContainer.classList.remove('active');
+  addProductContainer.classList.remove('active');
+
+  main.classList.remove('blur');
+  sidebar.classList.remove('blur');
+  main.classList.remove('no-scroll');
+}

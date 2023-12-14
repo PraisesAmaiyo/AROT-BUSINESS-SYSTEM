@@ -23,6 +23,7 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer type="module" src="JS/script.js"></script>
+   <script defer type="module" src="JS/simReg.js"></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -42,7 +43,7 @@
 
          <ul class="side-nav">
             <a href="/index.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-exchange-alt icon"></i>
                   <span>POS</span>
                </li>
@@ -69,7 +70,7 @@
 
          <ul class="side-nav">
             <a href="/simRegistration.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item active">
                   <i class="fas fa-sim-card icon"></i>
                   <span>SIM REGISTRATION</span>
                </li>
@@ -127,53 +128,71 @@
          </div>
       </div>
 
-      <div class="pos card">
-         <div class="pos-method">
+      <div class="simReg card">
+         <div class="simReg-method">
             <h2 class="heading-text">
-               POS TRANSACTION
+               Sim Registration
             </h2>
 
-            <form class="pos-method-form" name="pos-transaction" netlify>
+            <form class="simReg-method-form" name="simReg-transaction" netlify>
 
-               <div class="pos-method-form_input">
-                  <label for="transactionType">Select Transaction Type:</label>
+               <div class="simReg-method-form_input">
+                  <label for="simType">Select Network:</label>
 
-                  <select id="transactionType" name="transactionType">
-                     <option value="withdraw">Withdraw</option>
-                     <option value="deposit">Deposit</option>
+                  <select id="simType" name="simType">
+                     <option value="mtn">MTN</option>
+                     <option value="airtel">Airtel</option>
+                     <option value="glo">GLO</option>
                   </select>
                </div>
 
-               <div class="pos-method-form_input withdrawalTransactionType">
-                  <label for="withdrawalType">Select Withdrawal Type:</label>
+               <div class="double-input">
+                  <div class="simReg-method-form_input">
+                     <label for="phoneNumber">Phone Number</label>
 
-                  <select id="withdrawalType" name="withdrawalType">
-                     <option value="card">Card</option>
-                     <option value="transfer">Transfer</option>
-                  </select>
+                     <input id="phoneNumber" type="text" placeholder="Enter Phone number" name="phoneNumber"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                  </div>
+
+                  <div class="simReg-method-form_input">
+                     <label for="serialNumber">Serial Number</label>
+
+                     <input id="serialNumber" type="text" placeholder="Enter Serial Number" name="serialNumber"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                  </div>
                </div>
 
-               <div class="pos-method-form_input">
-                  <label for="amount">Set Amount</label>
+               <div class="simReg-method-form_input">
+                  <div style="margin-bottom: 1rem;">
+                     <h2 class="heading-subtext">Status</h2>
+                  </div>
+                  <div class="checkbox">
+
+                     <div class="checkbox-container">
+                        <input id="successfulCheckbox" type="checkbox" name="successfulCheckbox" required>
+                        <label for="successfulCheckbox">Successful</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="unSuccessfulCheckbox" type="checkbox" name="unSuccessfulCheckbox" required>
+                        <label for="unSuccessfulCheckbox">Unsuccessful</label>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="simReg-method-form_input">
+                  <label for="simRegAmount">Set Amount</label>
 
                   <div class="naira-input-container">
-                     <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
+                     <input id="simRegAmount" type="text" placeholder="Enter Fee" name="simRegAmount"
                         oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
                      <span class="naira">&#x20A6;</span>
                   </div>
                </div>
 
-               <div class="pos-method-form_input">
-                  <label for="fee">Set Fee</label>
-
-                  <div class="naira-input-container">
-                     <input id="posTransactionFee" type="text" placeholder="Enter Fee"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="posTransactionFee" required>
-                     <span class="naira">&#x20A6;</span>
-                  </div>
+               <div class="center-button">
+                  <button class="hero-btn-dark">OK</button>
                </div>
-
-               <button class="hero-btn-dark">Process Transaction</button>
             </form>
          </div>
       </div>

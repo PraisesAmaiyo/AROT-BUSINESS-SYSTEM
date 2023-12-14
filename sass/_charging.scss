@@ -1,4 +1,4 @@
-.pos {
+.charging {
    height: min-content;
    color: $color-secondary-dark;
 
@@ -14,7 +14,10 @@
          }
 
          .hero-btn-dark {
+            display: inline;
             margin-top: 3rem;
+            align-self: center;
+            padding: 1rem 3rem;
          }
       }
    }
