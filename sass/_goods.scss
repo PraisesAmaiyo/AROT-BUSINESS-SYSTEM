@@ -1,78 +1,81 @@
-.goods {
-   height: min-content;
-   color: $color-secondary-dark;
+// .goods {
+//    height: min-content;
+//    color: $color-secondary-dark;
 
-   &-method {
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      overflow: hidden;
+//    &-method {
+//       margin: 0 auto;
+//       padding: 1rem 2rem;
+//       overflow: hidden;
 
-      .product-table {}
+//       .product-table {}
 
-      .table-header {
-         display: flex;
-         margin-bottom: 2rem;
-         justify-content: space-between;
-         align-items: center;
-      }
+//       // check table.scss for table css
 
-      .table-buttons {
-         display: flex;
-         align-items: center;
-         justify-content: center;
-      }
 
-      .product-table {
-         margin: 0 auto;
-         width: 100%;
-         border-collapse: collapse;
-      }
+//       .table-header {
+//          display: flex;
+//          margin-bottom: 2rem;
+//          justify-content: space-between;
+//          align-items: center;
+//       }
 
-      .table-header-row {
-         color: $color-grey-dark-2 ;
-         font-size: 1.6rem;
-         text-align: left;
-         border-bottom: 1px solid $color-grey-dark-3;
-         box-sizing: content-box;
-      }
+//       .table-buttons {
+//          display: flex;
+//          align-items: center;
+//          justify-content: center;
+//       }
 
-      .table-body-row {
-         color: $color-grey-dark-1 ;
-         font-weight: 500;
-         font-size: 1.5rem;
-         cursor: pointer;
-         border-bottom: 1px solid $color-grey-dark-3;
+//       .product-table {
+//          margin: 0 auto;
+//          width: 100%;
+//          border-collapse: collapse;
+//       }
 
-         .hero-btn-light {
-            margin: 0;
-         }
-      }
+//       .table-header-row {
+//          color: $color-grey-dark-2 ;
+//          font-size: 1.6rem;
+//          text-align: left;
+//          border-bottom: 1px solid $color-grey-dark-3;
+//          box-sizing: content-box;
+//       }
 
-      .table-body-row:hover {
-         background-color: $color-grey-dark-2;
-         color: $color-primary-light-1;
+//       .table-body-row {
+//          color: $color-grey-dark-1 ;
+//          font-weight: 500;
+//          font-size: 1.5rem;
+//          cursor: pointer;
+//          border-bottom: 1px solid $color-grey-dark-3;
 
-         & .hero-btn-light {
-            background-color: $color-primary-light-1;
-            color: $color-grey-dark-2;
-         }
-      }
+//          .hero-btn-light {
+//             margin: 0;
+//          }
+//       }
 
-      .pagination-container {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         margin-top: 0.5rem;
-      }
+//       .table-body-row:hover {
+//          background-color: $color-grey-dark-2;
+//          color: $color-primary-light-1;
 
-      .pagination-button {
-         font-size: 0.75rem;
-         color: #000;
-      }
+//          & .hero-btn-light {
+//             background-color: $color-primary-light-1;
+//             color: $color-grey-dark-2;
+//          }
+//       }
 
-      .pagination-button:disabled {
-         opacity: 0.5;
-         cursor: not-allowed;
-      }
-   }
-}
+//       .pagination-container {
+//          display: flex;
+//          justify-content: space-between;
+//          align-items: center;
+//          margin-top: 0.5rem;
+//       }
+
+//       .pagination-button {
+//          font-size: 0.75rem;
+//          color: #000;
+//       }
+
+//       .pagination-button:disabled {
+//          opacity: 0.5;
+//          cursor: not-allowed;
+//       }
+//    }
+// }

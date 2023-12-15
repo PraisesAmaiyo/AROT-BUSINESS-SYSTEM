@@ -64,7 +64,12 @@ body {
    overflow-x: hidden;
    display: grid;
    grid-template-columns: [sidebar-start] 23% [sidebar-end main-start] 1fr [main-end];
-   grid-template-rows: [rowOne-start] max-content [rowOne-end rowTwo-start] min-content [rowTwo-end];
+   grid-template-rows: [rowOne-start] 100vh [rowOne-end rowTwo-start] min-content [rowTwo-end];
+
+   .sidebar-fixed {
+      position: fixed;
+      width: 23%;
+   }
 
    // @media screen and (max-width: 1200px) {
    //    grid-template-columns: [sidebar-start] 20% [sidebar-end main-start] 1fr [main-end];

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+   <meta name="description" content="AROT" />
+
+   <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,600|Nunito:300,300i,400,600&display=swap"
+      rel="stylesheet" />
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+   <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+   <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+
+   <script defer type="module" src="JS/script.js"></script>
+   <!-- <script defer type="module" src="JS/goods.js"></script> -->
+
+   <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
+   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+</head>
+
+<body class="container">
+
+   <nav class="sidebar">
+      <div class="sidebar-fixed">
+
+         <div class="sidebar-header">
+            <a href="/index.html" class="sidebar-header-link">
+               <img src="img/logo.png" alt="Logo" class="sidebar-header-logo" />
+               <span>AROT</span>
+            </a>
+         </div>
+
+         <ul class="side-nav">
+            <a href="/index.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-exchange-alt icon"></i>
+                  <span>POS</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/goods.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-cart-shopping icon"></i>
+                  <span>GOODS</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/charging.html" class="side-nav_link">
+               <li class="side-nav_item">
+                  <i class="fas fa-bolt icon"></i>
+                  <span>CHARGING</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/simRegistration.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fas fa-sim-card icon"></i>
+                  <span>SIM REGISTRATION</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/reports.html" class="side-nav_link">
+               <li class="side-nav_item active">
+                  <i class="fas fa-chart-pie icon"></i>
+                  <span>REPORTS</span>
+               </li>
+            </a>
+         </ul>
+      </div>
+   </nav>
+
+   <header class="navigation-header">
+
+      <!-- <nav class="main-nav">
+         <ul class="main-nav-list">
+            <li><a class="main-nav-link" href="/index.html">POS</a></li>
+            <li><a class="main-nav-link" href="#about">GOODS</a></li>
+            <li>
+               <a class="main-nav-link" href="#features">ACCESSORIES</a>
+            </li>
+            <li><a class="main-nav-link" href="/blog.html">REPORT</a></li>
+            <a href="/login.html">
+               <button class="hero-btn-dark">Login</button>
+            </a>
+         </ul>
+      </nav> -->
+
+      <button class="btn-mobile-nav">
+         <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+         <ion-icon class="icon-mobile-nav dark" name="close-outline"></ion-icon>
+      </button>
+   </header>
+
+   <main class="main">
+      <div class="main-heading card">
+         <div class="main-heading_intro">
+            <h2 class="main-welcome">HELLO, <span class="main-name">USER NAME </span></h2>
+         </div>
+
+         <div class="main-heading_left">
+            <div class="main-heading_side">
+               <h2 class="main-date">Sept 10th, 2023</h2>
+               <h2 class="main-time">3:14PM</h2>
+            </div>
+
+            <div class="main-heading_profile">
+               <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
+            </div>
+         </div>
+      </div>
+
+      <div class="reports card">
+         <div class="reports-method">
+            <h2 class="heading-text mb-2">
+               Reports
+            </h2>
+
+            <div class="reports-table-container">
+               <div class="table-header">
+                  <div>
+                     <h2 class="heading-subtext"> POS </h2>
+                  </div>
+               </div>
+
+               <table class="reports-table">
+                  <thead class="a">
+                     <tr class="table-header-row">
+                        <th class="py-1">S/N</th>
+                        <th class="py-1">Transaction Type</th>
+                        <th class="py-1">Amount</th>
+                        <th class="py-1">Fee</th>
+                        <th class="py-1">Payment Method</th>
+                     </tr>
+                  </thead>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">1.</td>
+                        <td class="py-1 posTransTypeReport">Deposit</td>
+                        <td class="py-1 posAmountReport">&#x20A6;15,000</td>
+                        <td class="py-1 posFeeReport">&#x20A6;300</td>
+                        <td class="py-1 posPaymentMethodReport">Cash</td>
+                     </tr>
+                  </tbody>
+                  <tbody class="a">
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1">2.</td>
+                        <td class="py-1">Withdraw</td>
+                        <td class="py-1">&#x20A6;5,000</td>
+                        <td class="py-1">&#x20A6;100</td>
+                        <td class="py-1">Card</td>
+                     </tr>
+                  </tbody>
+
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">3.</td>
+                        <td class="py-1">Withdraw</td>
+                        <td class="py-1">&#x20A6;50,000</td>
+                        <td class="py-1">&#x20A6;1,000</td>
+                        <td class="py-1">Transfer</td>
+                     </tr>
+                  </tbody>
+
+                  <tfoot>
+                     <tr class="table-foot-row px-2">
+                        <td colspan="2"></td>
+                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;235,000</strong>
+                        </td>
+                        <td id="totalPosFee" class="py-1 px-2"><strong>Total Fees= &nbsp;&#x20A6;25,700</strong></td>
+                        <td></td>
+                     </tr>
+                  </tfoot>
+               </table>
+
+               <!-- 
+               <div class="pagination-container">
+                  <button class="pagination-button">Previous</button>
+                  <p>Page 1 of 10</p>
+                  <button class="pagination-button">Next</button>
+               </div> -->
+            </div>
+         </div>
+      </div>
+
+      <div class="reports card">
+         <div class="reports-method">
+            <h2 class="heading-text mb-2">
+               Reports
+            </h2>
+
+            <div class="reports-table-container">
+               <div class="table-header">
+                  <div>
+                     <h2 class="heading-subtext"> GOODS </h2>
+                  </div>
+               </div>
+
+               <table class="reports-table">
+                  <thead class="a">
+                     <tr class="table-header-row">
+                        <th class="py-1">S/N</th>
+                        <th class="py-1">Item Name</th>
+                        <th class="py-1">Amount</th>
+                        <th class="py-1">Remarks</th>
+                     </tr>
+                  </thead>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">1.</td>
+                        <td class="py-1 soldItemNameReport">Infinix Charger</td>
+                        <td class="py-1 soldItemPriceReport">&#x20A6;2,000</td>
+                        <td class="py-1 soldItemRemarkReport ">Cash</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1">2.</td>
+                        <td class="py-1">Oraimo Watch</td>
+                        <td class="py-1">&#x20A6;27,000</td>
+                        <td class="py-1">Card</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">3.</td>
+                        <td class="py-1">JBL Speaker</td>
+                        <td class="py-1">&#x20A6;60,000</td>
+                        <td class="py-1">Transfer</td>
+                     </tr>
+                  </tbody>
+
+                  <tfoot>
+                     <tr class="table-foot-row px-2">
+                        <td colspan="2"></td>
+                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;124,000</strong>
+                        </td>
+                     </tr>
+                  </tfoot>
+               </table>
+
+               <!-- 
+               <div class="pagination-container">
+                  <button class="pagination-button">Previous</button>
+                  <p>Page 1 of 10</p>
+                  <button class="pagination-button">Next</button>
+               </div> -->
+            </div>
+         </div>
+      </div>
+
+      <div class="reports card">
+         <div class="reports-method">
+            <h2 class="heading-text mb-2">
+               Reports
+            </h2>
+
+            <div class="reports-table-container">
+               <div class="table-header">
+                  <div>
+                     <h2 class="heading-subtext"> DEVICE CHARGE </h2>
+                  </div>
+               </div>
+
+               <table class="reports-table">
+                  <thead class="a">
+                     <tr class="table-header-row">
+                        <th class="py-1">S/N</th>
+                        <th class="py-1">Device Type</th>
+                        <th class="py-1">Amount</th>
+                        <th class="py-1">Owners Name</th>
+                     </tr>
+                  </thead>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">1.</td>
+                        <td class="py-1 chargedItemNameReport">Phone</td>
+                        <td class="py-1 chargedItemPriceReport">&#x20A6;200</td>
+                        <td class="py-1 chargedItemOwnerReport ">James O.</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1">2.</td>
+                        <td class="py-1">Power Bank</td>
+                        <td class="py-1">&#x20A6;300</td>
+                        <td class="py-1">Kingsley Ovie</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">3.</td>
+                        <td class="py-1">Laptop</td>
+                        <td class="py-1">&#x20A6;300</td>
+                        <td class="py-1">John Leo</td>
+                     </tr>
+                  </tbody>
+
+                  <tfoot>
+                     <tr class="table-foot-row px-2">
+                        <td colspan="2"></td>
+                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;5,000</strong>
+                        </td>
+                     </tr>
+                  </tfoot>
+               </table>
+
+               <!-- 
+               <div class="pagination-container">
+                  <button class="pagination-button">Previous</button>
+                  <p>Page 1 of 10</p>
+                  <button class="pagination-button">Next</button>
+               </div> -->
+            </div>
+         </div>
+      </div>
+
+      <div class="reports card">
+         <div class="reports-method">
+            <h2 class="heading-text mb-2">
+               Reports
+            </h2>
+
+            <div class="reports-table-container">
+               <div class="table-header">
+                  <div>
+                     <h2 class="heading-subtext"> SIM REGISTRATION </h2>
+                  </div>
+               </div>
+
+               <table class="reports-table">
+                  <thead class="a">
+                     <tr class="table-header-row">
+                        <th class="py-1">S/N</th>
+                        <th class="py-1">Network</th>
+                        <th class="py-1">Amount</th>
+                        <th class="py-1">Remarks</th>
+                     </tr>
+                  </thead>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">1.</td>
+                        <td class="py-1 chargedItemNameReport">GLO</td>
+                        <td class="py-1 chargedItemPriceReport">&#x20A6;1,200</td>
+                        <td class="py-1 chargedItemOwnerReport ">Successful</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1">2.</td>
+                        <td class="py-1">MTN</td>
+                        <td class="py-1">&#x20A6;1,600</td>
+                        <td class="py-1">Successful</td>
+                     </tr>
+                  </tbody>
+
+                  <tbody class="a">
+                     <tr class="table-body-row">
+                        <td class="py-1">3.</td>
+                        <td class="py-1">Airtel</td>
+                        <td class="py-1">&#x20A6;1,300</td>
+                        <td class="py-1">Successful</td>
+                     </tr>
+                  </tbody>
+
+                  <tfoot>
+                     <tr class="table-foot-row px-2">
+                        <td colspan="2"></td>
+                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;17,000</strong>
+                        </td>
+                     </tr>
+                  </tfoot>
+               </table>
+
+               <!-- 
+               <div class="pagination-container">
+                  <button class="pagination-button">Previous</button>
+                  <p>Page 1 of 10</p>
+                  <button class="pagination-button">Next</button>
+               </div> -->
+            </div>
+         </div>
+      </div>
+
+   </main>
+</body>
+
+</html>

@@ -1,113 +1,87 @@
-.dnsModal .table-container {
-   @media only screen and (max-width:$bp-largeDns) {
-      overflow-x: auto;
-      max-width: 100%;
-   }
-}
+.reports,
+.goods {
+   height: min-content;
+   color: $color-secondary-dark;
 
-.table-container {
-   @media only screen and (max-width:$bp-mid) {
-      overflow-x: auto;
-      max-width: 100%;
-   }
-}
-
-.dnsModal-table,
-.table {
-   width: 100%;
-   border-collapse: collapse;
-   margin-bottom: 3rem;
-   text-align: center;
-
-   @media only screen and (max-width:$bp-mid) {
-      width: auto;
-      white-space: nowrap;
-      table-layout: fixed;
+   &-table-container {
+      margin-top: 4rem;
    }
 
-   &-heading {
-      font-size: 1.4rem;
-      background-color: $color-primary;
-      color: $color-grey-light-1;
-      padding: .8rem;
-      border: 1px solid $color-secondary-light;
+   &-method {
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      overflow: hidden;
 
-      @media only screen and (max-width:$bp-mid) {
-         position: sticky;
-         top: 0;
-
+      .table-header {
+         display: flex;
+         margin-bottom: 2rem;
+         justify-content: space-between;
+         align-items: center;
       }
-   }
 
-   &-data {
-      padding: 1rem;
-      border: 1px solid $color-secondary-light;
-      font-size: 1.3rem;
-      font-weight: 600;
-      word-wrap: break-word;
-      max-width: 20rem;
-      white-space: normal;
+      .table-buttons {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
 
-      &_text {
+      .product-table,
+      .reports-table {
+         margin: 0 auto;
+         width: 100%;
+         border-collapse: collapse;
+      }
+
+      .table-header-row {
+         color: $color-grey-dark-2 ;
+         font-size: 1.6rem;
          text-align: left;
-         font-size: 1.5rem;
-
+         border-bottom: 1px solid $color-grey-dark-3;
+         box-sizing: content-box;
       }
 
-      button {
+      .table-body-row,
+      .table-foot-row {
+         color: $color-grey-dark-1 ;
+         font-weight: 500;
+         font-size: 1.5rem;
+         cursor: pointer;
+         border-bottom: 1px solid $color-grey-dark-3;
 
-         &:not(:last-child) {
-            margin-right: 3rem;
+         .hero-btn-light {
+            margin: 0;
+         }
 
-
-            @media only screen and (max-width:$bp-larger) {
-               margin-right: 1rem;
-            }
-
-            .hero-btn-light {
-               padding-right: 2rem;
-            }
-
-            .icon {
-               margin-right: 1rem;
-            }
+         strong {
+            font-size: 1.6rem;
          }
       }
 
-      /* Style alternate rows for better readability */
-      &-rows:nth-child(odd) {
-         background-color: $color-primary;
-         color: $color-grey-light-1;
+      .table-body-row:hover {
+         background-color: $color-grey-dark-2;
+         color: $color-primary-light-1;
+
+         & .hero-btn-light {
+            background-color: $color-primary-light-1;
+            color: $color-grey-dark-2;
+         }
       }
-   }
-}
 
-.dnsModal .scroll-hint {
-   @media only screen and (max-width:$bp-largeDns) {
-      display: block;
-   }
-}
+      .pagination-container {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-top: 0.5rem;
+      }
 
-// Scroll horrizontal message that shows when the the table overflows
+      .pagination-button {
+         font-size: 0.75rem;
+         color: #000;
+      }
 
-.scroll-hint {
-   display: none;
-   background-color: $color-grey-light-2;
-   padding: .1rem 1rem;
-   border-radius: 5px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   font-size: 1.2rem;
-   color: $color-grey-dark-1;
-   width: max-content;
-   margin-bottom: 1rem;
-
-   @media only screen and (max-width:$bp-mid) {
-      display: block;
-   }
-
-   i {
-      margin-right: 8px;
-      font-size: 1.2rem;
-      color: #007bff;
+      .pagination-button:disabled {
+         opacity: 0.5;
+         cursor: not-allowed;
+      }
    }
 }

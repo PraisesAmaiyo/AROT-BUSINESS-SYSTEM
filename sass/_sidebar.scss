@@ -2,7 +2,7 @@
    grid-column: sidebar-start / sidebar-end;
    grid-row: rowOne-start / rowTwo-end;
    overflow-y: auto;
-   height: 100vh;
+   height: auto;
    width: 100%;
    background-color: $color-primary;
    color: $color-primary-light-1;
@@ -15,6 +15,10 @@
    // @media only screen and (max-width:$bp-larger) {
    //    padding: 2rem 0;
    // }
+
+   &-fixed {
+      position: fixed;
+   }
 
    &-header {
       display: flex;
