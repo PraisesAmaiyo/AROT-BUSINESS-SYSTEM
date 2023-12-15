@@ -58,6 +58,24 @@ body {
    background-color: $color-grey-light-1;
    font-weight: 300;
    line-height: 1.4;
+
+   scrollbar-width: thin;
+   scrollbar-color: transparent transparent;
+   overflow: -webkit-scrollbar;
+   scrollbar-width: thin;
+
+   &::-webkit-scrollbar {
+      width: 1rem;
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background-color: $color-primary;
+      border-radius: 10px;
+   }
+
+   &::-webkit-scrollbar-track {
+      // background-color: $color-primary-light-1;
+   }
 }
 
 .container {
@@ -151,3 +169,7 @@ body {
       background-color: none;
    }
 }
+
+body {}
+
+/* Style the scrollbar track and thumb */

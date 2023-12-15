@@ -18,7 +18,16 @@ body {
   font-display: swap;
   background-color: #fff;
   font-weight: 300;
-  line-height: 1.4; }
+  line-height: 1.4;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  overflow: -webkit-scrollbar;
+  scrollbar-width: thin; }
+  body::-webkit-scrollbar {
+    width: 1rem; }
+  body::-webkit-scrollbar-thumb {
+    background-color: #51cf66;
+    border-radius: 10px; }
 
 .container {
   overflow-x: hidden;
@@ -84,6 +93,7 @@ body {
   .sidebar.blur::before {
     background-color: none; } }
 
+/* Style the scrollbar track and thumb */
 .naira-input-container input {
   padding-left: 3rem; }
 
