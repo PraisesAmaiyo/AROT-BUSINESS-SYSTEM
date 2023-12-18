@@ -34,18 +34,19 @@
    <div class="authentication-container" id="container">
       <!-- <div> -->
       <div class="form-container sign-up-container">
-         <form netlify>
+         <form name="signup form" netlify>
             <h1 class="heading-text mb-2">Create Account</h1>
 
             <input type="text" placeholder="Full Name" required />
             <input type="email" placeholder="Email" required />
             <input type="password" placeholder="Password" required />
             <button class="hero-btn-dark mt-2">Sign Up</button>
+
          </form>
       </div>
 
       <div class="form-container sign-in-container">
-         <form netlify>
+         <form name="login form" netlify>
             <h1 class="heading-text mb-2">Sign in</h1>
 
             <input type="email" placeholder="Email" required />
@@ -53,6 +54,9 @@
             <a href="#">Forgot your password?</a>
 
             <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign In</button>
+            <a href="/index.html">Click here for demo login to landing page &rarr;
+            </a>
+
 
          </form>
       </div>
