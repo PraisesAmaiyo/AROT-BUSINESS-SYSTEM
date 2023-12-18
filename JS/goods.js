@@ -56,6 +56,9 @@ const addProductContainer = document.querySelector('.addProduct');
 addButton.addEventListener('click', function () {
   console.log('object');
   addProductContainer.classList.add('active');
+  main.classList.add('blur');
+  sidebar.classList.add('blur');
+  main.classList.add('no-scroll');
 });
 
 const sellProductContainer = document.querySelector('.sellProduct');
@@ -64,6 +67,9 @@ const sellButtons = document.querySelectorAll('.sellButton');
 sellButtons.forEach((button, index) => {
   button.addEventListener('click', function (e) {
     sellProductContainer.classList.add('active');
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
 
     const target = e.target;
     console.log(index);

@@ -11,14 +11,14 @@
    flex-direction: column;
    position: relative;
    box-shadow: rgba($color-primary, 0.5) 2px 0px 7px;
-   z-index: 999999999999;
+   z-index: 9999;
 
    @media only screen and (max-width:$bp-big) {
       // grid-row: rowTwo-start/ rowTwo-end;
       // grid-column: main-start / main-end;
+      padding: 0 0 2rem 0;
       flex-direction: row;
       position: fixed;
-      top: 90%;
       bottom: 0;
    }
 
@@ -77,6 +77,10 @@
 
       @media only screen and (max-width:$bp-small) {
          font-size: 1.5rem;
+      }
+
+      @media only screen and (max-width:$bp-small-extra) {
+         // font-size: 1.3rem;
       }
 
       &_item {

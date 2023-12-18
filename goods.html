@@ -112,20 +112,16 @@
 
       <div class="goods card">
          <div class="goods-method">
-            <h2 class="heading-text">
+            <h2 class="heading-text" style="margin-bottom: 1.5rem;">
                GOODS
             </h2>
 
+            <div class="table-header">
+               <button class="hero-btn-dark mb-2 addProductButton">Add Product</button>
+               <h2 class="heading-subtext"> Available Products</h2>
+            </div>
+
             <div class="product-table-container">
-               <div class="table-header">
-                  <div>
-                     <button class="hero-btn-dark mb-2 addProductButton">Add Product</button>
-                     <h2 class="heading-subtext"> Available Products</h2>
-                  </div>
-
-
-               </div>
-
                <table class="product-table">
                   <thead class="a">
                      <tr class="table-header-row">
@@ -184,117 +180,117 @@
             </div>
          </div>
       </div>
-
-      <form name="sell-product" netlify>
-         <div class="card sellProduct modal ">
-
-            <div>
-               <h1 class="heading-text">Sell Item</h1>
-               <h2 class="heading-subtext">Infinix Charger</h2>
-            </div>
-
-            <div class="sellProduct-form_input">
-               <label for="productBoughtPrice">Amount Bought</label>
-
-               <div class="naira-input-container">
-                  <input id="soldItemBoughtPrice" type="text" placeholder="Amount bought" name="soldItemBoughtPrice"
-                     value="2,500" disabled>
-                  <span class="naira">&#x20A6;</span>
-               </div>
-            </div>
-
-            <div class="sellProduct-form_input">
-               <label for="productSoldPrice">Amount Sold</label>
-
-               <div class="naira-input-container">
-                  <input id="soldProductPrice" type="text" placeholder="Enter Sold Price" name="soldProductPrice"
-                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-                  <span class="naira">&#x20A6;</span>
-               </div>
-            </div>
-
-            <!-- <div class="sellProduct-form_input"> -->
-            <div class="checkbox">
-               <div class="checkbox-container">
-                  <input id="completedCheckbox" type="checkbox" name="completedCheckbox" required>
-                  <label for="completedCheckbox">Completed</label>
-               </div>
-
-               <div class="checkbox-container">
-                  <input id="pendingCheckbox" type="checkbox" name="pendingCheckbox" required>
-                  <label for="pendingCheckbox">Pending</label>
-               </div>
-            </div>
-            <!-- </div> -->
-
-            <div class="sellProduct-form_input balancePayment">
-               <label for="productBalanceAmount">Balance Amount</label>
-
-               <div class="naira-input-container">
-                  <input id="productBalancePrice" type="text" placeholder="Enter Balance Amount"
-                     name="productBalancePrice" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-                  <span class="naira">&#x20A6;</span>
-               </div>
-            </div>
-
-            <div class="sellProduct-form_input">
-               <label for="productSoldRemark">Remarks</label>
-
-               <!-- <div class="naira-input-container"> -->
-               <input id="soldProductRemark" type="text" placeholder="Remarks" name="soldProductRemark" required>
-               <!-- </div> -->
-            </div>
-
-            <div class="center-button">
-               <button class="hero-btn-dark sellProductActionButton">Sell</button>
-            </div>
-
-            <div class="close closeModal" id="">&times;</div>
-         </div>
-      </form>
-
-      <form name="add-product" netlify>
-         <div class="card addProduct modal ">
-            <div>
-               <h1 class="heading-text">Add product</h1>
-            </div>
-
-            <div class="addProduct-form_input">
-               <label for="productName">Item Name</label>
-
-               <!-- <div class="naira-input-container"> -->
-               <input id="addProductName" type="text" placeholder="Enter Item Name" name="addProductName" required>
-               <!-- </div> -->
-            </div>
-
-            <div class="addProduct-form_input">
-               <label for="productBoughtPrice">Amount Bought</label>
-
-               <div class="naira-input-container">
-                  <input id="addProductBoughtPrice" type="text" placeholder="Enter Buying Price"
-                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductBoughtPrice" required>
-                  <span class="naira">&#x20A6;</span>
-               </div>
-            </div>
-
-            <div class="addProduct-form_input">
-               <label for="productSellingPrice">Amount To Sell</label>
-
-               <div class="naira-input-container">
-                  <input id="addProductSellingPrice" type="text" placeholder="Enter Selling Price"
-                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductSellingPrice" required>
-                  <span class="naira">&#x20A6;</span>
-               </div>
-            </div>
-
-            <div class="center-button">
-               <button class="hero-btn-dark saveProductButton">SAVE</button>
-            </div>
-
-            <div class="close closeModal" id="">&times;</div>
-         </div>
-      </form>
    </main>
+
+   <form name="sell-product" netlify>
+      <div class="card sellProduct modal">
+
+         <div>
+            <h1 class="heading-text">Sell Item</h1>
+            <h2 class="heading-subtext SellingItemName">Infinix Charger</h2>
+         </div>
+
+         <div class="sellProduct-form_input">
+            <label for="productBoughtPrice ">Amount Bought</label>
+
+            <div class="naira-input-container">
+               <input id="soldItemBoughtPrice" type="text" placeholder="Amount bought" name="soldItemBoughtPrice"
+                  value="2,500" disabled>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="sellProduct-form_input">
+            <label for="productSoldPrice ">Amount Sold</label>
+
+            <div class="naira-input-container">
+               <input id="soldProductPrice" type="text" placeholder="Enter Sold Price" name="soldProductPrice"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <!-- <div class="sellProduct-form_input"> -->
+         <div class="checkbox">
+            <div class="checkbox-container">
+               <input id="completedCheckbox" type="checkbox" name="completedCheckbox" required>
+               <label for="completedCheckbox">Completed</label>
+            </div>
+
+            <div class="checkbox-container">
+               <input id="pendingCheckbox" type="checkbox" name="pendingCheckbox" required>
+               <label for="pendingCheckbox">Pending</label>
+            </div>
+         </div>
+         <!-- </div> -->
+
+         <div class="sellProduct-form_input balancePayment">
+            <label for="productBalanceAmount">Balance Amount</label>
+
+            <div class="naira-input-container">
+               <input id="productBalancePrice" type="text" placeholder="Enter Balance Amount" name="productBalancePrice"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="sellProduct-form_input">
+            <label for="productSoldRemark">Remarks</label>
+
+            <!-- <div class="naira-input-container"> -->
+            <input id="soldProductRemark" type="text" placeholder="Remarks" name="soldProductRemark" required>
+            <!-- </div> -->
+         </div>
+
+         <div class="center-button">
+            <button class="hero-btn-dark sellProductActionButton">Sell</button>
+         </div>
+
+         <div class="close closeModal" id="">&times;</div>
+      </div>
+   </form>
+
+   <form name="add-product" netlify>
+      <div class="card addProduct modal ">
+         <div>
+            <h1 class="heading-text  addItemName">Add product</h1>
+         </div>
+
+         <div class="addProduct-form_input">
+            <label for="productName">Item Name</label>
+
+            <!-- <div class="naira-input-container"> -->
+            <input id="addProductName" type="text" placeholder="Enter Item Name" name="addProductName" required>
+            <!-- </div> -->
+         </div>
+
+         <div class="addProduct-form_input">
+            <label for="productBoughtPrice">Amount Bought</label>
+
+            <div class="naira-input-container">
+               <input id="addProductBoughtPrice" type="text" placeholder="Enter Buying Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductBoughtPrice" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="addProduct-form_input">
+            <label for="productSellingPrice">Amount To Sell</label>
+
+            <div class="naira-input-container">
+               <input id="addProductSellingPrice" type="text" placeholder="Enter Selling Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductSellingPrice" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="center-button">
+            <button class="hero-btn-dark saveProductButton">SAVE</button>
+         </div>
+
+         <div class="close closeModal" id="">&times;</div>
+      </div>
+   </form>
 </body>
 
 </html>

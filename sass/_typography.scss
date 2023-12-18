@@ -62,8 +62,13 @@ select {
    gap: 2rem;
    align-items: center;
 
+
+   @media only screen and (max-width:$bp-small) {
+      display: block;
+   }
+
    .simReg-method-form_input {
-      width: 34%;
+      width: 100%;
    }
 
    & input {
@@ -87,7 +92,6 @@ select {
       box-shadow: 0 0 0.3rem 0.5rem rgba($color-primary-light, .36);
    }
 }
-
 
 .checkbox {
    margin-left: 3rem;
@@ -247,6 +251,7 @@ select {
    text-align: center;
    font-size: 2.5rem;
    text-transform: uppercase;
+   margin-bottom: 1.5rem;
 }
 
 .heading-subtext {
