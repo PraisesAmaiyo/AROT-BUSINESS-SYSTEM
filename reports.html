@@ -23,6 +23,7 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer type="module" src="JS/script.js"></script>
+   <script defer type="module" src="JS/reports.js"></script>
    <!-- <script defer type="module" src="JS/goods.js"></script> -->
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
@@ -72,7 +73,8 @@
             <a href="/simRegistration.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-sim-card icon"></i>
-                  <span>SIM REGISTRATION</span>
+                  <span class="simReg-long">SIM REGISTRATION</span>
+                  <span class="simReg-short">SIM REG.</span>
                </li>
             </a>
          </ul>
@@ -88,47 +90,25 @@
       </div>
    </nav>
 
-   <header class="navigation-header">
-
-      <!-- <nav class="main-nav">
-         <ul class="main-nav-list">
-            <li><a class="main-nav-link" href="/index.html">POS</a></li>
-            <li><a class="main-nav-link" href="#about">GOODS</a></li>
-            <li>
-               <a class="main-nav-link" href="#features">ACCESSORIES</a>
-            </li>
-            <li><a class="main-nav-link" href="/blog.html">REPORT</a></li>
-            <a href="/login.html">
-               <button class="hero-btn-dark">Login</button>
-            </a>
-         </ul>
-      </nav> -->
-
-      <button class="btn-mobile-nav">
-         <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
-         <ion-icon class="icon-mobile-nav dark" name="close-outline"></ion-icon>
-      </button>
-   </header>
 
    <main class="main">
       <div class="main-heading card">
          <div class="main-heading_intro">
 
-            <div class="main-heading_profile">
-               <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
+            <div>
+               <a href="/index.html">
+                  <img src="img/logo.png" alt="Logo" class="main-heading_logo" />
+               </a>
             </div>
 
             <h2 class="main-welcome">HELLO, <span class="main-name">USER NAME </span></h2>
          </div>
 
          <div class="main-heading_left">
-            <div class="main-heading_side">
-               <h2 class="main-date">Sept 10th, 2023</h2>
-               <h2 class="main-time">3:14PM</h2>
-            </div>
             <a href="/login.html">
                <button class="hero-btn-dark">LOGOUT</button>
             </a>
+            <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
       </div>
 

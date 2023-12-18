@@ -39,17 +39,10 @@ html {
    box-sizing: border-box;
    font-size: 62.5%;
 
-   @media only screen and (max-width:$bp-largest) {
-      font-size: 50%;
-   }
-
-   // @media only screen and (max-width:$bp-medium) {
-   //    font-size: 47%;
+   // @media only screen and (max-width:$bp-largest) {
+   //    font-size: 50%;
    // }
 
-   // @media only screen and (max-width:$bp-smaller) {
-   //    font-size: 30%;
-   // }
 }
 
 body {
@@ -85,28 +78,34 @@ body {
    grid-template-rows: [rowOne-start] 100vh [rowOne-end rowTwo-start] min-content [rowTwo-end];
 
    .sidebar-fixed {
-      position: fixed;
+      // Chsnge this width when you adjust the width of [sidebar-start] 23% [sidebar-end] above.
       width: 23%;
+
+      @media only screen and (max-width:$bp-big) {
+         width: 100%;
+      }
    }
 
-   // @media screen and (max-width: 1200px) {
-   //    grid-template-columns: [sidebar-start] 20% [sidebar-end main-start] 1fr [main-end];
-   //    grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] minmax(100vh, 1fr) [rowOne-end footer-start] min-content [footer-end];
-   // }
+   @media only screen and (max-width:$bp-big) {
+      grid-template-columns: [main-start] 1fr [main-end];
+      grid-template-rows: [rowOne-start] 100% [rowOne-end rowTwo-start] 5% [rowTwo-end];
+   }
+
+   overflow: scroll;
 }
 
 .card {
    background-color: $color-primary-light-1;
    background-size: cover;
-   // color: $color-grey-light-1;
    border: 1px solid #ddd;
    border-radius: 10px;
    padding: 1rem 1.5rem;
    box-shadow: rgba($color-primary-light, 0.3) 0px 1px 1px;
    margin-bottom: 2rem;
-   // display: flex;
-   // flex-direction: column;
-   // align-items: center;
+
+   @media only screen and (max-width:$bp-medium) {
+      padding: 1rem;
+   }
 }
 
 .modal {

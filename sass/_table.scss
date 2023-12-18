@@ -9,14 +9,11 @@
 
    &-method {
       margin: 0 auto;
-      padding: 1rem 2rem;
+      // padding: 1rem 2rem;
       overflow: hidden;
 
       .table-header {
-         display: flex;
          margin-bottom: 2rem;
-         justify-content: space-between;
-         align-items: center;
       }
 
       .table-buttons {

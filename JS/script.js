@@ -159,3 +159,50 @@ if (transactionType) {
     }
   });
 }
+
+// JavaScript for Forms
+
+export function handlePosFormSubmit() {
+  const transactionType = document.getElementById('transactionType');
+  const withdrawalType = document.getElementById('withdrawalType');
+  const amount = document.getElementById('posTransactionAmount');
+  const fee = document.getElementById('posTransactionFee');
+
+  let selectedTransactionType = transactionType.value;
+  let selectedWithdrawalType = withdrawalType.value;
+  let posTransactionAmount = Number(amount.value);
+  let posTransactionFee = Number(fee.value);
+
+  if (transactionType.value === 'deposit') {
+    selectedWithdrawalType = '';
+  }
+
+  const formData = {
+    selectedTransactionType,
+    selectedWithdrawalType,
+    posTransactionAmount,
+    posTransactionFee,
+  };
+
+  // Retrieve existing data from localStorage
+  const storedData = JSON.parse(localStorage.getItem('posFormData')) || [];
+
+  // Combine current form data with existing data
+  const allData = [...storedData, formData];
+
+  // Store the updated form data in localStorage
+  localStorage.setItem('posFormData', JSON.stringify(allData));
+
+  console.log(formData);
+  console.log(allData);
+  return formData;
+}
+
+const posForm = document.querySelector('.pos-method-form');
+
+if (posForm) {
+  posForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handlePosFormSubmit();
+  });
+}

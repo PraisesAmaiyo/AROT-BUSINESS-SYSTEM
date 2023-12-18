@@ -1,13 +1,13 @@
 .main {
-   grid-column: 2/-1;
+   grid-column: main-start / main-end;
    grid-row: rowOne-start / rowTwo-end;
    padding: 1.6rem;
    position: relative;
    color: $color-secondary-dark;
 
-   // @media only screen and (max-width:$bp-big) {
-   //    grid-column: 1/-1;
-   // }
+   @media only screen and (max-width:$bp-big) {
+      grid-column: 1/-1;
+   }
 
    // @media only screen and (max-width:$bp-small-extra) {
    //    padding-top: 2.5rem;
@@ -30,6 +30,12 @@
          gap: 1rem;
          margin-right: auto;
 
+         .main-heading_logo {
+            width: 4rem;
+            height: 4rem;
+            margin-right: .5rem;
+         }
+
 
          .main-heading-profile--image {
             width: 4rem;
@@ -40,13 +46,25 @@
 
          .main-welcome {
             font-size: 2rem;
+
+            @media only screen and (max-width:$bp-big) {
+               font-size: 1.8rem;
+            }
          }
       }
 
       &_left {
          display: flex;
          align-items: center;
-         gap: 1rem;
+         // gap: 1rem;
+
+
+         .main-heading-profile--image {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 10px;
+            border: 3px solid $color-primary;
+         }
 
       }
 
