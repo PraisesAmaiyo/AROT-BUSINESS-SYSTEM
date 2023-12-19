@@ -26,29 +26,51 @@ document.addEventListener('DOMContentLoaded', function () {
       if (selectedType === 'Withdraw') {
         withdrawalType.style.display = 'block';
       } else if (selectedType === 'Deposit') {
-        console.log('c');
         withdrawalType.style.display = 'none';
       }
     });
   }
 });
 
+function resetWithdrawalTypeStyle() {
+  const withdrawalType = document.querySelector('.withdrawalTransactionType');
+  console.log('called');
+  withdrawalType.style.display = 'block';
+}
+
 // JavaScript for POS Forms
-const transactionType = document.getElementById('transactionType');
-const withdrawalType = document.getElementById('withdrawalType');
 const amount = document.getElementById('posTransactionAmount');
 const fee = document.getElementById('posTransactionFee');
+const posForm = document.querySelector('.pos-method-form');
 
-function handlePosFormSubmit() {
+if (posForm) {
+  posForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const transactionType = document.getElementById('transactionType');
+    const withdrawalType = document.getElementById('withdrawalType');
+
+    handlePosFormSubmit(transactionType, withdrawalType, amount, fee);
+
+    transactionType.value = 'Withdraw';
+    withdrawalType.value = 'Card';
+    withdrawalType.style.display = 'block';
+    amount.value = '';
+    fee.value = '';
+    resetWithdrawalTypeStyle();
+  });
+}
+
+function handlePosFormSubmit(transactionType, withdrawalType, amount, fee) {
   let selectedTransactionType = transactionType.value;
   let selectedWithdrawalType = withdrawalType.value;
   let posTransactionAmount = Number(amount.value);
   let posTransactionFee = Number(fee.value);
   let id = Math.random();
 
-  if (transactionType.value === 'deposit') {
-    selectedWithdrawalType = '-';
-  }
+  //   if (transactionType.value === 'deposit') {
+  //     selectedWithdrawalType = '-';
+  //   }
 
   const posFormData = {
     selectedTransactionType,
@@ -67,18 +89,18 @@ function handlePosFormSubmit() {
   return posFormData;
 }
 
-const posForm = document.querySelector('.pos-method-form');
+// const posForm = document.querySelector('.pos-method-form');
 
-if (posForm) {
-  posForm.addEventListener('submit', function (e) {
-    //  e.preventDefault();
+// if (posForm) {
+//   posForm.addEventListener('submit', function (e) {
+//     e.preventDefault();
 
-    handlePosFormSubmit();
+//     handlePosFormSubmit();
 
-    transactionType.value = 'Withdraw';
-    withdrawalType.value = 'Card';
-    withdrawalType.style.display = 'block';
-    amount.value = '';
-    fee.value = '';
-  });
-}
+//     transactionType.value = 'Withdraw';
+//     withdrawalType.value = 'Card';
+//     withdrawalType.style.display = 'block';
+//     amount.value = '';
+//     fee.value = '';
+//   });
+// }

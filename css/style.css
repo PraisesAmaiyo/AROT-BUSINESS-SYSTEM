@@ -254,6 +254,9 @@ select {
   text-align: left;
   font-size: 1.9rem; }
 
+.hidden {
+  display: none; }
+
 .sidebar {
   grid-column: sidebar-start / sidebar-end;
   grid-row: rowOne-start / rowTwo-end;
