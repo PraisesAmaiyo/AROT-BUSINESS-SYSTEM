@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // JavaScript for POS Forms
-function handlePosFormSubmit() {
-  const transactionType = document.getElementById('transactionType');
-  const withdrawalType = document.getElementById('withdrawalType');
-  const amount = document.getElementById('posTransactionAmount');
-  const fee = document.getElementById('posTransactionFee');
+const transactionType = document.getElementById('transactionType');
+const withdrawalType = document.getElementById('withdrawalType');
+const amount = document.getElementById('posTransactionAmount');
+const fee = document.getElementById('posTransactionFee');
 
+function handlePosFormSubmit() {
   let selectedTransactionType = transactionType.value;
   let selectedWithdrawalType = withdrawalType.value;
   let posTransactionAmount = Number(amount.value);
@@ -60,7 +60,7 @@ function handlePosFormSubmit() {
 
   const storedData = JSON.parse(localStorage.getItem('posFormData')) || [];
 
-  const allData = [...storedData, posFormData];
+  const allData = [posFormData, ...storedData];
 
   localStorage.setItem('posFormData', JSON.stringify(allData));
 
@@ -71,7 +71,14 @@ const posForm = document.querySelector('.pos-method-form');
 
 if (posForm) {
   posForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+    //  e.preventDefault();
+
     handlePosFormSubmit();
+
+    transactionType.value = 'Withdraw';
+    withdrawalType.value = 'Card';
+    withdrawalType.style.display = 'block';
+    amount.value = '';
+    fee.value = '';
   });
 }
