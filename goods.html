@@ -129,7 +129,6 @@
                         <th class="py-1">Products</th>
                         <th class="py-1">Buying Price</th>
                         <th class="py-1">Quantity</th>
-                        <th class="py-1">Availability</th>
                         <th class="py-1">Selling Price</th>
                         <th class="py-1">Action</th>
                      </tr>
@@ -137,11 +136,19 @@
 
                   <tbody class="a">
                      <tr class="table-body-row" id="item-list">
+                        <td class="py-1 productSerialNumber">1</td>
+                        <td class="py-1 productName">New Age Powerbank</td>
+                        <td class="py-1 productAmountBought">&#x20A6;13,500</td>
+                        <td class="py-1 productQuantity">14</td>
+                        <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
+                        <td class="py-1 "><button class="hero-btn-light sellButton">Sell</button></td>
+                     </tr>
+
+                     <tr class="table-body-row" id="item-list">
                         <td class="py-1">1</td>
                         <td class="py-1">Infinix Charger</td>
                         <td class="py-1">&#x20A6;2,500</td>
                         <td class="py-1">43</td>
-                        <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;4,000</td>
                         <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
@@ -153,7 +160,6 @@
                         <td class="py-1">Powerbank</td>
                         <td class="py-1">&#x20A6;15,000</td>
                         <td class="py-1">21</td>
-                        <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;18,000</td>
                         <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
@@ -165,7 +171,6 @@
                         <td class="py-1">Apple SmartWatch</td>
                         <td class="py-1">&#x20A6;250,000</td>
                         <td class="py-1">28</td>
-                        <td class="py-1">In-stock</td>
                         <td class="py-1">&#x20A6;320,000</td>
                         <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
                      </tr>
@@ -182,7 +187,7 @@
       </div>
    </main>
 
-   <form name="sell-product" netlify>
+   <form class="sell-product-form" name="sell-product" netlify>
       <div class="card sellProduct modal">
 
          <div>
@@ -250,14 +255,14 @@
       </div>
    </form>
 
-   <form name="add-product" netlify>
+   <form class="add-product-form" name="add-product" netlify>
       <div class="card addProduct modal ">
          <div>
             <h1 class="heading-text  addItemName">Add product</h1>
          </div>
 
          <div class="addProduct-form_input">
-            <label for="productName">Item Name</label>
+            <label for="addProductName">Item Name</label>
 
             <!-- <div class="naira-input-container"> -->
             <input id="addProductName" type="text" placeholder="Enter Item Name" name="addProductName" required>
@@ -282,6 +287,15 @@
                   oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductSellingPrice" required>
                <span class="naira">&#x20A6;</span>
             </div>
+         </div>
+
+         <div class="addProduct-form_input">
+            <label for="productQuantity">Product Quantity</label>
+
+            <!-- <div class="naira-input-container"> -->
+            <input id="addProductQuantity" type="text" placeholder="Enter Product Quantity" name="addProductQuantity"
+               required>
+            <!-- </div> -->
          </div>
 
          <div class="center-button">

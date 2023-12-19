@@ -14,25 +14,27 @@ sideNavs.forEach((nav) => {
 });
 
 // JavaScript to toggle withdrawal methods
-const withdrawalType = document.querySelector('.withdrawalTransactionType');
 
-const transactionType = document.getElementById('transactionType');
+document.addEventListener('DOMContentLoaded', function () {
+  const withdrawalType = document.querySelector('.withdrawalTransactionType');
+  const transactionType = document.getElementById('transactionType');
 
-if (transactionType) {
-  transactionType.addEventListener('change', function (e) {
-    const selectedType = e.target.value;
+  if (transactionType) {
+    transactionType.addEventListener('change', function (e) {
+      const selectedType = e.target.value;
 
-    if (selectedType === 'withdraw') {
-      withdrawalType.style.display = 'block';
-    } else if (selectedType === 'deposit') {
-      withdrawalType.style.display = 'none';
-    }
-  });
-}
+      if (selectedType === 'Withdraw') {
+        withdrawalType.style.display = 'block';
+      } else if (selectedType === 'Deposit') {
+        console.log('c');
+        withdrawalType.style.display = 'none';
+      }
+    });
+  }
+});
 
-// JavaScript for Forms
-
-export function handlePosFormSubmit() {
+// JavaScript for POS Forms
+function handlePosFormSubmit() {
   const transactionType = document.getElementById('transactionType');
   const withdrawalType = document.getElementById('withdrawalType');
   const amount = document.getElementById('posTransactionAmount');
@@ -42,30 +44,27 @@ export function handlePosFormSubmit() {
   let selectedWithdrawalType = withdrawalType.value;
   let posTransactionAmount = Number(amount.value);
   let posTransactionFee = Number(fee.value);
+  let id = Math.random();
 
   if (transactionType.value === 'deposit') {
-    selectedWithdrawalType = '';
+    selectedWithdrawalType = '-';
   }
 
-  const formData = {
+  const posFormData = {
     selectedTransactionType,
     selectedWithdrawalType,
     posTransactionAmount,
     posTransactionFee,
+    id,
   };
 
-  // Retrieve existing data from localStorage
   const storedData = JSON.parse(localStorage.getItem('posFormData')) || [];
 
-  // Combine current form data with existing data
-  const allData = [...storedData, formData];
+  const allData = [...storedData, posFormData];
 
-  // Store the updated form data in localStorage
   localStorage.setItem('posFormData', JSON.stringify(allData));
 
-  console.log(formData);
-  console.log(allData);
-  return formData;
+  return posFormData;
 }
 
 const posForm = document.querySelector('.pos-method-form');

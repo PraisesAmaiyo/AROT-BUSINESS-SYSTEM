@@ -1,19 +1,3 @@
-const details = [
-  {
-    name: 'Infinix Charger',
-    image:
-      'https://www.deeliver.co.za/cdn/shop/files/red-bull-energy-drink-250ml-24-pack-6x-4-pack.jpg?v=1686930747&width=1000',
-    id: 23,
-    category: 'accessories',
-    price: 405,
-    quantity: '17 Packs',
-    unit: 6,
-    expiry: '20/09/25',
-    threshold: '9 packs',
-    availability: 'In-stock',
-  },
-];
-
 document.addEventListener('DOMContentLoaded', function () {
   const completedCheckbox = document.getElementById('completedCheckbox');
   const pendingCheckbox = document.getElementById('pendingCheckbox');
@@ -76,6 +60,57 @@ sellButtons.forEach((button, index) => {
   });
 });
 
+// JS for Adding Products
+const addProductName = document.getElementById('addProductName');
+const addProductBoughtPrice = document.getElementById('addProductBoughtPrice');
+const addProductSellingPrice = document.getElementById(
+  'addProductSellingPrice'
+);
+const addProductQuantity = document.getElementById('addProductQuantity');
+
+function handleAddProductSubmit() {
+  let addProductNameInput = addProductName.value;
+  let addProductBoughtPriceInput = Number(addProductBoughtPrice.value);
+  let addProductSellingPriceInput = Number(addProductSellingPrice.value);
+  let addProductQuantityInput = Number(addProductQuantity.value);
+  let id = Math.random();
+
+  const addProductFormData = {
+    addProductNameInput,
+    addProductBoughtPriceInput,
+    addProductSellingPriceInput,
+    addProductQuantityInput,
+    id,
+  };
+
+  const storedData =
+    JSON.parse(localStorage.getItem('addProductFormData')) || [];
+
+  const allData = [...storedData, addProductFormData];
+
+  localStorage.setItem('addProductFormData', JSON.stringify(allData));
+
+  return addProductFormData;
+}
+
+const addProductForm = document.querySelector('.add-product-form');
+
+if (addProductForm) {
+  addProductForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handleAddProductSubmit();
+
+    addProductName.value = '';
+    addProductBoughtPrice.value = '';
+    addProductSellingPrice.value = '';
+    addProductQuantity.value = '';
+    closeModal();
+  });
+}
+
+const storedGoodsData = JSON.parse(localStorage.getItem('posFormData')) || [];
+
+// JS for modal
 const main = document.querySelector('.main');
 const sidebar = document.querySelector('.sidebar');
 
