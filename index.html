@@ -169,7 +169,7 @@
 
    <script>
       // Redirect to /login on first entry
-      if (window.location.pathname === '/' && window.performance && window.performance.navigation.type === 0) {
+      if (window.location.pathname === '/' && window.location.search === '' && window.performance && window.performance.navigation.type === 0) {
          window.location.href = '/login';
       }
    </script>
