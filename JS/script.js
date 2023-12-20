@@ -1,10 +1,3 @@
-function handleLogout() {
-  // Set isLoggedIn to false
-  localStorage.setItem('isLoggedIn', 'false');
-  // Redirect to login page
-  window.location.href = '/login';
-}
-
 // Toggle the active class for sideNavs
 const sideNavs = document.querySelectorAll('.side-nav_item');
 
