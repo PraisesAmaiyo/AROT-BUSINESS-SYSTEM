@@ -1,1 +1,2 @@
-/* /login 200
+# Redirect with a 200
+/         /login              200
