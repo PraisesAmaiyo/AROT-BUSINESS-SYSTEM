@@ -175,6 +175,7 @@
    </script> -->
 
    <script>
+      const isLoginPage = window.location.pathname.includes('/login');
       const isLoggedIn = localStorage.getItem('isLoggedIn');
 
       if (!isLoggedIn || isLoggedIn === 'false') {
