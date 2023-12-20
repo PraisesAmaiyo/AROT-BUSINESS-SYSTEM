@@ -1,6 +1,7 @@
 [[redirects]]
   from = "/test2"
   to = "/goods"
+<<<<<<< HEAD
   status = 200
 
 [[redirects]]
@@ -11,4 +12,6 @@
 [[redirects]]
   from = ""
   to = "/login"
+=======
+>>>>>>> 8a3aa5e5ef92d6b59c4caaa3057b0dc34c373765
   status = 200
