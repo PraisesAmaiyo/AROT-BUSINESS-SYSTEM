@@ -1,3 +1,6 @@
+// Dummy first login before full page
+localStorage.setItem('isLoggedIn', true);
+
 // Toggle the active class for sideNavs
 const sideNavs = document.querySelectorAll('.side-nav_item');
 
