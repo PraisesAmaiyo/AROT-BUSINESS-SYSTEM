@@ -62,15 +62,17 @@ if (posForm) {
 }
 
 function handlePosFormSubmit(transactionType, withdrawalType, amount, fee) {
+  console.log('hhhhhhhhhhh');
+
   let selectedTransactionType = transactionType.value;
   let selectedWithdrawalType = withdrawalType.value;
   let posTransactionAmount = Number(amount.value);
   let posTransactionFee = Number(fee.value);
   let id = Math.random();
 
-  //   if (transactionType.value === 'deposit') {
-  //     selectedWithdrawalType = '-';
-  //   }
+  if (selectedTransactionType === 'Deposit') {
+    selectedWithdrawalType = '-';
+  }
 
   const posFormData = {
     selectedTransactionType,

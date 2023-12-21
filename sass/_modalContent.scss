@@ -1,5 +1,5 @@
 .modal {
-   padding: 5rem;
+   padding: 3rem;
    opacity: 0;
    visibility: hidden;
    position: fixed;
@@ -13,7 +13,7 @@
    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
 
    @media only screen and (max-width:$bp-big) {
-      padding: 3rem;
+      padding: 1.7rem;
       width: 70%;
    }
 
@@ -75,28 +75,23 @@
 
 .addProduct,
 .sellProduct {
-   @media only screen and (max-width:$bp-small) {
+   .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: 0;
+      margin-top: 1.5rem;
 
-      .checkbox {
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         gap: 1rem;
-         margin-left: 0;
-         margin-top: 1.5rem;
+      label {
+         margin-bottom: 0;
+      }
 
-
+      @media only screen and (max-width:$bp-small) {
          .checkbox-container {
             padding-bottom: 0;
          }
-
-         label {
-            margin-bottom: 0;
-         }
       }
    }
-
-   .heading-text {}
 
    &-form {
 

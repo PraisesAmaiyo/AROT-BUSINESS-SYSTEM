@@ -122,7 +122,7 @@
             <div class="reports-table-container">
 
                <table class="reports-table">
-                  <thead class="a">
+                  <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Transaction Type</th>
@@ -132,7 +132,7 @@
                      </tr>
                   </thead>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">1.</td>
                         <td class="py-1 posTransTypeReport">Deposit</td>
@@ -141,7 +141,7 @@
                         <td class="py-1 posPaymentMethodReport">Cash</td>
                      </tr>
                   </tbody>
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row" id="item-list">
                         <td class="py-1">2.</td>
                         <td class="py-1">Demo Withdraw</td>
@@ -152,7 +152,7 @@
                   </tbody>
 
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">3.</td>
                         <td class="py-1">Demo Withdraw</td>
@@ -172,15 +172,29 @@
                      </tr>
                   </tfoot>
                </table>
-
-               <!-- 
-               <div class="pagination-container">
-                  <button class="pagination-button">Previous</button>
-                  <p>Page 1 of 10</p>
-                  <button class="pagination-button">Next</button>
-               </div> -->
             </div>
 
+            <div class="double-input">
+               <div class="amount-summary">
+                  <label for="AmountinMachine">AMOUNT IN MACHINE</label>
+
+                  <div class="naira-input-container">
+                     <input id="AmountinMachine" type="text" name="AmountinMachine"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" value="124,500" disabled>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
+               </div>
+
+               <div class="amount-summary">
+                  <label for="cashAvailable">CASH AVAILABLE</label>
+
+                  <div class="naira-input-container">
+                     <input id="cashAvailable" type="text" name="cashAvailable"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" value="78,500" disabled>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
 
@@ -198,16 +212,16 @@
                </div>
 
                <table class="reports-table">
-                  <thead class="a">
+                  <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Item Name</th>
-                        <th class="py-1">Amount</th>
+                        <th class="py-1">Amount Sold</th>
                         <th class="py-1">Remarks</th>
                      </tr>
                   </thead>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">1.</td>
                         <td class="py-1 soldItemNameReport">Infinix Charger</td>
@@ -216,18 +230,18 @@
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row" id="item-list">
-                        <td class="py-1">2.</td>
+                        <td class="py-1">x.</td>
                         <td class="py-1">Oraimo Watch</td>
                         <td class="py-1">&#x20A6;27,000</td>
                         <td class="py-1">Card</td>
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
-                        <td class="py-1">3.</td>
+                        <td class="py-1">xx.</td>
                         <td class="py-1">JBL Speaker</td>
                         <td class="py-1">&#x20A6;60,000</td>
                         <td class="py-1">Transfer</td>
@@ -267,7 +281,7 @@
                </div>
 
                <table class="reports-table">
-                  <thead class="a">
+                  <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Device Type</th>
@@ -276,7 +290,7 @@
                      </tr>
                   </thead>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">1.</td>
                         <td class="py-1 chargedItemNameReport">Phone</td>
@@ -285,7 +299,7 @@
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row" id="item-list">
                         <td class="py-1">2.</td>
                         <td class="py-1">Power Bank</td>
@@ -294,7 +308,7 @@
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">3.</td>
                         <td class="py-1">Laptop</td>
@@ -336,7 +350,7 @@
                </div>
 
                <table class="reports-table">
-                  <thead class="a">
+                  <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Network</th>
@@ -345,7 +359,7 @@
                      </tr>
                   </thead>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">1.</td>
                         <td class="py-1 chargedItemNameReport">GLO</td>
@@ -354,7 +368,7 @@
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row" id="item-list">
                         <td class="py-1">2.</td>
                         <td class="py-1">MTN</td>
@@ -363,7 +377,7 @@
                      </tr>
                   </tbody>
 
-                  <tbody class="a">
+                  <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">3.</td>
                         <td class="py-1">Airtel</td>
