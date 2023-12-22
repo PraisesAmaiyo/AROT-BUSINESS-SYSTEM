@@ -4,11 +4,11 @@ function formatAmountWithCommas(amount) {
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-// JS to call saved POS form data
+// JS to Render saved POS form data
 const storedPosData = JSON.parse(localStorage.getItem('posFormData')) || [];
 
 function renderPosTable() {
-  const posTableBody = document.querySelector('.reports-table tbody');
+  const posTableBody = document.querySelector('.posTableDisplay tbody');
 
   posTableBody.innerHTML = '';
 
@@ -53,3 +53,44 @@ function updateTotalPosAmounts(data) {
 }
 
 renderPosTable();
+
+// JS to Render Sold goodsfrom LocalStorage
+const storedSoldGoods =
+  JSON.parse(localStorage.getItem('sellProductFormData')) || [];
+
+function renderGoodsTable() {
+  const goodsTableBody = document.querySelector('.soldTableDisplay tbody');
+
+  goodsTableBody.innerHTML = '';
+
+  storedSoldGoods.forEach((data, index) => {
+    const row = document.createElement('tr');
+    row.classList.add('table-body-row');
+
+    row.innerHTML = `
+    <td class="py-1">${index + 1}</td>
+    <td class="py-1 soldItemNameReport">${data.soldItemNameInput}</td>
+    <td class="py-1 soldItemPriceReport">${data.soldProductPriceInput}</td>
+    <td class="py-1 soldItemStatusReport">${data.checkboxStatus}</td>
+    <td class="py-1 soldItemRemarkReport ">${data.soldProductRemarkInput}</td>
+      `;
+    goodsTableBody.appendChild(row);
+  });
+  updateTotalSoldAmounts(storedSoldGoods);
+}
+
+// JS to give total Sold Amount
+function updateTotalSoldAmounts(data) {
+  const totalSoldAmount = document.getElementById('totalSoldAmount');
+
+  const totalAmount = data.reduce(
+    (sum, item) => sum + item.soldProductPriceInput,
+    0
+  );
+
+  totalSoldAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+    totalAmount
+  )}</strong>`;
+}
+
+renderGoodsTable();

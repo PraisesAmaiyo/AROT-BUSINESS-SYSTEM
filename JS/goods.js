@@ -4,44 +4,6 @@ function formatAmountWithCommas(amount) {
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const completedCheckbox = document.getElementById('completedCheckbox');
-  const pendingCheckbox = document.getElementById('pendingCheckbox');
-  const balancePayment = document.querySelector('.balancePayment');
-  const balancePaymentInput = document.getElementById('productBalancePrice');
-
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', function () {
-      checkboxes.forEach((otherCheckbox) => {
-        if (otherCheckbox !== checkbox) {
-          otherCheckbox.checked = false;
-          otherCheckbox.removeAttribute('required');
-        }
-      });
-
-      if (checkbox === completedCheckbox) {
-        balancePayment.style.display = 'none';
-        balancePaymentInput.disabled = true;
-      } else {
-        console.log('b');
-        balancePayment.style.display = 'flex';
-        balancePaymentInput.disabled = false;
-      }
-    });
-  });
-
-  balancePaymentInput.addEventListener('input', function () {
-    if (parseFloat(balancePaymentInput.value) > 0) {
-      console.log(balancePaymentInput.value);
-      pendingCheckbox.checked = true;
-    } else {
-      pendingCheckbox.checked = false;
-    }
-  });
-});
-
 // JS for Adding Products
 const addProductName = document.getElementById('addProductName');
 const addProductBoughtPrice = document.getElementById('addProductBoughtPrice');
@@ -151,53 +113,125 @@ sellButtons.forEach((button, index) => {
   });
 });
 
+// JS for the checkboxes and selling of an item
+let checkboxStatus;
+
+document.addEventListener('DOMContentLoaded', function () {
+  const completedCheckbox = document.getElementById('completedCheckbox');
+  const pendingCheckbox = document.getElementById('pendingCheckbox');
+  const balancePayment = document.querySelector('.balancePayment');
+  const balancePaymentInput = document.getElementById('productBalancePrice');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  function updateStatus() {
+    if (completedCheckbox.checked) {
+      checkboxStatus = 'Completed';
+      balancePayment.style.display = 'none';
+      balancePaymentInput.disabled = true;
+    } else {
+      checkboxStatus = 'Pending';
+      balancePayment.style.display = 'flex';
+      balancePaymentInput.disabled = false;
+    }
+  }
+
+  updateStatus();
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+      checkboxes.forEach((otherCheckbox) => {
+        if (otherCheckbox !== checkbox) {
+          otherCheckbox.checked = false;
+          otherCheckbox.removeAttribute('required');
+        }
+      });
+
+      if (checkbox === completedCheckbox) {
+        completedCheckbox.checked = true;
+        balancePayment.style.display = 'none';
+        balancePaymentInput.disabled = true;
+
+        checkboxStatus = 'Completed';
+      } else {
+        pendingCheckbox.checked = true;
+        balancePayment.style.display = 'flex';
+        balancePaymentInput.disabled = false;
+        checkboxStatus = 'Pending';
+      }
+      updateStatus();
+    });
+  });
+
+  balancePaymentInput.addEventListener('input', function () {
+    if (parseFloat(balancePaymentInput.value) > 0) {
+      pendingCheckbox.checked = true;
+      completedCheckbox.checked = false;
+      completedCheckbox.removeAttribute('required');
+      checkboxStatus = 'Pending';
+    } else {
+      completedCheckbox.checked = true;
+      pendingCheckbox.checked = false;
+      checkboxStatus = 'Completed';
+
+      balancePayment.style.display = 'none';
+      balancePaymentInput.disabled = true;
+    }
+    updateStatus();
+  });
+});
+
 // JS for Selling Products and adding to localStorage
-// const SellingItemName = document.getElementById('SellingItemName');
-// const soldProductPrice = document.getElementById('soldProductPrice');
-// const addProductSellingPrice = document.getElementById(
-//   'addProductSellingPrice'
-// );
-// const addProductQuantity = document.getElementById('addProductQuantity');
+const soldItemName = document.getElementById('soldItemName');
+const soldProductPrice = document.getElementById('soldProductPrice');
+const productBalancePrice = document.getElementById('productBalancePrice');
+const soldProductRemark = document.getElementById('soldProductRemark');
 
-// function handleAddProductSubmit() {
-//   let addProductNameInput = addProductName.value;
-//   let addProductBoughtPriceInput = Number(addProductBoughtPrice.value);
-//   let addProductSellingPriceInput = Number(addProductSellingPrice.value);
-//   let addProductQuantityInput = Number(addProductQuantity.value);
-//   let id = Math.random();
+function handleSellProduct() {
+  let soldItemNameInput = soldItemName.innerText;
+  let soldProductPriceInput = Number(soldProductPrice.value);
+  let productBalancePriceInput = Number(productBalancePrice.value);
+  let soldProductRemarkInput = soldProductRemark.value;
+  let id = Math.random();
 
-//   const addProductFormData = {
-//     addProductNameInput,
-//     addProductBoughtPriceInput,
-//     addProductSellingPriceInput,
-//     addProductQuantityInput,
-//     id,
-//   };
+  const sellProductFormData = {
+    soldItemNameInput,
+    soldProductPriceInput,
+    productBalancePriceInput,
+    soldProductRemarkInput,
+    checkboxStatus,
+    id,
+  };
 
-//   const storedData =
-//     JSON.parse(localStorage.getItem('addProductFormData')) || [];
+  const storedData =
+    JSON.parse(localStorage.getItem('sellProductFormData')) || [];
 
-//   const allData = [addProductFormData, ...storedData];
+  const allData = [sellProductFormData, ...storedData];
 
-//   localStorage.setItem('addProductFormData', JSON.stringify(allData));
+  localStorage.setItem('sellProductFormData', JSON.stringify(allData));
 
-//   return addProductFormData;
-// }
+  return sellProductFormData;
+}
 
-// const addProductForm = document.querySelector('.add-product-form');
+const sellProductForm = document.querySelector('.sell-product-form');
 
-// if (addProductForm) {
-//   addProductForm.addEventListener('submit', function (e) {
-//     //  e.preventDefault();
-//     handleAddProductSubmit();
+if (sellProductForm) {
+  sellProductForm.addEventListener('submit', function (e) {
+    const balancePayment = document.querySelector('.balancePayment');
+    const balancePaymentInput = document.getElementById('productBalancePrice');
 
-//     addProductName.value = '';
-//     addProductBoughtPrice.value = '';
-//     addProductSellingPrice.value = '';
-//     addProductQuantity.value = '';
-//     closeModal();
-//   });
-// }
+    e.preventDefault();
+    handleSellProduct();
+
+    soldProductPrice.value = '';
+    productBalancePrice.value = '';
+    soldProductRemark.value = '';
+    completedCheckbox.checked = false;
+    pendingCheckbox.checked = false;
+    balancePayment.style.display = 'flex';
+    balancePaymentInput.disabled = false;
+    closeModal();
+  });
+}
 
 // JS for modal
 const main = document.querySelector('.main');
@@ -227,7 +261,6 @@ const addButton = document.querySelector('.addProductButton');
 const addProductContainer = document.querySelector('.addProduct');
 
 addButton.addEventListener('click', function () {
-  console.log('object');
   addProductContainer.classList.add('active');
   main.classList.add('blur');
   sidebar.classList.add('blur');

@@ -121,7 +121,7 @@
 
             <div class="reports-table-container">
 
-               <table class="reports-table">
+               <table class="reports-table posTableDisplay">
                   <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
@@ -211,12 +211,14 @@
                   </div>
                </div>
 
-               <table class="reports-table">
+               <table class="reports-table soldTableDisplay">
                   <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Item Name</th>
                         <th class="py-1">Amount Sold</th>
+                        <th class="py-1">Status</th>
+                        <!-- <th class="py-1">Balance</th> -->
                         <th class="py-1">Remarks</th>
                      </tr>
                   </thead>
@@ -226,6 +228,8 @@
                         <td class="py-1">1.</td>
                         <td class="py-1 soldItemNameReport">Infinix Charger</td>
                         <td class="py-1 soldItemPriceReport">&#x20A6;2,000</td>
+                        <td class="py-1 soldItemStatusReport">Completed</td>
+                        <!-- <td class="py-1 soldItemStatusReport">Completed</td> -->
                         <td class="py-1 soldItemRemarkReport ">Cash</td>
                      </tr>
                   </tbody>
@@ -235,6 +239,7 @@
                         <td class="py-1">x.</td>
                         <td class="py-1">Oraimo Watch</td>
                         <td class="py-1">&#x20A6;27,000</td>
+                        <td class="py-1">Completed</td>
                         <td class="py-1">Card</td>
                      </tr>
                   </tbody>
@@ -244,6 +249,7 @@
                         <td class="py-1">xx.</td>
                         <td class="py-1">JBL Speaker</td>
                         <td class="py-1">&#x20A6;60,000</td>
+                        <td class="py-1">Pending</td>
                         <td class="py-1">Transfer</td>
                      </tr>
                   </tbody>
@@ -251,7 +257,7 @@
                   <tfoot>
                      <tr class="table-foot-row px-2">
                         <td colspan="2"></td>
-                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;124,000</strong>
+                        <td id="totalSoldAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;124,000</strong>
                         </td>
                      </tr>
                   </tfoot>
