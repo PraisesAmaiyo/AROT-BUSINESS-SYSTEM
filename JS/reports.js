@@ -56,7 +56,7 @@ renderPosTable();
 
 // JS to Render Sold goodsfrom LocalStorage
 const storedSoldGoods =
-  JSON.parse(localStorage.getItem('sellProductFormData')) || [];
+  JSON.parse(localStorage.getItem('soldProductFormData')) || [];
 
 function renderGoodsTable() {
   const goodsTableBody = document.querySelector('.soldTableDisplay tbody');
@@ -72,6 +72,7 @@ function renderGoodsTable() {
     <td class="py-1 soldItemNameReport">${data.soldItemNameInput}</td>
     <td class="py-1 soldItemPriceReport">${data.soldProductPriceInput}</td>
     <td class="py-1 soldItemStatusReport">${data.checkboxStatus}</td>
+    <td class="py-1 soldItemBalanceReport">${data.productBalancePriceInput}</td>
     <td class="py-1 soldItemRemarkReport ">${data.soldProductRemarkInput}</td>
       `;
     goodsTableBody.appendChild(row);

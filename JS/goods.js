@@ -115,6 +115,7 @@ sellButtons.forEach((button, index) => {
 
 // JS for the checkboxes and selling of an item
 let checkboxStatus;
+const balancePaymentInput = document.getElementById('productBalancePrice');
 
 document.addEventListener('DOMContentLoaded', function () {
   const completedCheckbox = document.getElementById('completedCheckbox');
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (completedCheckbox.checked) {
       checkboxStatus = 'Completed';
       balancePayment.style.display = 'none';
+      balancePaymentInput.value = '';
       balancePaymentInput.disabled = true;
     } else {
       checkboxStatus = 'Pending';
@@ -150,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         completedCheckbox.checked = true;
         balancePayment.style.display = 'none';
         balancePaymentInput.disabled = true;
+        balancePaymentInput.value = '';
 
         checkboxStatus = 'Completed';
       } else {
@@ -163,19 +166,30 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   balancePaymentInput.addEventListener('input', function () {
-    if (parseFloat(balancePaymentInput.value) > 0) {
+    const inputValue = balancePaymentInput.value.trim(); // Trim to remove leading/trailing spaces
+
+    if (
+      inputValue === '-' ||
+      (!isNaN(inputValue) && parseFloat(inputValue) >= 0)
+    ) {
       pendingCheckbox.checked = true;
       completedCheckbox.checked = false;
       completedCheckbox.removeAttribute('required');
       checkboxStatus = 'Pending';
     } else {
-      completedCheckbox.checked = true;
-      pendingCheckbox.checked = false;
-      checkboxStatus = 'Completed';
+      return;
 
-      balancePayment.style.display = 'none';
-      balancePaymentInput.disabled = true;
+      // completedCheckbox.checked = true;
+      // pendingCheckbox.checked = false;
+      // checkboxStatus = 'Completed';
+      // balancePayment.style.display = 'none';
+      // balancePaymentInput.disabled = true;
+
+      pendingCheckbox.checked = false;
+      completedCheckbox.checked = false;
+      checkboxStatus = 'Invalid';
     }
+
     updateStatus();
   });
 });
@@ -193,7 +207,11 @@ function handleSellProduct() {
   let soldProductRemarkInput = soldProductRemark.value;
   let id = Math.random();
 
-  const sellProductFormData = {
+  if (productBalancePriceInput === 0 || productBalancePriceInput === '') {
+    productBalancePriceInput = '-';
+  }
+
+  const soldProductFormData = {
     soldItemNameInput,
     soldProductPriceInput,
     productBalancePriceInput,
@@ -203,13 +221,13 @@ function handleSellProduct() {
   };
 
   const storedData =
-    JSON.parse(localStorage.getItem('sellProductFormData')) || [];
+    JSON.parse(localStorage.getItem('soldProductFormData')) || [];
 
-  const allData = [sellProductFormData, ...storedData];
+  const allData = [soldProductFormData, ...storedData];
 
-  localStorage.setItem('sellProductFormData', JSON.stringify(allData));
+  localStorage.setItem('soldProductFormData', JSON.stringify(allData));
 
-  return sellProductFormData;
+  return soldProductFormData;
 }
 
 const sellProductForm = document.querySelector('.sell-product-form');
