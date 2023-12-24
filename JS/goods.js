@@ -119,7 +119,7 @@ const balancePaymentInput = document.getElementById('productBalancePrice');
 
 document.addEventListener('DOMContentLoaded', function () {
   const completedCheckbox = document.getElementById('completedCheckbox');
-  const pendingCheckbox = document.getElementById('pendingCheckbox');
+  const balanceCheckbox = document.getElementById('balanceCheckbox');
   const balancePayment = document.querySelector('.balancePayment');
   const balancePaymentInput = document.getElementById('productBalancePrice');
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
       balancePaymentInput.value = '';
       balancePaymentInput.disabled = true;
     } else {
-      checkboxStatus = 'Pending';
+      checkboxStatus = 'Balance';
       balancePayment.style.display = 'flex';
       balancePaymentInput.disabled = false;
     }
@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkboxStatus = 'Completed';
       } else {
-        pendingCheckbox.checked = true;
+        balanceCheckbox.checked = true;
         balancePayment.style.display = 'flex';
         balancePaymentInput.disabled = false;
-        checkboxStatus = 'Pending';
+        checkboxStatus = 'Balance';
       }
       updateStatus();
     });
@@ -172,20 +172,20 @@ document.addEventListener('DOMContentLoaded', function () {
       inputValue === '-' ||
       (!isNaN(inputValue) && parseFloat(inputValue) >= 0)
     ) {
-      pendingCheckbox.checked = true;
+      balanceCheckbox.checked = true;
       completedCheckbox.checked = false;
       completedCheckbox.removeAttribute('required');
-      checkboxStatus = 'Pending';
+      checkboxStatus = 'Balance';
     } else {
       return;
 
       // completedCheckbox.checked = true;
-      // pendingCheckbox.checked = false;
+      // balanceCheckbox.checked = false;
       // checkboxStatus = 'Completed';
       // balancePayment.style.display = 'none';
       // balancePaymentInput.disabled = true;
 
-      pendingCheckbox.checked = false;
+      balanceCheckbox.checked = false;
       completedCheckbox.checked = false;
       checkboxStatus = 'Invalid';
     }
@@ -195,13 +195,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // JS for Selling Products and adding to localStorage
-const soldItemName = document.getElementById('soldItemName');
+// const soldItemName = document.getElementById('soldItemName');
 const soldProductPrice = document.getElementById('soldProductPrice');
 const productBalancePrice = document.getElementById('productBalancePrice');
 const soldProductRemark = document.getElementById('soldProductRemark');
 
 function handleSellProduct() {
-  let soldItemNameInput = soldItemName.innerText;
+  //   let soldItemNameInput = soldItemName.innerText;
   let soldProductPriceInput = Number(soldProductPrice.value);
   let productBalancePriceInput = Number(productBalancePrice.value);
   let soldProductRemarkInput = soldProductRemark.value;
@@ -212,7 +212,6 @@ function handleSellProduct() {
   }
 
   const soldProductFormData = {
-    soldItemNameInput,
     soldProductPriceInput,
     productBalancePriceInput,
     soldProductRemarkInput,
@@ -244,7 +243,7 @@ if (sellProductForm) {
     productBalancePrice.value = '';
     soldProductRemark.value = '';
     completedCheckbox.checked = false;
-    pendingCheckbox.checked = false;
+    balanceCheckbox.checked = false;
     balancePayment.style.display = 'flex';
     balancePaymentInput.disabled = false;
     closeModal();

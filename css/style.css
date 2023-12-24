@@ -247,6 +247,13 @@ select {
   border-radius: 5px;
   margin-right: 1.5rem; }
 
+.adminHeader {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  gap: 1rem;
+  margin: 2rem 0; }
+
 .center-button {
   display: flex;
   justify-content: center; }
@@ -274,7 +281,7 @@ select {
 
 .heading-subtext {
   text-align: left;
-  font-size: 1.9rem; }
+  font-size: 1.8rem; }
 
 .heading-minitext {
   text-align: left;
@@ -715,6 +722,12 @@ body.authentication {
   margin-top: 2rem;
   display: flex;
   align-items: center; }
+  .addProduct-form_input.sellStatus,
+  .sellProduct-form_input.sellStatus {
+    display: block; }
+    .addProduct-form_input.sellStatus label,
+    .sellProduct-form_input.sellStatus label {
+      width: min-content; }
   @media only screen and (max-width: 30.5em) {
     .addProduct-form_input,
     .sellProduct-form_input {

@@ -50,10 +50,10 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/goods.html" class="side-nav_link">
+            <a href="/sell.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-cart-shopping icon"></i>
-                  <span>GOODS</span>
+                  <span>SELL</span>
                </li>
             </a>
          </ul>
@@ -123,6 +123,8 @@
                   <select id="transactionType" name="transactionType">
                      <option value="Withdraw">Withdraw</option>
                      <option value="Deposit">Deposit</option>
+                     <option value="WithdrawAndTransfer">Withdrawal/Transfer</option>
+                     <option value="BillPayment">Bill Payment</option>
                   </select>
                </div>
 
@@ -154,7 +156,43 @@
                      <span class="naira">&#x20A6;</span>
                   </div>
                </div>
-               <button class="hero-btn-dark mb-2 posSubmitButton" type="submit">Process Transaction</button>
+
+               <div class="pos-method-form_input feePaymentType">
+                  <label for="feePaymentType">Fee payment Method:</label>
+
+                  <select id="posFeePaymentType" name="posFeePaymentType">
+                     <option value="Card">Card</option>
+                     <option value="Transfer">Cash</option>
+                     <option value="Transfer">Transfer</option>
+                  </select>
+               </div>
+
+               <div class="simReg-method-form_input">
+                  <div class="checkbox">
+                     <label for="Status" class="heading-subtext">Status</label>
+                     <div class="checkbox-container">
+                        <input id="posSuccessfulCheckbox" type="checkbox" name="posSuccessfulCheckbox" required>
+                        <label for="posSuccessfulCheckbox">Successful</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="posPendingCheckbox" type="checkbox" name="posPendingCheckbox" required>
+                        <label for="posPendingCheckbox">Pending</label>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="pos-method-form_input">
+                  <label for="POS Remark">Transaction Remarks</label>
+
+                  <input id="posTransactionRemark" type="text" placeholder="Remarks" name="posTransactionRemark"
+                     required>
+               </div>
+
+               <div class="center-button">
+                  <button class="hero-btn-dark mb-2 posSubmitButton" type="submit">Process Transaction</button>
+               </div>
+
             </form>
          </div>
       </div>

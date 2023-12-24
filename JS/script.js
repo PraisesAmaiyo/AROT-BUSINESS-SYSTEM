@@ -23,7 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
     transactionType.addEventListener('change', function (e) {
       const selectedType = e.target.value;
 
-      if (selectedType === 'Withdraw') {
+      if (
+        selectedType === 'Withdraw' ||
+        selectedType === 'WithdrawAndTransfer' ||
+        selectedType === 'BillPayment'
+      ) {
         withdrawalType.style.display = 'block';
       } else if (selectedType === 'Deposit') {
         withdrawalType.style.display = 'none';

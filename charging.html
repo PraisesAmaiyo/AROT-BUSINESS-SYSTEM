@@ -23,6 +23,7 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer type="module" src="JS/script.js"></script>
+   <script defer type="module" src="JS/charging.js"></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -50,10 +51,10 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/goods.html" class="side-nav_link">
+            <a href="/sell.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-cart-shopping icon"></i>
-                  <span>GOODS</span>
+                  <span>SELL</span>
                </li>
             </a>
          </ul>
@@ -121,10 +122,10 @@
                   <label for="deviceType">Select Device Type:</label>
 
                   <select id="deviceType" name="deviceType">
-                     <option value="withdraw">Phone</option>
-                     <option value="laptop">Laptop</option>
-                     <option value="battery">Battery</option>
-                     <option value="powerBank">Power Bank</option>
+                     <option value="Phone">Phone</option>
+                     <option value="Laptop">Laptop</option>
+                     <option value="Battery">Battery</option>
+                     <option value="PowerBank">Power Bank</option>
                      <option value="rechargeableLight">Rechargeable Light</option>
                      <option value="musicPlayer">MP3 (Music Player)</option>
                   </select>
@@ -144,16 +145,16 @@
                </div>
 
                <div class="charging-method-form_input">
-                  <label for="alternativeNo">Alternative No</label>
+                  <label for="alternativeNumber">Alternative No</label>
 
-                  <input id="alternativeNo" type="text" placeholder="Enter Fee" name="alternativeNo" required>
+                  <input id="alternativeNumber" type="text" placeholder="Enter Fee" name="alternativeNumber" required>
                </div>
 
                <div class="charging-method-form_input">
-                  <label for="deviceChargefee">Set Fee</label>
+                  <label for="deviceChargeFee">Set Fee</label>
 
                   <div class="naira-input-container">
-                     <input id="deviceChargefee" type="text" placeholder="Enter Charging Fee"
+                     <input id="deviceChargeFee" type="text" placeholder="Enter Charging Fee"
                         oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="chargingTransactionFee" required>
                      <span class="naira">&#x20A6;</span>
                   </div>
@@ -163,9 +164,9 @@
                   <label for="deviceStatus">Select Device Type:</label>
 
                   <select id="deviceStatus" name="deviceStatus">
-                     <option value="withdraw">Collected</option>
-                     <option value="laptop">Charging</option>
-                     <option value="battery">Charged (Not Collected)</option>
+                     <option value="Collected">Collected</option>
+                     <option value="Charging">Charging</option>
+                     <option value="Charged">Charged (Not Collected)</option>
                   </select>
                </div>
 

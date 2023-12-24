@@ -97,7 +97,6 @@ select {
          left: 18px;
       }
 
-
       // &:not(:last-child) {
 
       // }
@@ -211,18 +210,6 @@ select {
       }
    }
 
-   // @media only screen and (max-width:$bp-largest) {
-   //    font-size: 1.4rem;
-   // }
-
-   // @media only screen and (max-width:$bp-larger) {
-   //    font-size: 1.2rem;
-   // }
-
-   // @media only screen and (max-width:$bp-big) {
-   //    font-size: 2.4rem;
-   // }
-
    @media only screen and (max-width:$bp-medium) {
       // font-size: 1.4rem;
    }
@@ -262,6 +249,14 @@ select {
    margin-right: 1.5rem;
 }
 
+.adminHeader {
+   display: flex;
+   flex-direction: column;
+   width: max-content;
+   gap: 1rem;
+   margin: 2rem 0;
+}
+
 .center-button {
    display: flex;
    justify-content: center;
@@ -296,7 +291,7 @@ select {
 
 .heading-subtext {
    text-align: left;
-   font-size: 1.9rem;
+   font-size: 1.8rem;
 }
 
 .heading-minitext {

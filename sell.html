@@ -14,7 +14,7 @@
 
    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="css/style.css" />
-   <!-- <link rel="shortcut icon" type="image/png" href="img/favicon.png" /> -->
+   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
    <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -23,7 +23,7 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer type="module" src="JS/script.js"></script>
-   <script defer type="module" src="JS/simReg.js"></script>
+   <script defer type="module" src="JS/goods.js"></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -52,7 +52,7 @@
 
          <ul class="side-nav">
             <a href="/sell.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item active">
                   <i class="fas fa-cart-shopping icon"></i>
                   <span>SELL</span>
                </li>
@@ -61,7 +61,7 @@
 
          <ul class="side-nav">
             <a href="/charging.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item">
                   <i class="fas fa-bolt icon"></i>
                   <span>CHARGING</span>
                </li>
@@ -70,7 +70,7 @@
 
          <ul class="side-nav">
             <a href="/simRegistration.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-sim-card icon"></i>
                   <span class="simReg-long">SIM REGISTRATION</span>
                   <span class="simReg-short">SIM REG.</span>
@@ -110,75 +110,92 @@
          </div>
       </div>
 
-      <div class="simReg card">
-         <div class="simReg-method">
-            <h2 class="heading-text">
-               Sim Registration
-            </h2>
 
-            <form class="simReg-method-form" name="simReg-transaction" netlify>
+      <form class="sell-product-form" name="sell-product" netlify>
+         <div class="card sellProduct">
 
-               <div class="simReg-method-form_input">
-                  <label for="simType">Select Network:</label>
+            <div>
+               <h1 class="heading-text">Sell Item</h1>
+            </div>
 
-                  <select id="simType" name="simType">
-                     <option value="mtn">MTN</option>
-                     <option value="airtel">Airtel</option>
-                     <option value="glo">GLO</option>
-                  </select>
+            <div class="pos-method-form_input">
+               <label for="transactionType">Select Item to sell:</label>
+
+               <select id="transactionType" name="transactionType">
+                  <option value="Withdraw">Infinix Charger</option>
+                  <option value="Deposit">Oraimo Earpiece</option>
+                  <option value="WithdrawAndTransfer">New Age Powerbank</option>
+                  <option value="BillPayment">Nokia Battery</option>
+               </select>
+            </div>
+
+            <div class="sellProduct-form_input">
+               <label for="productSellingPrice ">Amount To Sell</label>
+
+               <!-- <div class="naira-input-container">
+                  <input id="soldItemBoughtPrice" type="text" name="soldItemBoughtPrice" value="2,500" disabled>
+                  <span class="naira">&#x20A6;</span>
+               </div> -->
+
+               <div class="naira-input-container">
+                  <input id="itemSellingPrice" type="text" name="itemSellingPrice" value="6,500" disabled>
+                  <span class="naira">&#x20A6;</span>
                </div>
+            </div>
 
-               <div class="double-input">
-                  <div class="simReg-method-form_input">
-                     <label for="phoneNumber">Phone Number</label>
+            <div class="sellProduct-form_input">
+               <label for="productSoldPrice ">Amount Sold</label>
 
-                     <input id="phoneNumber" type="text" placeholder="Enter Phone number" name="phoneNumber"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+               <div class="naira-input-container">
+                  <input id="soldProductPrice" type="text" placeholder="Enter Sold Price" name="soldProductPrice"
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                  <span class="naira">&#x20A6;</span>
+               </div>
+            </div>
+
+            <div class="sellProduct-form_input sellStatus">
+               <label for="Status" class="heading-subtext">Status</label>
+
+               <div class="checkbox">
+                  <div class="checkbox-container">
+                     <input id="completedCheckbox" type="checkbox" name="completedCheckbox" required>
+                     <label for="completedCheckbox">Completed</label>
                   </div>
 
-                  <div class="simReg-method-form_input">
-                     <label for="serialNumber">Serial Number</label>
-
-                     <input id="serialNumber" type="text" placeholder="Enter Serial Number" name="serialNumber"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                  <div class="checkbox-container">
+                     <input id="balanceCheckbox" type="checkbox" name="balanceCheckbox" required>
+                     <label for="balanceCheckbox">Balance</label>
                   </div>
                </div>
+            </div>
 
-               <div class="simReg-method-form_input">
-                  <div style="margin-bottom: 1rem;">
-                     <h2 class="heading-subtext">Status</h2>
-                  </div>
-                  <div class="checkbox">
+            <div class="sellProduct-form_input balancePayment">
+               <label for="productBalanceAmount">Balance Amount</label>
 
-                     <div class="checkbox-container">
-                        <input id="successfulCheckbox" type="checkbox" name="successfulCheckbox" required>
-                        <label for="successfulCheckbox">Successful</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="unSuccessfulCheckbox" type="checkbox" name="unSuccessfulCheckbox" required>
-                        <label for="unSuccessfulCheckbox">Unsuccessful</label>
-                     </div>
-                  </div>
+               <div class="naira-input-container">
+                  <input id="productBalancePrice" type="text" placeholder="Enter Balance Amount"
+                     name="productBalancePrice" oninput="this.value=this.value.replace(/[^0-9-]/g,'')" required>
+                  <span class="naira">&#x20A6;</span>
                </div>
+            </div>
 
-               <div class="simReg-method-form_input">
-                  <label for="simRegAmount">Set Amount</label>
+            <div class="sellProduct-form_input">
+               <label for="productSoldRemark">Remarks</label>
 
-                  <div class="naira-input-container">
-                     <input id="simRegAmount" type="text" placeholder="Enter Fee" name="simRegAmount"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-                     <span class="naira">&#x20A6;</span>
-                  </div>
-               </div>
+               <!-- <div class="naira-input-container"> -->
+               <input id="soldProductRemark" type="text" placeholder="Remarks" name="soldProductRemark" required>
+               <!-- </div> -->
+            </div>
 
-               <div class="center-button">
-                  <button class="hero-btn-dark mb-2">OK</button>
-               </div>
-            </form>
+            <div class="center-button">
+               <button class="hero-btn-dark sellProductActionButton">Sell</button>
+            </div>
+
          </div>
-      </div>
+      </form>
+
    </main>
+
 </body>
 
 </html>

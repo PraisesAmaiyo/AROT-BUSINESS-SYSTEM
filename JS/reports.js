@@ -54,7 +54,7 @@ function updateTotalPosAmounts(data) {
 
 renderPosTable();
 
-// JS to Render Sold goodsfrom LocalStorage
+// JS to Render Sold goods from LocalStorage
 const storedSoldGoods =
   JSON.parse(localStorage.getItem('soldProductFormData')) || [];
 
@@ -70,7 +70,9 @@ function renderGoodsTable() {
     row.innerHTML = `
     <td class="py-1">${index + 1}</td>
     <td class="py-1 soldItemNameReport">${data.soldItemNameInput}</td>
-    <td class="py-1 soldItemPriceReport">${data.soldProductPriceInput}</td>
+    <td class="py-1 soldItemPriceReport">${
+      data.soldProductPriceInput === '-' ? '-' : '&#x20A6;'
+    }</td>
     <td class="py-1 soldItemStatusReport">${data.checkboxStatus}</td>
     <td class="py-1 soldItemBalanceReport">${data.productBalancePriceInput}</td>
     <td class="py-1 soldItemRemarkReport ">${data.soldProductRemarkInput}</td>
@@ -95,3 +97,34 @@ function updateTotalSoldAmounts(data) {
 }
 
 renderGoodsTable();
+
+// JS to Render saved Charged form data
+
+const storedChargedData =
+  JSON.parse(localStorage.getItem('chargeFormData')) || [];
+
+function renderChargingTable() {
+  const chargingTableBody = document.querySelector(
+    '.chargingTableDisplay tbody'
+  );
+
+  chargingTableBody.innerHTML = '';
+
+  storedChargedData.forEach((data, index) => {
+    const row = document.createElement('tr');
+    row.classList.add('table-body-row');
+
+    row.innerHTML = `
+    <td class="py-1">${index + 1}</td>
+    <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
+    <td class="py-1 chargedItemPriceReport">&#x20A6;200</td>
+    <td class="py-1 chargedItemOwnerReport ">James O.</td>
+    <td class="py-1 chargedItemIdReport ">1234</td>
+    <td class="py-1 chargedItemAltIdReport ">5678</td>
+    <td class="py-1 chargedItemStatusReport ">Charged</td>
+      `;
+
+    chargingTableBody.appendChild(row);
+  });
+  updateTotalPosAmounts(storedPosData);
+}
