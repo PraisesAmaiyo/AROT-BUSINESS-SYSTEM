@@ -28,67 +28,8 @@
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
 </head>
 
-<body class="container">
-
-   <nav class="sidebar">
-      <div class="sidebar-fixed">
-
-         <div class="sidebar-header">
-            <a href="/index.html" class="sidebar-header-link">
-               <img src="img/logo.png" alt="Logo" class="sidebar-header-logo" />
-               <span>AROT</span>
-            </a>
-         </div>
-
-         <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
-               <li class="side-nav_item active">
-                  <i class="fas fa-exchange-alt icon"></i>
-                  <span>POS</span>
-               </li>
-            </a>
-         </ul>
-
-         <ul class="side-nav">
-            <a href="/sell.html" class="side-nav_link">
-               <li class="side-nav_item ">
-                  <i class="fas fa-cart-shopping icon"></i>
-                  <span>SELL</span>
-               </li>
-            </a>
-         </ul>
-
-         <ul class="side-nav">
-            <a href="/charging.html" class="side-nav_link">
-               <li class="side-nav_item ">
-                  <i class="fas fa-bolt icon"></i>
-                  <span>CHARGING</span>
-               </li>
-            </a>
-         </ul>
-
-         <ul class="side-nav">
-            <a href="/simRegistration.html" class="side-nav_link">
-               <li class="side-nav_item ">
-                  <i class="fas fa-sim-card icon"></i>
-                  <span class="simReg-long">SIM REGISTRATION</span>
-                  <span class="simReg-short">SIM REG.</span>
-               </li>
-            </a>
-         </ul>
-
-         <ul class="side-nav">
-            <a href="/reports.html" class="side-nav_link">
-               <li class="side-nav_item ">
-                  <i class="fas fa-chart-pie icon"></i>
-                  <span>REPORTS</span>
-               </li>
-            </a>
-         </ul>
-      </div>
-   </nav>
-
-   <main class="main">
+<body class="container home">
+   <main class="main home">
       <div class="main-heading card">
          <div class="main-heading_intro">
 
@@ -109,108 +50,97 @@
          </div>
       </div>
 
-      <div class="pos card">
-         <div class="pos-method">
-            <h2 class="heading-text">
-               POS TRANSACTION
-            </h2>
+      <div>
+         <h1 class="heading-text">AROT COMMUNICATIONS</h1>
+      </div>
 
-            <form class="pos-method-form" id="myForm" name="pos-transaction" netlify>
+      <div class="account-overview">
+         <div class="account-overview-input">
+            <label class="heading-subtext" for="amount">Cash In Machine</label>
 
-               <div class="pos-method-form_input">
-                  <label for="transactionType">Select Transaction Type:</label>
+            <div class="naira-input-container">
+               <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="306,300" disabled>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
 
-                  <select id="transactionType" name="transactionType">
-                     <option value="Withdraw">Withdraw</option>
-                     <option value="Deposit">Deposit</option>
-                     <option value="WithdrawAndTransfer">Withdrawal/Transfer</option>
-                     <option value="BillPayment">Bill Payment</option>
-                  </select>
-               </div>
+         <div class="account-overview-input">
+            <label class="heading-subtext" for="amount">Cash At Hand</label>
 
-               <div class="pos-method-form_input withdrawalTransactionType">
-                  <label for="withdrawalType">Select Withdrawal Type:</label>
-
-                  <select id="withdrawalType" name="withdrawalType">
-                     <option value="Card">Card</option>
-                     <option value="Transfer">Transfer</option>
-                  </select>
-               </div>
-
-               <div class="pos-method-form_input">
-                  <label for="amount">Set Amount</label>
-
-                  <div class="naira-input-container">
-                     <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-                     <span class="naira">&#x20A6;</span>
-                  </div>
-               </div>
-
-               <div class="pos-method-form_input">
-                  <label for="fee">Set Fee</label>
-
-                  <div class="naira-input-container">
-                     <input id="posTransactionFee" type="text" placeholder="Enter Fee"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="posTransactionFee" required>
-                     <span class="naira">&#x20A6;</span>
-                  </div>
-               </div>
-
-               <div class="pos-method-form_input feePaymentType">
-                  <label for="feePaymentType">Fee payment Method:</label>
-
-                  <select id="posFeePaymentType" name="posFeePaymentType">
-                     <option value="Card">Card</option>
-                     <option value="Transfer">Cash</option>
-                     <option value="Transfer">Transfer</option>
-                  </select>
-               </div>
-
-               <div class="simReg-method-form_input">
-                  <div class="checkbox">
-                     <label for="Status" class="heading-subtext">Status</label>
-                     <div class="checkbox-container">
-                        <input id="posSuccessfulCheckbox" type="checkbox" name="posSuccessfulCheckbox" required>
-                        <label for="posSuccessfulCheckbox">Successful</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="posPendingCheckbox" type="checkbox" name="posPendingCheckbox" required>
-                        <label for="posPendingCheckbox">Pending</label>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="pos-method-form_input">
-                  <label for="POS Remark">Transaction Remarks</label>
-
-                  <input id="posTransactionRemark" type="text" placeholder="Remarks" name="posTransactionRemark"
-                     required>
-               </div>
-
-               <div class="center-button">
-                  <button class="hero-btn-dark mb-2 posSubmitButton" type="submit">Process Transaction</button>
-               </div>
-
-            </form>
+            <div class="naira-input-container">
+               <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="63,900" disabled>
+               <span class="naira">&#x20A6;</span>
+            </div>
          </div>
       </div>
-   </main>
-   <!-- 
-   <script>
-      // Check if the current page is the root and needs redirection
-      if (window.location.pathname === '/' && window.location.host.includes('127.0.0.1') && !window.location.href.includes('login.html')) {
-         window.location.href = '/login.html';
-      }
-   </script> -->
 
-   <!-- <script>
-      // Redirect to /login on first entry
-      if (window.location.pathname === '/' && window.location.search === '' && window.performance && window.performance.navigation.type === 0) {
-         window.location.href = '/login';
-      }
-   </script> -->
+      <div class="action">
+         <a class="action-link" href="sell.html">
+            <div class="action-group action-group--1">
+               <img class="action-group-image" src="/img/sales.jpg" alt="sales photo">
+
+               <div class="overlay overlay--1"></div>
+
+               <div class="action-group-icons action-group-icons--1">
+                  <i class="fa-solid fa-cart-shopping icon"></i>
+               </div>
+
+               <div class="action-group-name action-group-name--1">
+                  <h1>SELL</h1>
+               </div>
+            </div>
+         </a>
+
+         <a class="action-link" href="pos.html">
+            <div class="action-group action-group--1">
+               <img class="action-group-image" src="/img/pos.webp" alt="POS photo">
+
+               <div class="overlay overlay--1"></div>
+
+               <div class="action-group-icons action-group-icons--1">
+                  <img
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVR4nO2ZzUrDQBDHc5CCUBA8efMBrOBRrJ59AR/FV/Dz3KfoW1jwUCsIvoAK1d68eVCqP9mwkWWT2HzMJhDmBzk0E+a//5ntJLBRVACgB1wBb4TnFbgwmpE0wCXNcx7CiKmS4UA8eVprmHQmRPIY8cRN6+ElBnaBe+BbYAstgRkwaMOIEZbmrg0jSSf6Arn7SWeiHL2QRkSFQuf/Q40URDtSli5vrWVXptYMeaZtGBmYF5jTmTqYHFNg5x+9G1M8cSOhIW1ERr+zRoAx8O5dIyc+yoiPS8QbM5LFwokvsh4oEY9RI3lkVGhCmrG39XwmJeIxeb8rI5aooh5qZHWFdGoZdGoF2Fo6tYqATq0V6NTycAqj31q1yKioTq2KhYuRPB8Z1k62WuvQas2dey/As0RycxTWNGeO/qa5JIz0rJmkMyGZGxNBzhA7C7Bnq/dQ4NkUXjx5p2wFXXTO4tSIQTsijW4ti1cU/bPXpktba9uKP9UxAqwBH/b2RvCF5yww+Vw5BdbLGrFHbtf21mOji3cBToAfZE6sjqI2AY7N/wT4qmDgE7gF9iUW8wspHQAWQI+qIgAAAABJRU5ErkJggg==">
+               </div>
+
+               <div class="action-group-name action-group-name--1">
+                  <h1>POS</h1>
+               </div>
+            </div>
+         </a>
+
+         <a class="action-link" href="simRegistration.html">
+            <div class="action-group action-group--1">
+               <img class="action-group-image" src="/img/sim.jpg" alt="sim photo">
+
+               <div class="overlay overlay--1"></div>
+
+               <div class="action-group-icons action-group-icons--1">
+                  <i class="fa-solid fa-sim-card icon"></i>
+               </div>
+
+               <div class="action-group-name action-group-name--1">
+                  <h1>SIM REG.</h1>
+               </div>
+            </div>
+         </a>
+
+         <a class="action-link" href="charging.html">
+            <div class="action-group action-group--1">
+               <img class="action-group-image" src="/img/charging.jpg" alt="Charging photo">
+
+               <div class="overlay overlay--1"></div>
+
+               <div class="action-group-icons action-group-icons--1">
+                  <i class="fa-solid fa-battery-three-quarters icon"></i>
+               </div>
+
+               <div class="action-group-name action-group-name--1">
+                  <h1>CHARGING</h1>
+               </div>
+            </div>
+         </a>
+      </div>
+   </main>
 
    <script>
       const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -219,6 +149,7 @@
          window.location.href = '/login';
       }
    </script>
+
 </body>
 
 </html>

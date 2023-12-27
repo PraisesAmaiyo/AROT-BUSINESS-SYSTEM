@@ -42,7 +42,7 @@
          </div>
 
          <ul class="side-nav">
-            <a href="/index.html" class="side-nav_link">
+            <a href="/pos.html" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-exchange-alt icon"></i>
                   <span>POS</span>
@@ -52,7 +52,7 @@
 
          <ul class="side-nav">
             <a href="/sell.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-cart-shopping icon"></i>
                   <span>SELL</span>
                </li>
@@ -80,7 +80,7 @@
 
          <ul class="side-nav">
             <a href="/reports.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item active">
                   <i class="fas fa-chart-pie icon"></i>
                   <span>REPORTS</span>
                </li>
@@ -116,7 +116,10 @@
                GOODS
             </h2>
 
-            <div class="table-header">
+            <div class="table-header" style="display: flex; flex-direction: column; width: max-content;">
+               <a href="reports.html">
+                  <button class="hero-btn-dark mb-2">Reports</button>
+               </a>
                <button class="hero-btn-dark mb-2 addProductButton">Add Product</button>
                <h2 class="heading-subtext"> Available Products</h2>
             </div>
@@ -141,7 +144,7 @@
                         <td class="py-1 productAmountBought">&#x20A6;13,500</td>
                         <td class="py-1 productQuantity">14</td>
                         <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
-                        <td class="py-1 "><button class="hero-btn-light sellButton">Sell</button></td>
+                        <td class="py-1 "><button class="hero-btn-light sellButton">Update Price</button></td>
                      </tr>
 
                      <tr class="table-body-row" id="item-list">
@@ -150,7 +153,7 @@
                         <td class="py-1">&#x20A6;2,500</td>
                         <td class="py-1">43</td>
                         <td class="py-1">&#x20A6;4,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
                      </tr>
                   </tbody>
 
@@ -161,7 +164,7 @@
                         <td class="py-1">&#x20A6;15,000</td>
                         <td class="py-1">21</td>
                         <td class="py-1">&#x20A6;18,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
                      </tr>
                   </tbody>
 
@@ -172,7 +175,7 @@
                         <td class="py-1">&#x20A6;250,000</td>
                         <td class="py-1">28</td>
                         <td class="py-1">&#x20A6;320,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Sell</button></td>
+                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
                      </tr>
                   </tbody>
                </table>

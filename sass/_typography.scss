@@ -221,13 +221,13 @@ select {
 
    &:active {
       transform: scale(1);
-      background-color: $color-grey-dark-2;
+      background-color: $color-grey-dark-1;
    }
 }
 
 .hero-btn-light {
-   background-color: $color-grey-dark-2;
-   color: $color-primary-light-1;
+   background-color: $color-grey-dark-1;
+   color: $color-grey-light-1;
    box-shadow: inset 0px 0px 0px 2px $color-primary-light;
    padding: .8rem 1.5rem;
 

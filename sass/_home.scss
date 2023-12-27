@@ -1,0 +1,190 @@
+body.home {
+   background-image: linear-gradient(to right top, rgba($color-grey-dark-3, 0.9), rgba($color-grey-dark-2, 0.83)), url(/img/home.jpeg);
+   background-size: cover;
+   background-repeat: no-repeat;
+
+   .heading-text {
+      font-size: 3.5rem;
+      color: $color-primary-light-1;
+   }
+
+   .account-overview {
+      display: flex;
+      justify-content: end;
+      gap: 1rem;
+
+      &-input {
+         width: max-content;
+      }
+
+      .heading-subtext {
+         font-weight: 600;
+         font-size: 2rem;
+         color: $color-primary-light-1;
+      }
+
+      input {
+         font-size: 1.7rem;
+         font-weight: 600;
+         margin-right: .5rem;
+
+         &:disabled {
+            background-color: #eef1f6;
+            box-shadow: 0 0 0.2rem 0.5rem rgba($color-secondary-light, 0.9);
+            color: #222;
+            border: 1px solid #ddd;
+            cursor: not-allowed;
+         }
+      }
+
+      .naira {
+         font-size: 1.7rem;
+         color: #222;
+      }
+   }
+
+   .action {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      gap: 3rem;
+      margin: 0 auto;
+      padding: 4rem;
+
+      &-link:active {
+         .action-group {
+            transform: translateY(-1px);
+         }
+
+         .action-group-icons.action-group-icons--1 {
+            background-color: #3c2faf;
+            border: 1px solid #2998ff;
+            box-shadow: inset 0 0 5px 1.5px #2998ff;
+         }
+      }
+
+      &-group {
+         width: 100%;
+         height: 30rem;
+         position: relative;
+         overflow: hidden;
+         border-radius: 10%;
+         transition: transform .3s, box-shadow .3s;
+
+         &--1 {
+            border: 1px solid #2998ff;
+            box-shadow: rgba(#2998ff, 0.7) 0px 5px 8px 2px;
+         }
+
+         &:hover {
+            transform: translateY(-4px);
+
+            &.action-group--1 {
+               box-shadow: rgba(#5643fa, 0.6) 0px 5px 8px 2px;
+            }
+
+            .action-group-icons--1 {
+               background-color: #217acc;
+               border: 2px solid #5643fa;
+               box-shadow: inset 0 0 5px 1.5px #5643fa;
+            }
+
+            .overlay {
+               background: linear-gradient(to right bottom, rgba(#5643fa, 0.5), rgba(#2998ff, 0.2));
+            }
+
+            .overlay::before {
+               opacity: 1;
+            }
+         }
+
+
+         &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+
+         &-icons {
+            height: 7rem;
+            width: 7rem;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: border 0.3s, box-shadow 0.3s;
+
+            &.action-group-icons--1 {
+               background-color: #3c2faf;
+               border: 1px solid #2998ff;
+               box-shadow: inset 0 0 5px 1.5px #2998ff;
+            }
+
+            img {
+               height: 4rem;
+               width: 4rem;
+            }
+
+            .icon {
+               font-size: 3rem;
+               color: #fff;
+               align-self: center;
+            }
+         }
+
+         .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: background .3s;
+
+            &::before {
+               content: "";
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               opacity: 0;
+               transition: opacity .6s;
+            }
+
+            &.overlay--1 {
+               background: linear-gradient(to right bottom, rgba(#5643fa, 0.5), rgba(#2998ff, 0.3));
+
+               &.overlay--1::before {
+                  background: linear-gradient(to right bottom, rgba(#2998ff, 0.4), rgba(#5643fa, 0.2));
+               }
+            }
+
+         }
+
+         &-name {
+            position: absolute;
+            bottom: 0;
+            font-size: 2rem;
+            color: $color-primary-light-1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 30%;
+            width: 100%;
+            clip-path: polygon(100% 100%, 0% 100%, 0% 20%, 100% 0%);
+            z-index: 10;
+
+            &--1 {
+               background: linear-gradient(to right bottom, #2998ff, #5643fa);
+            }
+         }
+      }
+   }
+}

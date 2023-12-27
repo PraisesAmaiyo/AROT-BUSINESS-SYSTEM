@@ -5,6 +5,10 @@
    position: relative;
    color: $color-secondary-dark;
 
+   &.home {
+      grid-column: 1/-1;
+   }
+
    @media only screen and (max-width:$bp-big) {
       grid-column: 1/-1;
    }

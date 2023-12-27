@@ -14,7 +14,7 @@
 
    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="css/style.css" />
-   <!-- <link rel="shortcut icon" type="image/png" href="img/favicon.png" /> -->
+   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
    <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -23,7 +23,6 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer type="module" src="JS/script.js"></script>
-   <script defer type="module" src="JS/charging.js"></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -43,7 +42,7 @@
 
          <ul class="side-nav">
             <a href="/pos.html" class="side-nav_link">
-               <li class="side-nav_item ">
+               <li class="side-nav_item active">
                   <i class="fas fa-exchange-alt icon"></i>
                   <span>POS</span>
                </li>
@@ -61,7 +60,7 @@
 
          <ul class="side-nav">
             <a href="/charging.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-bolt icon"></i>
                   <span>CHARGING</span>
                </li>
@@ -110,69 +109,90 @@
          </div>
       </div>
 
-      <div class="charging card">
-         <div class="charging-method">
+      <div class="pos card">
+         <div class="pos-method">
             <h2 class="heading-text">
-               Charging
+               POS TRANSACTION
             </h2>
 
-            <form class="charging-method-form" name="charging-transaction" netlify>
+            <form class="pos-method-form" id="myForm" name="pos-transaction" netlify>
 
-               <div class="charging-method-form_input">
-                  <label for="deviceType">Select Device Type:</label>
+               <div class="pos-method-form_input">
+                  <label for="transactionType">Select Transaction Type:</label>
 
-                  <select id="deviceType" name="deviceType">
-                     <option value="Phone">Phone</option>
-                     <option value="Laptop">Laptop</option>
-                     <option value="Battery">Battery</option>
-                     <option value="PowerBank">Power Bank</option>
-                     <option value="rechargeableLight">Rechargeable Light</option>
-                     <option value="musicPlayer">MP3 (Music Player)</option>
+                  <select id="transactionType" name="transactionType">
+                     <option value="Withdraw">Withdraw</option>
+                     <option value="Deposit">Deposit</option>
+                     <option value="WithdrawAndTransfer">Withdrawal/Transfer</option>
+                     <option value="BillPayment">Bill Payment</option>
                   </select>
                </div>
 
-               <div class="charging-method-form_input">
-                  <label for="deviceOwnerName">Owner's Name</label>
+               <div class="pos-method-form_input withdrawalTransactionType">
+                  <label for="withdrawalType">Select Withdrawal Type:</label>
 
-                  <input id="deviceOwnerName" type="text" placeholder="Enter Owner's Name" name="deviceOwnerName"
-                     required>
+                  <select id="withdrawalType" name="withdrawalType">
+                     <option value="Card">Card</option>
+                     <option value="Transfer">Transfer</option>
+                  </select>
                </div>
 
-               <div class="charging-method-form_input">
-                  <label for="deviceId">Tag No/ID</label>
-
-                  <input id="deviceId" type="text" placeholder="Enter Device ID" name="deviceId" required>
-               </div>
-
-               <div class="charging-method-form_input">
-                  <label for="alternativeNumber">Alternative No</label>
-
-                  <input id="alternativeNumber" type="text" placeholder="Enter Fee" name="alternativeNumber" required>
-               </div>
-
-               <div class="charging-method-form_input">
-                  <label for="deviceChargeFee">Set Fee</label>
+               <div class="pos-method-form_input">
+                  <label for="amount">Set Amount</label>
 
                   <div class="naira-input-container">
-                     <input id="deviceChargeFee" type="text" placeholder="Enter Charging Fee"
-                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="chargingTransactionFee" required>
+                     <input id="posTransactionAmount" type="text" placeholder="Enter Amount" name="posTransactionAmount"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
                      <span class="naira">&#x20A6;</span>
                   </div>
                </div>
 
-               <div class="charging-method-form_input">
-                  <label for="deviceStatus">Select Device Type:</label>
+               <div class="pos-method-form_input">
+                  <label for="fee">Set Fee</label>
 
-                  <select id="deviceStatus" name="deviceStatus">
-                     <option value="Collected">Collected</option>
-                     <option value="Charging">Charging</option>
-                     <option value="Charged">Charged (Not Collected)</option>
+                  <div class="naira-input-container">
+                     <input id="posTransactionFee" type="text" placeholder="Enter Fee"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="posTransactionFee" required>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
+               </div>
+
+               <div class="pos-method-form_input feePaymentType">
+                  <label for="feePaymentType">Fee payment Method:</label>
+
+                  <select id="posFeePaymentType" name="posFeePaymentType">
+                     <option value="Card">Card</option>
+                     <option value="Transfer">Cash</option>
+                     <option value="Transfer">Transfer</option>
                   </select>
                </div>
 
-               <div class="center-button">
-                  <button class="hero-btn-dark mb-2">OK</button>
+               <div class="simReg-method-form_input">
+                  <div class="checkbox">
+                     <label for="Status" class="heading-subtext">Status</label>
+                     <div class="checkbox-container">
+                        <input id="posSuccessfulCheckbox" type="checkbox" name="posSuccessfulCheckbox" required>
+                        <label for="posSuccessfulCheckbox">Successful</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="posPendingCheckbox" type="checkbox" name="posPendingCheckbox" required>
+                        <label for="posPendingCheckbox">Pending</label>
+                     </div>
+                  </div>
                </div>
+
+               <div class="pos-method-form_input">
+                  <label for="POS Remark">Transaction Remarks</label>
+
+                  <input id="posTransactionRemark" type="text" placeholder="Remarks" name="posTransactionRemark"
+                     required>
+               </div>
+
+               <div class="center-button">
+                  <button class="hero-btn-dark mb-2 posSubmitButton" type="submit">Process Transaction</button>
+               </div>
+
             </form>
          </div>
       </div>

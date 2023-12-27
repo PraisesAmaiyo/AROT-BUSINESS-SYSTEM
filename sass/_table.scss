@@ -24,7 +24,7 @@
          }
 
          .table-header-row {
-            color: $color-grey-dark-2 ;
+            color: $color-grey-dark-1 ;
             font-size: 1.6rem;
             text-align: left;
             border-bottom: 1px solid $color-grey-dark-3;
@@ -49,12 +49,12 @@
          }
 
          .table-body-row:hover {
-            background-color: $color-grey-dark-2;
+            background-color: $color-grey-dark-1;
             color: $color-primary-light-1;
 
             & .hero-btn-light {
                background-color: $color-primary-light-1;
-               color: $color-grey-dark-2;
+               color: $color-grey-dark-1;
             }
          }
 
