@@ -26,6 +26,9 @@ function renderPosTable() {
       data.posTransactionFee
     )}</td>
     <td class="py-1 posPaymentMethodReport">${data.selectedWithdrawalType}</td>
+    <td class="py-1 posPaymentMethodRemark">${
+      data.posTransactionRemarkInput
+    }</td>
       `;
 
     posTableBody.appendChild(row);

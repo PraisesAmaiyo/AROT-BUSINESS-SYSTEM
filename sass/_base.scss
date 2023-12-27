@@ -62,6 +62,10 @@ body {
    &::-webkit-scrollbar-thumb {
       background-color: $color-primary;
       border-radius: 10px;
+
+      &:active {
+         background-color: $color-primary-light;
+      }
    }
 
    &::-webkit-scrollbar-track {

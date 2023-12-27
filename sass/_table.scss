@@ -14,7 +14,28 @@
       .reports-table-container,
       .product-table-container {
          overflow-x: auto;
+         max-height: 40rem;
+         height: 100%;
          padding-bottom: 2rem;
+         padding-right: 1rem;
+         box-shadow: 0px 1px 5px rgba($color-grey-dark-1, 0.3);
+
+         &::-webkit-scrollbar {
+            width: .5rem;
+         }
+
+         &::-webkit-scrollbar-thumb {
+            background-color: $color-primary;
+            border-radius: 10px;
+
+            &:active {
+               background-color: $color-primary-light;
+            }
+         }
+
+         &::-webkit-scrollbar-track {
+            background-color: $color-grey-light-2;
+         }
 
          .product-table,
          .reports-table {

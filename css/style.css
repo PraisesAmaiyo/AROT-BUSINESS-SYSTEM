@@ -26,6 +26,8 @@ body {
   body::-webkit-scrollbar-thumb {
     background-color: #51cf66;
     border-radius: 10px; }
+    body::-webkit-scrollbar-thumb:active {
+      background-color: #10AB2B; }
   body::-webkit-scrollbar-track {
     background-color: #ebfbee; }
 
@@ -939,7 +941,32 @@ body.authentication {
     .goods-method .reports-table-container,
     .goods-method .product-table-container {
       overflow-x: auto;
-      padding-bottom: 2rem; }
+      max-height: 40rem;
+      height: 100%;
+      padding-bottom: 2rem;
+      padding-right: 1rem;
+      box-shadow: 0px 1px 5px rgba(15, 122, 137, 0.3); }
+      .reports-method .reports-table-container::-webkit-scrollbar,
+      .reports-method .product-table-container::-webkit-scrollbar,
+      .goods-method .reports-table-container::-webkit-scrollbar,
+      .goods-method .product-table-container::-webkit-scrollbar {
+        width: .5rem; }
+      .reports-method .reports-table-container::-webkit-scrollbar-thumb,
+      .reports-method .product-table-container::-webkit-scrollbar-thumb,
+      .goods-method .reports-table-container::-webkit-scrollbar-thumb,
+      .goods-method .product-table-container::-webkit-scrollbar-thumb {
+        background-color: #51cf66;
+        border-radius: 10px; }
+        .reports-method .reports-table-container::-webkit-scrollbar-thumb:active,
+        .reports-method .product-table-container::-webkit-scrollbar-thumb:active,
+        .goods-method .reports-table-container::-webkit-scrollbar-thumb:active,
+        .goods-method .product-table-container::-webkit-scrollbar-thumb:active {
+          background-color: #10AB2B; }
+      .reports-method .reports-table-container::-webkit-scrollbar-track,
+      .reports-method .product-table-container::-webkit-scrollbar-track,
+      .goods-method .reports-table-container::-webkit-scrollbar-track,
+      .goods-method .product-table-container::-webkit-scrollbar-track {
+        background-color: #eef1f6; }
       .reports-method .reports-table-container .product-table,
       .reports-method .reports-table-container .reports-table,
       .reports-method .product-table-container .product-table,
