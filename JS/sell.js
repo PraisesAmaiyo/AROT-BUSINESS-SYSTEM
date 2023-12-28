@@ -8,18 +8,18 @@ const phoneAccessories = [
   { name: 'Phone Case', price: '₦1000' },
   { name: 'Screen Protector', price: '₦1500' },
   { name: 'Charging Cable', price: '₦800' },
-  { name: 'Power Bank', price: '₦20' },
+  { name: 'Power Bank', price: '₦2000' },
   { name: 'Bluetooth Earphones', price: '₦3000' },
-  { name: 'Wireless Charger', price: '₦15' },
-  { name: 'Car Phone Holder', price: '₦12' },
-  { name: 'Selfie Stick', price: '₦7' },
-  { name: 'Headphones', price: '₦25' },
-  { name: 'Phone Stand', price: '₦6' },
-  { name: 'USB Adapter', price: '₦9' },
-  { name: 'Phone Grip', price: '₦3' },
-  { name: 'Earbuds', price: '₦18' },
-  { name: 'Mobile Lens Kit', price: '₦22' },
-  { name: 'Smartwatch Band', price: '₦15' },
+  { name: 'Wireless Charger', price: '₦1500' },
+  { name: 'Car Phone Holder', price: '₦1200' },
+  { name: 'Selfie Stick', price: '₦700' },
+  { name: 'Headphones', price: '₦2500' },
+  { name: 'Phone Stand', price: '₦600' },
+  { name: 'USB Adapter', price: '₦900' },
+  { name: 'Phone Grip', price: '₦300' },
+  { name: 'Earbuds', price: '₦1800' },
+  { name: 'Mobile Lens Kit', price: '₦2200' },
+  { name: 'Smartwatch Band', price: '₦1500' },
   { name: 'AirPods', price: '₦1500' },
   { name: 'Bluetooth Earphones', price: '₦800' },
   { name: 'Charging Cable', price: '₦300' },
@@ -67,7 +67,6 @@ const phoneAccessories = [
   { name: 'Universal Phone Holder Clip', price: '₦600' },
   { name: 'Virtual Reality Headset', price: '₦3500' },
   { name: 'Waterproof Phone Pouch', price: '₦800' },
-  // Add more phone accessories as needed
 ];
 
 const productInput = document.getElementById('productInput');
@@ -242,8 +241,6 @@ function handleSellProduct() {
     checkboxStatus,
     id,
   };
-
-  console.log(soldProductFormData);
 
   const storedData =
     JSON.parse(localStorage.getItem('soldProductFormData')) || [];

@@ -50,6 +50,10 @@ select {
       width: 100%;
    }
 
+   &#productInput {
+      width: 32%;
+   }
+
    &:focus,
    &:valid {
       background-color: $color-grey-light-2;

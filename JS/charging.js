@@ -10,8 +10,14 @@ const chargingForm = document.querySelector('.charging-method-form');
 if (chargingForm) {
   chargingForm.addEventListener('submit', function (e) {
     e.preventDefault();
-
     handleChargingFormSubmit();
+
+    deviceType.value = 'Phone';
+    deviceOwnerName.value = '';
+    deviceId.value = '';
+    alternativeNumber.value = '';
+    deviceChargeFee.value = '';
+    deviceStatus.value = 'Collected';
   });
 }
 
@@ -24,7 +30,7 @@ function handleChargingFormSubmit() {
   let selectedDeviceStatus = deviceStatus.value;
   let id = Math.random();
 
-  const chargingForm = {
+  const chargeFormData = {
     selectedDeviceType,
     deviceOwnerNameInput,
     deviceIdInput,
@@ -36,9 +42,9 @@ function handleChargingFormSubmit() {
 
   const storedData = JSON.parse(localStorage.getItem('chargeFormData')) || [];
 
-  const allData = [chargingForm, ...storedData];
+  const allData = [chargeFormData, ...storedData];
 
-  localStorage.setItem('chargingForm', JSON.stringify(allData));
+  localStorage.setItem('chargeFormData', JSON.stringify(allData));
 
   return chargingForm;
 }

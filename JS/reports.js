@@ -109,6 +109,7 @@ renderGoodsTable();
 
 const storedChargedData =
   JSON.parse(localStorage.getItem('chargeFormData')) || [];
+console.log(storedChargedData);
 
 function renderChargingTable() {
   const chargingTableBody = document.querySelector(
@@ -124,14 +125,17 @@ function renderChargingTable() {
     row.innerHTML = `
     <td class="py-1">${index + 1}</td>
     <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
-    <td class="py-1 chargedItemPriceReport">&#x20A6;200</td>
-    <td class="py-1 chargedItemOwnerReport ">James O.</td>
-    <td class="py-1 chargedItemIdReport ">1234</td>
-    <td class="py-1 chargedItemAltIdReport ">5678</td>
-    <td class="py-1 chargedItemStatusReport ">Charged</td>
+    <td class="py-1 chargedItemPriceReport">&#x20A6; ${
+      data.deviceChargeFeeInput
+    }</td>
+    <td class="py-1 chargedItemOwnerReport ">${data.deviceOwnerNameInput}</td>
+    <td class="py-1 chargedItemIdReport ">${data.deviceIdInput}</td>
+    <td class="py-1 chargedItemAltIdReport ">${data.alternativeNumberInput}</td>
+    <td class="py-1 chargedItemStatusReport ">${data.selectedDeviceStatus}</td>
       `;
 
     chargingTableBody.appendChild(row);
   });
   updateTotalPosAmounts(storedPosData);
 }
+renderChargingTable();
