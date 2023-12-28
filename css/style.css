@@ -22,7 +22,7 @@ body {
   overflow: -webkit-scrollbar;
   scrollbar-width: thin; }
   body::-webkit-scrollbar {
-    width: 1rem; }
+    width: .8rem; }
   body::-webkit-scrollbar-thumb {
     background-color: #51cf66;
     border-radius: 10px; }
@@ -777,6 +777,39 @@ body.authentication {
     .pos-method-form .hero-btn-dark {
       margin-top: 3rem; }
 
+.sellProduct {
+  height: min-content;
+  color: #205329; }
+  .sellProduct-method {
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    overflow: hidden; }
+    .sellProduct-method-form_input {
+      margin-top: 2rem;
+      font-size: 1.5rem; }
+      .sellProduct-method-form_input .autocomplete-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        z-index: 1;
+        width: 30rem;
+        border: 1px solid #ccc;
+        max-height: 15rem;
+        overflow-y: auto;
+        border-radius: 4px;
+        display: none; }
+        .sellProduct-method-form_input .autocomplete-list-item {
+          padding: 10px;
+          cursor: pointer;
+          background-color: #fff;
+          border-bottom: 1px solid #eee;
+          transition: background-color 0.3s; }
+          .sellProduct-method-form_input .autocomplete-list-item:hover {
+            background-color: #f0f0f0; }
+    .sellProduct-method-form .hero-btn-dark {
+      margin-top: 3rem; }
+
 .modal {
   padding: 3rem;
   opacity: 0;
@@ -936,6 +969,10 @@ body.authentication {
     .reports-method .table-header,
     .goods-method .table-header {
       margin-bottom: 2rem; }
+    .reports-method .scrollX,
+    .goods-method .scrollX {
+      overflow-x: auto;
+      background-color: red; }
     .reports-method .reports-table-container,
     .reports-method .product-table-container,
     .goods-method .reports-table-container,
@@ -978,6 +1015,18 @@ body.authentication {
         margin: 0 auto;
         width: 100%;
         border-collapse: collapse; }
+        .reports-method .reports-table-container .product-table thead,
+        .reports-method .reports-table-container .reports-table thead,
+        .reports-method .product-table-container .product-table thead,
+        .reports-method .product-table-container .reports-table thead,
+        .goods-method .reports-table-container .product-table thead,
+        .goods-method .reports-table-container .reports-table thead,
+        .goods-method .product-table-container .product-table thead,
+        .goods-method .product-table-container .reports-table thead {
+          position: sticky;
+          top: 0;
+          background-color: #ebfbee;
+          z-index: 1; }
       .reports-method .reports-table-container .table-header-row,
       .reports-method .product-table-container .table-header-row,
       .goods-method .reports-table-container .table-header-row,

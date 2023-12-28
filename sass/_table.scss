@@ -11,6 +11,12 @@
          margin-bottom: 2rem;
       }
 
+      .scrollX {
+         overflow-x: auto;
+         background-color: red;
+      }
+
+
       .reports-table-container,
       .product-table-container {
          overflow-x: auto;
@@ -42,6 +48,13 @@
             margin: 0 auto;
             width: 100%;
             border-collapse: collapse;
+
+            & thead {
+               position: sticky;
+               top: 0;
+               background-color: $color-primary-light-1;
+               z-index: 1;
+            }
          }
 
          .table-header-row {

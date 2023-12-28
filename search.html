@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Autocomplete Search</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         height: 100vh;
+         margin: 0;
+         background-color: #f4f4f4;
+      }
+
+      .autocomplete-container {
+         text-align: center;
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+         padding: 10px;
+         width: 300px;
+         margin-bottom: 15px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+      }
+
+      .autocomplete-list {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+         position: absolute;
+         z-index: 1;
+         width: 300px;
+         border: 1px solid #ccc;
+         max-height: 150px;
+         overflow-y: auto;
+         border-radius: 4px;
+      }
+
+      .autocomplete-list-item {
+         padding: 10px;
+         cursor: pointer;
+         background-color: #fff;
+         border-bottom: 1px solid #eee;
+         transition: background-color 0.3s;
+      }
+
+      .autocomplete-list-item:hover {
+         background-color: #f0f0f0;
+      }
+
+      #priceInput {
+         padding: 10px;
+         width: 300px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="autocomplete-container">
+      <h2>Product Search</h2>
+
+      <label for="productInput">Search Product:</label>
+      <input type="text" id="productInput" placeholder="Type to search">
+
+      <ul class="autocomplete-list" id="autocompleteList"></ul>
+
+      <label for="priceInput">Price:</label>
+      <input type="text" id="priceInput" readonly>
+   </div>
+
+   <script>
+      const phoneAccessories = [
+         { name: 'Phone Case', price: '₦10.00' },
+         { name: 'Screen Protector', price: '₦5.00' },
+         { name: 'Charging Cable', price: '₦8.00' },
+         { name: 'Power Bank', price: '₦20.00' },
+         { name: 'Bluetooth Earphones', price: '₦30.00' },
+         { name: 'Wireless Charger', price: '₦15.00' },
+         { name: 'Car Phone Holder', price: '₦12.00' },
+         { name: 'Selfie Stick', price: '₦7.00' },
+         { name: 'Headphones', price: '₦25.00' },
+         { name: 'Phone Stand', price: '₦6.00' },
+         { name: 'USB Adapter', price: '₦9.00' },
+         { name: 'Phone Grip', price: '₦3.00' },
+         { name: 'Earbuds', price: '₦18.00' },
+         { name: 'Mobile Lens Kit', price: '₦22.00' },
+         { name: 'Smartwatch Band', price: '₦15.00' },
+         // Add more phone accessories as needed
+      ];
+
+      const productInput = document.getElementById('productInput');
+      const autocompleteList = document.getElementById('autocompleteList');
+      const priceInput = document.getElementById('priceInput');
+
+      productInput.addEventListener('focus', function () {
+         const inputValue = productInput.value.toLowerCase();
+         const filteredProducts = phoneAccessories.filter(product => product.name.toLowerCase().includes(inputValue));
+
+         // Clear previous suggestions
+         autocompleteList.innerHTML = '';
+
+         // Display filtered suggestions
+         filteredProducts.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.textContent = product.name;
+            listItem.classList.add('autocomplete-list-item');
+
+            listItem.addEventListener('click', function () {
+               // Set selected suggestion to the input field
+               productInput.value = product.name;
+               // Set the price to the selected product's price
+               priceInput.value = product.price;
+               // Clear the suggestions list
+               autocompleteList.innerHTML = '';
+            });
+
+            autocompleteList.appendChild(listItem);
+         });
+      });
+
+      // Close the suggestions list when clicking outside
+      document.addEventListener('click', function (event) {
+         if (!event.target.matches('#productInput')) {
+            autocompleteList.innerHTML = '';
+         }
+      });
+   </script>
+
+</body>
+
+</html>

@@ -4,6 +4,138 @@ function formatAmountWithCommas(amount) {
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+const phoneAccessories = [
+  { name: 'Phone Case', price: '₦1000' },
+  { name: 'Screen Protector', price: '₦1500' },
+  { name: 'Charging Cable', price: '₦800' },
+  { name: 'Power Bank', price: '₦20' },
+  { name: 'Bluetooth Earphones', price: '₦3000' },
+  { name: 'Wireless Charger', price: '₦15' },
+  { name: 'Car Phone Holder', price: '₦12' },
+  { name: 'Selfie Stick', price: '₦7' },
+  { name: 'Headphones', price: '₦25' },
+  { name: 'Phone Stand', price: '₦6' },
+  { name: 'USB Adapter', price: '₦9' },
+  { name: 'Phone Grip', price: '₦3' },
+  { name: 'Earbuds', price: '₦18' },
+  { name: 'Mobile Lens Kit', price: '₦22' },
+  { name: 'Smartwatch Band', price: '₦15' },
+  { name: 'AirPods', price: '₦1500' },
+  { name: 'Bluetooth Earphones', price: '₦800' },
+  { name: 'Charging Cable', price: '₦300' },
+  { name: 'Durable Phone Case', price: '₦1000' },
+  { name: 'Earbuds', price: '₦1800' },
+  { name: 'Fingerprint Lock', price: '₦2500' },
+  { name: 'Gaming Controller', price: '₦3500' },
+  { name: 'Headphones', price: '₦2500' },
+  { name: 'iPhone Case', price: '₦1000' },
+  { name: 'JBL Speakers', price: '₦5000' },
+  { name: 'Keyboard Cover', price: '₦800' },
+  { name: 'LED Phone Case', price: '₦2000' },
+  { name: 'Mobile Lens Kit', price: '₦2200' },
+  { name: 'Noise Cancelling Earphones', price: '₦3500' },
+  { name: 'OnePlus Charger', price: '₦1200' },
+  { name: 'PopSocket', price: '₦500' },
+  { name: 'Quick Charge Adapter', price: '₦1500' },
+  { name: 'Ring Holder Stand', price: '₦600' },
+  { name: 'Selfie Stick', price: '₦700' },
+  { name: 'Smartwatch Band', price: '₦1500' },
+  { name: 'Screen Protector', price: '₦1500' },
+  { name: 'USB Adapter', price: '₦900' },
+  { name: 'Wireless Charger', price: '₦1500' },
+  { name: 'Xiaomi Power Bank', price: '₦2500' },
+  { name: 'Zoom Lens', price: '₦3000' },
+  { name: 'Zipper Earphones', price: '₦1200' },
+  { name: 'Zigzag Phone Stand', price: '₦800' },
+  { name: '360 Degree Phone Holder', price: '₦1200' },
+  { name: 'Anti-Blue Light Glasses', price: '₦800' },
+  { name: 'Foldable Bluetooth Keyboard', price: '₦2500' },
+  { name: 'Game Controller Grip', price: '₦600' },
+  { name: 'Holographic Phone Case', price: '₦1800' },
+  { name: 'In-Ear Gaming Earphones', price: '₦2200' },
+  { name: 'Jogging Arm Band', price: '₦500' },
+  { name: 'Kevlar Charging Cable', price: '₦1200' },
+  { name: 'Laptop Stand for Phones', price: '₦1500' },
+  { name: 'Magnetic Car Mount', price: '₦700' },
+  { name: 'NFC Tags for Phones', price: '₦400' },
+  { name: 'Outdoor Waterproof Speaker', price: '₦3000' },
+  { name: 'Portable UV Phone Sanitizer', price: '₦3500' },
+  { name: 'Quad Lock Bike Mount', price: '₦2000' },
+  { name: 'Retractable Charging Cable', price: '₦1000' },
+  { name: 'Solar Power Bank', price: '₦4500' },
+  { name: 'Telescopic Camera Lens', price: '₦2800' },
+  { name: 'Universal Phone Holder Clip', price: '₦600' },
+  { name: 'Virtual Reality Headset', price: '₦3500' },
+  { name: 'Waterproof Phone Pouch', price: '₦800' },
+  // Add more phone accessories as needed
+];
+
+const productInput = document.getElementById('productInput');
+const autocompleteList = document.getElementById('autocompleteList');
+const priceInput = document.getElementById('itemSellingPrice');
+
+// Initial display of all products
+displayAllProducts();
+
+productInput.addEventListener('click', function () {
+  autocompleteList.style.display = 'block';
+});
+
+productInput.addEventListener('input', function () {
+  const inputValue = productInput.value.toLowerCase();
+  const filteredProducts = phoneAccessories.filter((product) =>
+    product.name.toLowerCase().includes(inputValue)
+  );
+
+  autocompleteList.innerHTML = '';
+
+  // Display filtered suggestions
+  if (filteredProducts.length === 0) {
+    const listItem = document.createElement('li');
+    listItem.textContent = 'Item Not Found';
+    listItem.classList.add('autocomplete-list-item');
+
+    autocompleteList.appendChild(listItem);
+  } else {
+    filteredProducts.forEach((product) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = product.name;
+      listItem.classList.add('autocomplete-list-item');
+
+      listItem.addEventListener('click', function () {
+        productInput.value = product.name;
+        priceInput.value = product.price;
+        autocompleteList.innerHTML = '';
+      });
+      autocompleteList.appendChild(listItem);
+    });
+  }
+});
+
+function displayAllProducts() {
+  autocompleteList.innerHTML = '';
+  phoneAccessories.forEach((product) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = product.name;
+    listItem.classList.add('autocomplete-list-item');
+
+    listItem.addEventListener('click', function () {
+      productInput.value = product.name;
+      priceInput.value = formatAmountWithCommas(product.price);
+      autocompleteList.style.display = 'none';
+    });
+
+    autocompleteList.appendChild(listItem);
+  });
+}
+
+// Close the suggestions list when clicking outside
+document.addEventListener('click', function (event) {
+  if (!event.target.matches('#productInput')) {
+    autocompleteList.style.display = 'none';
+  }
+});
+
 // JS for the checkboxes and selling of an item
 let checkboxStatus;
 const balancePaymentInput = document.getElementById('productBalancePrice');
@@ -86,11 +218,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // JS for Selling Products and adding to localStorage
+const soldProductName = document.getElementById('productInput');
 const soldProductPrice = document.getElementById('soldProductPrice');
 const productBalancePrice = document.getElementById('productBalancePrice');
 const soldProductRemark = document.getElementById('soldProductRemark');
 
 function handleSellProduct() {
+  let soldProductNameInput = soldProductName.value;
   let soldProductPriceInput = Number(soldProductPrice.value);
   let productBalancePriceInput = Number(productBalancePrice.value);
   let soldProductRemarkInput = soldProductRemark.value;
@@ -101,12 +235,15 @@ function handleSellProduct() {
   }
 
   const soldProductFormData = {
+    soldProductNameInput,
     soldProductPriceInput,
     productBalancePriceInput,
     soldProductRemarkInput,
     checkboxStatus,
     id,
   };
+
+  console.log(soldProductFormData);
 
   const storedData =
     JSON.parse(localStorage.getItem('soldProductFormData')) || [];
@@ -128,6 +265,8 @@ if (sellProductForm) {
     e.preventDefault();
     handleSellProduct();
 
+    soldProductName.value = '';
+    priceInput.value = '';
     soldProductPrice.value = '';
     productBalancePrice.value = '';
     soldProductRemark.value = '';

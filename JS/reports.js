@@ -72,12 +72,16 @@ function renderGoodsTable() {
 
     row.innerHTML = `
     <td class="py-1">${index + 1}</td>
-    <td class="py-1 soldItemNameReport">${data.soldItemNameInput}</td>
-    <td class="py-1 soldItemPriceReport">${
-      data.soldProductPriceInput === '-' ? '-' : '&#x20A6;'
-    }</td>
+    <td class="py-1 soldItemNameReport">${data.soldProductNameInput}</td>
+    <td class="py-1 soldItemPriceReport">${`&#x20A6; ${formatAmountWithCommas(
+      data.soldProductPriceInput
+    )}`}</td>
     <td class="py-1 soldItemStatusReport">${data.checkboxStatus}</td>
-    <td class="py-1 soldItemBalanceReport">${data.productBalancePriceInput}</td>
+    <td class="py-1 soldItemBalanceReport">${
+      data.productBalancePriceInput === '-'
+        ? '-'
+        : `&#x20A6; ${formatAmountWithCommas(data.productBalancePriceInput)}`
+    }</td>
     <td class="py-1 soldItemRemarkReport ">${data.soldProductRemarkInput}</td>
       `;
     goodsTableBody.appendChild(row);

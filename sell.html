@@ -110,7 +110,6 @@
          </div>
       </div>
 
-
       <form class="sell-product-form" name="sell-product" netlify>
          <div class="card sellProduct">
 
@@ -118,27 +117,19 @@
                <h1 class="heading-text">Sell Item</h1>
             </div>
 
-            <div class="pos-method-form_input">
-               <label for="transactionType">Select Item to sell:</label>
+            <div class="sellProduct-method-form_input">
+               <label for="productInput b">Search Item To Sell:</label>
 
-               <select id="transactionType" name="transactionType">
-                  <option value="Withdraw">Infinix Charger</option>
-                  <option value="Deposit">Oraimo Earpiece</option>
-                  <option value="WithdrawAndTransfer">New Age Powerbank</option>
-                  <option value="BillPayment">Nokia Battery</option>
-               </select>
+               <input type="text" id="productInput" placeholder="Type to search" required>
+
+               <ul class="autocomplete-list" id="autocompleteList"></ul>
             </div>
 
             <div class="sellProduct-form_input">
                <label for="productSellingPrice ">Amount To Sell</label>
 
-               <!-- <div class="naira-input-container">
-                  <input id="soldItemBoughtPrice" type="text" name="soldItemBoughtPrice" value="2,500" disabled>
-                  <span class="naira">&#x20A6;</span>
-               </div> -->
-
                <div class="naira-input-container">
-                  <input id="itemSellingPrice" type="text" name="itemSellingPrice" value="6,500" disabled>
+                  <input id="itemSellingPrice" type="text" placeholder="" name="itemSellingPrice" disabled>
                   <span class="naira">&#x20A6;</span>
                </div>
             </div>

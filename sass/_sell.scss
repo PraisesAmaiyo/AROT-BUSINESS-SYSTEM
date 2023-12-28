@@ -1,1 +1,50 @@
 // CSS can be found in table.scss and modalContents.scss
+
+.sellProduct {
+   height: min-content;
+   color: $color-secondary-dark;
+
+   &-method {
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      overflow: hidden;
+
+      &-form {
+
+         &_input {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+
+            .autocomplete-list {
+               list-style: none;
+               padding: 0;
+               margin: 0;
+               position: absolute;
+               z-index: 1;
+               width: 30rem;
+               border: 1px solid #ccc;
+               max-height: 15rem;
+               overflow-y: auto;
+               border-radius: 4px;
+               display: none;
+
+               &-item {
+                  padding: 10px;
+                  cursor: pointer;
+                  background-color: #fff;
+                  border-bottom: 1px solid #eee;
+                  transition: background-color 0.3s;
+
+                  &:hover {
+                     background-color: #f0f0f0;
+                  }
+               }
+            }
+         }
+
+         .hero-btn-dark {
+            margin-top: 3rem;
+         }
+      }
+   }
+}
