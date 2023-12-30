@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// JavaScript for POS Forms
+// JavaScript for POS Form
 const amount = document.getElementById('posTransactionAmount');
 const fee = document.getElementById('posTransactionFee');
 const posFeePaymentType = document.getElementById('posFeePaymentType');

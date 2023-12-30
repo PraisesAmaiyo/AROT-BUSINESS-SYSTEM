@@ -17,7 +17,7 @@ function renderPosTable() {
     row.classList.add('table-body-row');
 
     row.innerHTML = `
-    <td class="py-1">${index + 1}</td>
+    <td class="py-1">${index + 1}.</td>
     <td class="py-1 posTransTypeReport">${data.selectedTransactionType}</td>
     <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
       data.posTransactionAmount
@@ -71,7 +71,7 @@ function renderGoodsTable() {
     row.classList.add('table-body-row');
 
     row.innerHTML = `
-    <td class="py-1">${index + 1}</td>
+    <td class="py-1">${index + 1}.</td>
     <td class="py-1 soldItemNameReport">${data.soldProductNameInput}</td>
     <td class="py-1 soldItemPriceReport">${`&#x20A6; ${formatAmountWithCommas(
       data.soldProductPriceInput
@@ -106,10 +106,8 @@ function updateTotalSoldAmounts(data) {
 renderGoodsTable();
 
 // JS to Render saved Charged form data
-
 const storedChargedData =
   JSON.parse(localStorage.getItem('chargeFormData')) || [];
-console.log(storedChargedData);
 
 function renderChargingTable() {
   const chargingTableBody = document.querySelector(
@@ -123,19 +121,79 @@ function renderChargingTable() {
     row.classList.add('table-body-row');
 
     row.innerHTML = `
-    <td class="py-1">${index + 1}</td>
+    <td class="py-1">${index + 1}.</td>
     <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
     <td class="py-1 chargedItemPriceReport">&#x20A6; ${
       data.deviceChargeFeeInput
     }</td>
     <td class="py-1 chargedItemOwnerReport ">${data.deviceOwnerNameInput}</td>
     <td class="py-1 chargedItemIdReport ">${data.deviceIdInput}</td>
-    <td class="py-1 chargedItemAltIdReport ">${data.alternativeNumberInput}</td>
+    <td class="py-1 chargedItemAltNumberReport ">${
+      data.alternativeNumberInput
+    }</td>
     <td class="py-1 chargedItemStatusReport ">${data.selectedDeviceStatus}</td>
       `;
 
     chargingTableBody.appendChild(row);
   });
-  updateTotalPosAmounts(storedPosData);
+  updateTotalChargedAmounts(storedChargedData);
+}
+
+// JS to give total Charged Amount
+function updateTotalChargedAmounts(data) {
+  const totalChargedAmount = document.getElementById('totalChargedAmount');
+
+  const totalAmount = data.reduce(
+    (sum, item) => sum + item.deviceChargeFeeInput,
+    0
+  );
+
+  totalChargedAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+    totalAmount
+  )}</strong>`;
 }
 renderChargingTable();
+
+// JS to Render saved Sim Registration form data
+const storedSimRegData =
+  JSON.parse(localStorage.getItem('simRegFormData')) || [];
+
+function renderSimRegTable() {
+  const SimRegTableBody = document.querySelector('.simRegTableDisplay tbody');
+
+  SimRegTableBody.innerHTML = '';
+
+  storedSimRegData.forEach((data, index) => {
+    const row = document.createElement('tr');
+    row.classList.add('table-body-row');
+
+    row.innerHTML = `
+    <td class="py-1">${index + 1}.</td>
+    <td class="py-1 simNameReport">${data.selectedSimName}</td>
+    <td class="py-1 simPriceReport">&#x20A6; ${data.simRegAmountInput}</td>
+    <td class="py-1 PhoneNumberReport">${data.phoneNumberInput}</td>
+    <td class="py-1 simStatusReport ">${data.checkboxStatus}</td>
+      `;
+
+    SimRegTableBody.appendChild(row);
+  });
+  updateTotalSimRegAmounts(storedSimRegData);
+}
+
+// JS to give total SIM Reg Amount
+function updateTotalSimRegAmounts(data) {
+  const totalSimRegAmount = document.getElementById('totalSimRegAmount');
+
+  const totalAmount = data.reduce(
+    (sum, item) => sum + item.simRegAmountInput,
+    0
+  );
+
+  console.log(totalAmount);
+
+  totalSimRegAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+    totalAmount
+  )}</strong>`;
+}
+
+renderSimRegTable();

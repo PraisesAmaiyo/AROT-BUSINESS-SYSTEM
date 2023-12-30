@@ -51,7 +51,11 @@ select {
    }
 
    &#productInput {
-      width: 32%;
+      width: 35rem;
+
+      @media only screen and (max-width:$bp-small) {
+         width: 100%;
+      }
    }
 
    &:focus,
@@ -192,6 +196,7 @@ select {
 .hero-btn-dark,
 .hero-btn-light,
 .hero-btn-dark_square {
+   position: relative;
    background-color: $color-grey-dark-1;
    color: $color-grey-light-1;
    font-weight: 600;
@@ -205,6 +210,7 @@ select {
    transform-origin: center;
    margin-right: 2rem;
    font-size: 1.2rem;
+   text-decoration: none;
 
    &:not(:last-child) {
       margin-right: 1.5rem;
@@ -212,10 +218,6 @@ select {
       @media only screen and (max-width:$bp-largest) {
          margin-bottom: 1.5rem;
       }
-   }
-
-   @media only screen and (max-width:$bp-medium) {
-      // font-size: 1.4rem;
    }
 
    &:hover {
@@ -226,6 +228,19 @@ select {
    &:active {
       transform: scale(1);
       background-color: $color-grey-dark-1;
+   }
+
+   .button-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      text-decoration: none;
    }
 }
 

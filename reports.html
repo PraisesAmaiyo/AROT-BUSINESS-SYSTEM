@@ -102,9 +102,7 @@
          </div>
 
          <div class="main-heading_left">
-            <a href="/login.html">
-               <button class="hero-btn-dark">LOGOUT</button>
-            </a>
+            <button class="hero-btn-dark"><a href="/login.html" class="button-link"></a>LOGOUT</button>
             <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
 
@@ -115,9 +113,9 @@
 
             <div class="adminHeader">
                <h2 class="heading-subtext" style=""> Quick Actions </h2>
-               <a href="goods.html">
-                  <button class="hero-btn-dark">Available Products</button>
-               </a>
+
+               <button class="hero-btn-dark"> <a href="goods.html" class="button-link"></a>Available Products</button>
+
                <button class="hero-btn-dark">Add User</button>
             </div>
 
@@ -223,12 +221,11 @@
                Reports
             </h2>
 
+            <div class="table-header">
+               <h2 class="heading-subtext"> SALES </h2>
+            </div>
+
             <div class="reports-table-container">
-               <div class="table-header">
-                  <div>
-                     <h2 class="heading-subtext"> SALES </h2>
-                  </div>
-               </div>
 
                <table class="reports-table soldTableDisplay">
                   <thead>
@@ -300,12 +297,11 @@
                Reports
             </h2>
 
+            <div class="table-header">
+               <h2 class="heading-subtext"> DEVICE CHARGE </h2>
+            </div>
+
             <div class="reports-table-container">
-               <div class="table-header">
-                  <div>
-                     <h2 class="heading-subtext"> DEVICE CHARGE </h2>
-                  </div>
-               </div>
 
                <table class="reports-table chargingTableDisplay">
                   <thead>
@@ -327,7 +323,7 @@
                         <td class="py-1 chargedItemPriceReport">&#x20A6;200</td>
                         <td class="py-1 chargedItemOwnerReport ">James O.</td>
                         <td class="py-1 chargedItemIdReport ">1234</td>
-                        <td class="py-1 chargedItemAltIdReport ">5678</td>
+                        <td class="py-1 chargedItemAltNumberReport ">5678</td>
                         <td class="py-1 chargedItemStatusReport ">Charged</td>
                      </tr>
                   </tbody>
@@ -359,7 +355,8 @@
                   <tfoot>
                      <tr class="table-foot-row px-2">
                         <td colspan="2"></td>
-                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;5,000</strong>
+                        <td id="totalChargedAmount" class="py-1 px-2"><strong>Total Amount =
+                              &nbsp;&#x20A6;5,000</strong>
                         </td>
                      </tr>
                   </tfoot>
@@ -381,29 +378,30 @@
                Reports
             </h2>
 
-            <div class="reports-table-container">
-               <div class="table-header">
-                  <div>
-                     <h2 class="heading-subtext"> SIM REGISTRATION </h2>
-                  </div>
-               </div>
+            <div class="table-header">
+               <h2 class="heading-subtext"> SIM REGISTRATION </h2>
+            </div>
 
-               <table class="reports-table">
+            <div class="reports-table-container">
+
+               <table class="reports-table simRegTableDisplay">
                   <thead>
                      <tr class="table-header-row">
                         <th class="py-1">S/N</th>
                         <th class="py-1">Network</th>
                         <th class="py-1">Amount</th>
-                        <th class="py-1">Remarks</th>
+                        <th class="py-1">Phone Number</th>
+                        <th class="py-1">Status</th>
                      </tr>
                   </thead>
 
                   <tbody>
                      <tr class="table-body-row">
                         <td class="py-1">1.</td>
-                        <td class="py-1 chargedItemNameReport">GLO</td>
-                        <td class="py-1 chargedItemPriceReport">&#x20A6;1,200</td>
-                        <td class="py-1 chargedItemOwnerReport ">Successful</td>
+                        <td class="py-1 simNameReport">GLO</td>
+                        <td class="py-1 simPriceReport">&#x20A6;0,000</td>
+                        <td class="py-1 PhoneNumberReport">0803XXXX888</td>
+                        <td class="py-1 simStatusReport ">Successful</td>
                      </tr>
                   </tbody>
 
@@ -411,7 +409,8 @@
                      <tr class="table-body-row" id="item-list">
                         <td class="py-1">2.</td>
                         <td class="py-1">MTN</td>
-                        <td class="py-1">&#x20A6;1,600</td>
+                        <td class="py-1">&#x20A6;0,000</td>
+                        <td class="py-1">0803XXXX777</td>
                         <td class="py-1">Successful</td>
                      </tr>
                   </tbody>
@@ -420,15 +419,17 @@
                      <tr class="table-body-row">
                         <td class="py-1">3.</td>
                         <td class="py-1">Airtel</td>
-                        <td class="py-1">&#x20A6;1,300</td>
-                        <td class="py-1">Successful</td>
+                        <td class="py-1">&#x20A6;0,000</td>
+                        <td class="py-1">0803XXXX666</td>
+                        <td class="py-1">Unsuccessful</td>
                      </tr>
                   </tbody>
 
                   <tfoot>
                      <tr class="table-foot-row px-2">
                         <td colspan="2"></td>
-                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;17,000</strong>
+                        <td id="totalSimRegAmount" class="py-1 px-2"><strong>Total Amount =
+                              &nbsp;&#x20A6;17,000</strong>
                         </td>
                      </tr>
                   </tfoot>

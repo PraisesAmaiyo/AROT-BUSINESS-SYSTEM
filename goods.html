@@ -103,9 +103,7 @@
          </div>
 
          <div class="main-heading_left">
-            <a href="/login.html">
-               <button class="hero-btn-dark">LOGOUT</button>
-            </a>
+            <button class="hero-btn-dark"><a href="/login.html" class="button-link"></a>LOGOUT</button>
             <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
       </div>
@@ -116,13 +114,18 @@
                GOODS
             </h2>
 
-            <div class="table-header" style="display: flex; flex-direction: column; width: max-content;">
-               <a href="reports.html">
-                  <button class="hero-btn-dark mb-2">Reports</button>
-               </a>
-               <button class="hero-btn-dark mb-2 addProductButton">Add Product</button>
-               <h2 class="heading-subtext"> Available Products</h2>
+            <!-- <div class="table-header" style="display: flex; flex-direction: column; width: max-content;"> -->
+            <div class="adminHeader">
+
+               <button class="hero-btn-dark">
+                  <a href="reports.html" class="button-link"></a>
+                  Reports
+               </button>
+
+               <button class="hero-btn-dark addProductButton mr-0 ">Add Product</button>
             </div>
+            <h2 class="heading-subtext"> Available Products</h2>
+            <!-- </div> -->
 
             <div class="product-table-container">
                <table class="product-table">
@@ -179,17 +182,63 @@
                      </tr>
                   </tbody>
                </table>
-               <!-- 
-               <div class="pagination-container">
-                  <button class="pagination-button">Previous</button>
-                  <p>Page 1 of 10</p>
-                  <button class="pagination-button">Next</button>
-               </div> -->
             </div>
          </div>
       </div>
 
    </main>
+
+   <form class="updatePrice-form" name="updatePrice" netlify>
+      <div class="card updatePrice modal ">
+         <div>
+            <h1 class="heading-text addItemName">Update product price</h1>
+         </div>
+
+         <div class="updatePrice-form_input">
+            <label for="updatePriceItemName">Item Name</label>
+
+            <!-- <div class="naira-input-container"> -->
+            <input id="updatePriceName" type="text" placeholder="Item Name" name="updatePriceName" disabled>
+            <!-- </div> -->
+         </div>
+
+         <div class="updatePrice-form_input">
+            <label for="productBoughtPrice">Amount Bought</label>
+
+            <div class="naira-input-container">
+               <input id="productBoughtPrice" type="text" placeholder="Bought Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="productBoughtPrice" disabled>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="updatePrice-form_input">
+            <label for="previousItemPrice">Previous Selling Price</label>
+
+            <div class="naira-input-container">
+               <input id="previousItemPrice" type="text" placeholder="Current Selling Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="previousItemPrice" disabled>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="updatePrice-form_input">
+            <label for="newItemPrice">New Selling Price</label>
+
+            <div class="naira-input-container">
+               <input id="newItemPrice" type="text" placeholder="Enter New Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="newItemPrice" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <div class="center-button">
+            <button class="hero-btn-dark saveProductButton">UPDATE</button>
+         </div>
+
+         <div class="close closeModal" id="">&times;</div>
+      </div>
+   </form>
 
    <form class="add-product-form" name="add-product" netlify>
       <div class="card addProduct modal ">

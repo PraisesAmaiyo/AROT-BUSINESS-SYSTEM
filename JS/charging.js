@@ -26,7 +26,7 @@ function handleChargingFormSubmit() {
   let deviceOwnerNameInput = deviceOwnerName.value;
   let deviceIdInput = deviceId.value;
   let alternativeNumberInput = alternativeNumber.value;
-  let deviceChargeFeeInput = deviceChargeFee.value;
+  let deviceChargeFeeInput = Number(deviceChargeFee.value);
   let selectedDeviceStatus = deviceStatus.value;
   let id = Math.random();
 

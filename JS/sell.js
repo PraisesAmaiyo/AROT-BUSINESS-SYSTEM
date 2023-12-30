@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
       balancePaymentInput.disabled = true;
     } else {
       checkboxStatus = 'Balance';
-      balancePayment.style.display = 'flex';
+      balancePayment.style.display = 'block';
       balancePaymentInput.disabled = false;
     }
   }
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
         checkboxStatus = 'Completed';
       } else {
         balanceCheckbox.checked = true;
-        balancePayment.style.display = 'flex';
+        balancePayment.style.display = 'block';
         balancePaymentInput.disabled = false;
         checkboxStatus = 'Balance';
       }
@@ -269,7 +269,7 @@ if (sellProductForm) {
     soldProductRemark.value = '';
     completedCheckbox.checked = false;
     balanceCheckbox.checked = false;
-    balancePayment.style.display = 'flex';
+    balancePayment.style.display = 'block';
     balancePaymentInput.disabled = false;
   });
 }

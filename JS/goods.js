@@ -75,7 +75,9 @@ function renderAddedGoods() {
     <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
       data.addProductSellingPriceInput
     )}</td>
-    <td class="py-1 "><button class="hero-btn-light sellButton">Sell</button></td>
+    <td class="py-1 "><button class="hero-btn-light updatePriceButton"  data-product-id="${
+      data.id
+    }">UPDATE PRICE</button></td>
    `;
 
     goodsTableBody.appendChild(row);
@@ -84,37 +86,61 @@ function renderAddedGoods() {
 
 renderAddedGoods();
 
-// // JS to dispaly Item to be sold
-// const sellButtons = document.querySelectorAll('.sellButton');
-// const modalProductName = document.querySelector('.SellingItemName');
-// const soldItemBoughtPrice = document.getElementById('soldItemBoughtPrice');
+// JS to dispaly Item to be sold
+const updatePriceButton = document.querySelectorAll('.updatePriceButton');
+const updatePriceContainer = document.querySelector('.updatePrice');
+const updatePriceNameInput = document.getElementById('updatePriceName');
+const productBoughtPriceInput = document.getElementById('productBoughtPrice');
+const previousItemPriceInput = document.getElementById('previousItemPrice');
+const newItemPriceInput = document.getElementById('newItemPrice');
+const saveProductButton = document.querySelector('.saveProductButton');
 
-// sellButtons.forEach((button, index) => {
-//   button.addEventListener('click', function (e) {
-//     sellProductContainer.classList.add('active');
-//     main.classList.add('blur');
-//     sidebar.classList.add('blur');
-//     main.classList.add('no-scroll');
+updatePriceButton.forEach((button, index) => {
+  button.addEventListener('click', function (e) {
+    updatePriceContainer.classList.add('active');
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
 
-//     const tableRow = e.target.closest('.table-body-row');
-//     const selectedIndex = index;
+    const productId = this.dataset.productId;
+    const productData = storedGoodsData.find(
+      (product) => product.id.toString() === productId
+    );
 
-//     const selectedItem = storedGoodsData[selectedIndex];
+    if (productData) {
+      updatePriceNameInput.value = productData.addProductNameInput;
+      productBoughtPriceInput.value = productData.addProductBoughtPriceInput;
+      previousItemPriceInput.value = productData.addProductSellingPriceInput;
+      updatePriceContainer.classList.add('active');
+    } else {
+      console.error(`Product with id ${productId} not found in local storage.`);
+    }
+  });
+});
 
-//     if (selectedItem) {
-//       const productName = selectedItem.addProductNameInput;
-//       const amountBought = formatAmountWithCommas(
-//         selectedItem.addProductBoughtPriceInput
-//       );
+// Handle form submission
+saveProductButton.addEventListener('click', function (e) {
+  //   e.preventDefault();
 
-//       modalProductName.textContent = productName;
-//       soldItemBoughtPrice.value = amountBought;
-//     }
-//   });
-// });
+  const updatedProductName = updatePriceNameInput.value;
+  const updatedProductBoughtPrice = productBoughtPriceInput.value;
+  const updatedNewItemPrice = newItemPriceInput.value;
+
+  const storedData =
+    JSON.parse(localStorage.getItem('addProductFormData')) || [];
+
+  const productIndex = storedData.findIndex(
+    (product) => product.addProductNameInput === updatedProductName
+  );
+
+  storedData[productIndex].addProductSellingPriceInput = updatedNewItemPrice;
+
+  localStorage.setItem('addProductFormData', JSON.stringify(storedData));
+
+  closeModal();
+});
 
 // JS for Selling Products and adding to localStorage
-// const soldItemName = document.getElementById('soldItemName');
 const soldProductPrice = document.getElementById('soldProductPrice');
 const productBalancePrice = document.getElementById('productBalancePrice');
 const soldProductRemark = document.getElementById('soldProductRemark');
@@ -183,7 +209,7 @@ closeModalButton.forEach((closeButton) => {
 });
 
 function closeModal() {
-  sellProductContainer.classList.remove('active');
+  updatePriceContainer.classList.remove('active');
   addProductContainer.classList.remove('active');
 
   main.classList.remove('blur');
@@ -202,5 +228,3 @@ addButton.addEventListener('click', function () {
   sidebar.classList.add('blur');
   main.classList.add('no-scroll');
 });
-
-const sellProductContainer = document.querySelector('.sellProduct');

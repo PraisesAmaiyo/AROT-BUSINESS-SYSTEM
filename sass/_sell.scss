@@ -1,4 +1,4 @@
-// CSS can be found in table.scss and modalContents.scss
+// Most CSS for Sell can be found in table.scss and modalContents.scss
 
 .sellProduct {
    height: min-content;
@@ -28,6 +28,10 @@
                overflow-y: auto;
                border-radius: 4px;
                display: none;
+
+               @media only screen and (max-width:$bp-smaller) {
+                  width: 75%;
+               }
 
                &::-webkit-scrollbar {
                   width: .8rem;

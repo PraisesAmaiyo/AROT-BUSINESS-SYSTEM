@@ -235,7 +235,11 @@ select {
       width: 100%; } }
   input#productInput,
   select#productInput {
-    width: 32%; }
+    width: 35rem; }
+    @media only screen and (max-width: 30.5em) {
+      input#productInput,
+      select#productInput {
+        width: 100%; } }
   input:focus, input:valid,
   select:focus,
   select:valid {
@@ -333,6 +337,7 @@ select {
 .hero-btn-dark,
 .hero-btn-light,
 .hero-btn-dark_square {
+  position: relative;
   background-color: #0F7A89;
   color: #fff;
   font-weight: 600;
@@ -345,7 +350,8 @@ select {
   box-shadow: inset 0 0 0 1px #51cf66;
   transform-origin: center;
   margin-right: 2rem;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  text-decoration: none; }
   .hero-btn-dark:not(:last-child),
   .hero-btn-light:not(:last-child),
   .hero-btn-dark_square:not(:last-child) {
@@ -365,6 +371,19 @@ select {
   .hero-btn-dark_square:active {
     transform: scale(1);
     background-color: #0F7A89; }
+  .hero-btn-dark .button-link,
+  .hero-btn-light .button-link,
+  .hero-btn-dark_square .button-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    text-decoration: none; }
 
 .hero-btn-light {
   background-color: #0F7A89;
@@ -803,6 +822,9 @@ body.authentication {
         overflow-y: auto;
         border-radius: 4px;
         display: none; }
+        @media only screen and (max-width: 18.8em) {
+          .sellProduct-method-form_input .autocomplete-list {
+            width: 75%; } }
         .sellProduct-method-form_input .autocomplete-list::-webkit-scrollbar {
           width: .8rem; }
           .sellProduct-method-form_input .autocomplete-list::-webkit-scrollbar-thumb {
@@ -884,48 +906,60 @@ body.authentication {
     background-color: none; } }
 
 .addProduct .checkbox,
-.sellProduct .checkbox {
+.sellProduct .checkbox,
+.updatePrice .checkbox {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-left: 0;
   margin-top: 1.5rem; }
   .addProduct .checkbox label,
-  .sellProduct .checkbox label {
+  .sellProduct .checkbox label,
+  .updatePrice .checkbox label {
     margin-bottom: 0; }
   @media only screen and (max-width: 30.5em) {
     .addProduct .checkbox .checkbox-container,
-    .sellProduct .checkbox .checkbox-container {
+    .sellProduct .checkbox .checkbox-container,
+    .updatePrice .checkbox .checkbox-container {
       padding-bottom: 0; } }
 
 .addProduct-form_input,
-.sellProduct-form_input {
+.sellProduct-form_input,
+.updatePrice-form_input {
   margin-top: 2rem;
   display: flex;
   align-items: center; }
   .addProduct-form_input.sellStatus,
-  .sellProduct-form_input.sellStatus {
+  .sellProduct-form_input.sellStatus,
+  .updatePrice-form_input.sellStatus {
     display: block; }
     .addProduct-form_input.sellStatus label,
-    .sellProduct-form_input.sellStatus label {
+    .sellProduct-form_input.sellStatus label,
+    .updatePrice-form_input.sellStatus label {
       width: min-content; }
   @media only screen and (max-width: 30.5em) {
     .addProduct-form_input,
-    .sellProduct-form_input {
+    .sellProduct-form_input,
+    .updatePrice-form_input {
       margin-top: 1.5rem;
       display: block; } }
   .addProduct-form_input label,
-  .sellProduct-form_input label {
+  .sellProduct-form_input label,
+  .updatePrice-form_input label {
     width: 20rem; }
   .addProduct-form_input input,
   .addProduct-form_input select,
   .sellProduct-form_input input,
-  .sellProduct-form_input select {
+  .sellProduct-form_input select,
+  .updatePrice-form_input input,
+  .updatePrice-form_input select {
     width: 100%; }
     .addProduct-form_input input:disabled,
     .addProduct-form_input select:disabled,
     .sellProduct-form_input input:disabled,
-    .sellProduct-form_input select:disabled {
+    .sellProduct-form_input select:disabled,
+    .updatePrice-form_input input:disabled,
+    .updatePrice-form_input select:disabled {
       background-color: #eef1f6;
       box-shadow: 0 0 0.2rem 0.5rem rgba(248, 153, 66, 0.36);
       color: #999;
@@ -933,7 +967,8 @@ body.authentication {
       cursor: not-allowed; }
 
 .addProduct .hero-btn-dark,
-.sellProduct .hero-btn-dark {
+.sellProduct .hero-btn-dark,
+.updatePrice .hero-btn-dark {
   display: inline;
   margin-top: 3rem;
   align-self: center;
@@ -983,10 +1018,6 @@ body.authentication {
     .reports-method .table-header,
     .goods-method .table-header {
       margin-bottom: 2rem; }
-    .reports-method .scrollX,
-    .goods-method .scrollX {
-      overflow-x: auto;
-      background-color: red; }
     .reports-method .reports-table-container,
     .reports-method .product-table-container,
     .goods-method .reports-table-container,
@@ -1001,7 +1032,8 @@ body.authentication {
       .reports-method .product-table-container::-webkit-scrollbar,
       .goods-method .reports-table-container::-webkit-scrollbar,
       .goods-method .product-table-container::-webkit-scrollbar {
-        width: .5rem; }
+        width: .5rem;
+        height: rem; }
       .reports-method .reports-table-container::-webkit-scrollbar-thumb,
       .reports-method .product-table-container::-webkit-scrollbar-thumb,
       .goods-method .reports-table-container::-webkit-scrollbar-thumb,
