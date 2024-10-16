@@ -1,7 +1,4 @@
-import config from '../../config.js';
-
-const baseUrl = config.baseUrl;
-const apiToken = config.token;
+import { baseUrl, token as apiToken } from '../../config';
 
 export async function getProducts() {
   try {

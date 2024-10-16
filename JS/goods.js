@@ -121,6 +121,8 @@ async function renderAddedGoods() {
     }
   } catch (error) {
     console.error('Error rendering products:', error);
+    goodsTableBody.innerHTML =
+      '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
   } finally {
     loadingRow.style.display = 'none';
   }
