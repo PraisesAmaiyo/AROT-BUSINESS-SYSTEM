@@ -3,8 +3,6 @@ import config from '../../config.js';
 const baseUrl = config.baseUrl;
 const apiToken = config.token;
 
-console.log(baseUrl, apiToken);
-
 export async function getProducts() {
   try {
     //  console.log('Sending GET request...');
