@@ -1,4 +1,7 @@
-import { baseUrl, token as apiToken } from '../../config';
+import config from '../../config.js';
+
+const baseUrl = config.baseUrl;
+const apiToken = config.token;
 
 console.log(baseUrl, apiToken);
 

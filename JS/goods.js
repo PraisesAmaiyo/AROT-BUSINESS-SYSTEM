@@ -1,6 +1,8 @@
 const { addProduct, getProducts } = require('./apiServices/product');
 const { showToast } = require('./script');
 
+let isSubmitting = true;
+
 // function to format amounts with commas
 function formatAmountWithCommas(amount) {
   const amountString = amount.toString();
@@ -16,6 +18,7 @@ const addProductSellingPrice = document.getElementById(
 const addProductQuantity = document.getElementById('addProductQuantity');
 
 async function handleAddProductSubmit(e) {
+  isSubmitting = true;
   e.preventDefault();
 
   const addProductFormData = {
@@ -25,15 +28,6 @@ async function handleAddProductSubmit(e) {
     quantity: Number(addProductQuantity.value),
   };
 
-  //   const storedData =
-  //     JSON.parse(localStorage.getItem('addProductFormData')) || [];
-
-  //   const allData = [addProductFormData, ...storedData];
-
-  //   localStorage.setItem('addProductFormData', JSON.stringify(allData));
-
-  //   console.log(addProductFormData);
-
   try {
     const response = await addProduct({
       data: {
@@ -42,38 +36,69 @@ async function handleAddProductSubmit(e) {
     });
 
     if (response) {
+      isSubmitting = false;
       console.log('Product added successfully:', response);
       showToast('success', 'Product added successfully! ⭐');
+
+      appendProductToTable(response.data);
+    } else {
+      showToast('fail', 'Product not added. ❌');
+      isSubmitting = false;
     }
   } catch (error) {
     console.error('Error adding product:', error);
     showToast('fail', 'Product not added. ❌');
   } finally {
-    getProducts();
+    addProductName.value = '';
+    addProductBoughtPrice.value = '';
+    addProductSellingPrice.value = '';
+    addProductQuantity.value = '';
+    closeModal();
   }
 
   return addProductFormData;
 }
 
 const addProductForm = document.querySelector('.add-product-form');
+const adProductModalBtn = document.querySelector('.adProductModalBtn');
 
 if (addProductForm) {
   addProductForm.addEventListener('submit', function (e) {
-    //  e.preventDefault();
     handleAddProductSubmit(e);
 
-    addProductName.value = '';
-    addProductBoughtPrice.value = '';
-    addProductSellingPrice.value = '';
-    addProductQuantity.value = '';
-    closeModal();
+    console.log(isSubmitting);
+
+    isSubmitting = true
+      ? (adProductModalBtn.innerHTML = 'Submitting...')
+      : 'Save';
   });
 }
 
-// JS to render items from database
+// Append new product to the table
+function appendProductToTable(product) {
+  const goodsTableBody = document.querySelector('.product-table tbody');
+  const row = document.createElement('tr');
+  row.classList.add('table-body-row');
 
-// const storedGoodsData =
-//   JSON.parse(localStorage.getItem('addProductFormData')) || [];
+  row.innerHTML = `
+     <td class="py-1 productSerialNumber">${
+       goodsTableBody.children.length + 1
+     }</td>
+     <td class="py-1 productName">${product.name}</td>
+     <td class="py-1 productAmountBought">&#x20A6;${product.amount_bought}</td>
+     <td class="py-1 productQuantity">${product.quantity}</td>
+     <td class="py-1 productSellingPrice">&#x20A6;${product.amount_to_sell}</td>
+     <td class="py-1">
+       <button class="hero-btn-light updatePriceButton" data-product-id="${
+         product.id
+       }">UPDATE PRICE</button>
+     </td>
+   `;
+
+  goodsTableBody.appendChild(row);
+}
+
+// JS to render items from database
 
 async function renderAddedGoods() {
   const goodsTableBody = document.querySelector('.product-table tbody');
@@ -88,7 +113,6 @@ async function renderAddedGoods() {
     loadingRow.style.display = 'table-row';
 
     const productData = await getProducts();
-
     const products = productData.data;
 
     goodsTableBody.innerHTML = '';
