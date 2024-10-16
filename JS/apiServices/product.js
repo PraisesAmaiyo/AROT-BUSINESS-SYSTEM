@@ -1,5 +1,7 @@
 import { baseUrl, token as apiToken } from '../../config';
 
+console.log(baseUrl, apiToken);
+
 export async function getProducts() {
   try {
     //  console.log('Sending GET request...');

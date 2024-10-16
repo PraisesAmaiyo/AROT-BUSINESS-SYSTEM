@@ -151,6 +151,12 @@
       if (!isLoggedIn && window.location.pathname === '/' && window.location.search === '' && window.performance && window.performance.navigation.type === 0) {
          window.location.href = '/login';
       }
+
+      window.env = {
+         NETLIFY_TOKEN: '{{TOKEN}}'
+      };
+
+      console.log(window.env.NETLIFY_TOKEN);
    </script>
 
 </body>
