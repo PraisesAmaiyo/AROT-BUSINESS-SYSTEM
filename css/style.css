@@ -59,6 +59,48 @@ body {
     .card {
       padding: 1rem; } }
 
+.toast {
+  visibility: hidden;
+  min-width: 25rem;
+  background-color: #51cf66;
+  color: #ebfbee;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1.2rem;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 3rem;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+.toast.success {
+  background-color: #51cf66; }
+
+.toast.fail {
+  background-color: #ec1a23; }
+
+.toast.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0; }
+  to {
+    top: 30px;
+    opacity: 1; } }
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1; }
+  to {
+    top: 0;
+    opacity: 0; } }
+
 body.home {
   background-image: linear-gradient(to right top, rgba(111, 193, 204, 0.9), rgba(21, 70, 76, 0.83)), url(/img/home.jpeg);
   background-size: cover;
@@ -1125,3 +1167,15 @@ body.authentication {
         .goods-method .product-table-container .table-body-row:hover .hero-btn-light {
           background-color: #ebfbee;
           color: #0F7A89; }
+
+.loading-row td {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500; }
+
+.table-error-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0F7A89; }

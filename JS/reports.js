@@ -10,29 +10,33 @@ const storedPosData = JSON.parse(localStorage.getItem('posFormData')) || [];
 function renderPosTable() {
   const posTableBody = document.querySelector('.posTableDisplay tbody');
 
-  posTableBody.innerHTML = '';
+  if (posTableBody) {
+    posTableBody.innerHTML = '';
 
-  storedPosData.forEach((data, index) => {
-    const row = document.createElement('tr');
-    row.classList.add('table-body-row');
+    storedPosData.forEach((data, index) => {
+      const row = document.createElement('tr');
+      row.classList.add('table-body-row');
 
-    row.innerHTML = `
+      row.innerHTML = `
     <td class="py-1">${index + 1}.</td>
     <td class="py-1 posTransTypeReport">${data.selectedTransactionType}</td>
     <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
       data.posTransactionAmount
     )}</td>
-    <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
-      data.posTransactionFee
-    )}</td>
-    <td class="py-1 posPaymentMethodReport">${data.selectedWithdrawalType}</td>
-    <td class="py-1 posPaymentMethodRemark">${
-      data.posTransactionRemarkInput
-    }</td>
-      `;
+      <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
+        data.posTransactionFee
+      )}</td>
+      <td class="py-1 posPaymentMethodReport">${
+        data.selectedWithdrawalType
+      }</td>
+      <td class="py-1 posPaymentMethodRemark">${
+        data.posTransactionRemarkInput
+      }</td>
+         `;
 
-    posTableBody.appendChild(row);
-  });
+      posTableBody.appendChild(row);
+    });
+  }
   updateTotalPosAmounts(storedPosData);
 }
 
@@ -47,12 +51,17 @@ function updateTotalPosAmounts(data) {
   );
   const totalFee = data.reduce((sum, item) => sum + item.posTransactionFee, 0);
 
-  totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-    totalAmount
-  )}</strong>`;
-  totalPosFee.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-    totalFee
-  )}</strong>`;
+  if (totalPosAmount) {
+    totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+      totalAmount
+    )}</strong>`;
+  }
+
+  if (totalPosAmount) {
+    totalPosFee.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+      totalFee
+    )}</strong>`;
+  }
 }
 
 renderPosTable();
@@ -64,13 +73,14 @@ const storedSoldGoods =
 function renderGoodsTable() {
   const goodsTableBody = document.querySelector('.soldTableDisplay tbody');
 
-  goodsTableBody.innerHTML = '';
+  if (goodsTableBody) {
+    goodsTableBody.innerHTML = '';
 
-  storedSoldGoods.forEach((data, index) => {
-    const row = document.createElement('tr');
-    row.classList.add('table-body-row');
+    storedSoldGoods.forEach((data, index) => {
+      const row = document.createElement('tr');
+      row.classList.add('table-body-row');
 
-    row.innerHTML = `
+      row.innerHTML = `
     <td class="py-1">${index + 1}.</td>
     <td class="py-1 soldItemNameReport">${data.soldProductNameInput}</td>
     <td class="py-1 soldItemPriceReport">${`&#x20A6; ${formatAmountWithCommas(
@@ -84,8 +94,10 @@ function renderGoodsTable() {
     }</td>
     <td class="py-1 soldItemRemarkReport ">${data.soldProductRemarkInput}</td>
       `;
-    goodsTableBody.appendChild(row);
-  });
+      goodsTableBody.appendChild(row);
+    });
+  }
+
   updateTotalSoldAmounts(storedSoldGoods);
 }
 
@@ -98,9 +110,11 @@ function updateTotalSoldAmounts(data) {
     0
   );
 
-  totalSoldAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-    totalAmount
-  )}</strong>`;
+  if (totalSoldAmount) {
+    totalSoldAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+      totalAmount
+    )}</strong>`;
+  }
 }
 
 renderGoodsTable();
@@ -114,13 +128,14 @@ function renderChargingTable() {
     '.chargingTableDisplay tbody'
   );
 
-  chargingTableBody.innerHTML = '';
+  if (chargingTableBody) {
+    chargingTableBody.innerHTML = '';
 
-  storedChargedData.forEach((data, index) => {
-    const row = document.createElement('tr');
-    row.classList.add('table-body-row');
+    storedChargedData.forEach((data, index) => {
+      const row = document.createElement('tr');
+      row.classList.add('table-body-row');
 
-    row.innerHTML = `
+      row.innerHTML = `
     <td class="py-1">${index + 1}.</td>
     <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
     <td class="py-1 chargedItemPriceReport">&#x20A6; ${
@@ -134,8 +149,10 @@ function renderChargingTable() {
     <td class="py-1 chargedItemStatusReport ">${data.selectedDeviceStatus}</td>
       `;
 
-    chargingTableBody.appendChild(row);
-  });
+      chargingTableBody.appendChild(row);
+    });
+  }
+
   updateTotalChargedAmounts(storedChargedData);
 }
 
@@ -148,9 +165,11 @@ function updateTotalChargedAmounts(data) {
     0
   );
 
-  totalChargedAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-    totalAmount
-  )}</strong>`;
+  if (totalChargedAmount) {
+    totalChargedAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+      totalAmount
+    )}</strong>`;
+  }
 }
 renderChargingTable();
 
@@ -160,14 +179,14 @@ const storedSimRegData =
 
 function renderSimRegTable() {
   const SimRegTableBody = document.querySelector('.simRegTableDisplay tbody');
+  if (SimRegTableBody) {
+    SimRegTableBody.innerHTML = '';
 
-  SimRegTableBody.innerHTML = '';
+    storedSimRegData.forEach((data, index) => {
+      const row = document.createElement('tr');
+      row.classList.add('table-body-row');
 
-  storedSimRegData.forEach((data, index) => {
-    const row = document.createElement('tr');
-    row.classList.add('table-body-row');
-
-    row.innerHTML = `
+      row.innerHTML = `
     <td class="py-1">${index + 1}.</td>
     <td class="py-1 simNameReport">${data.selectedSimName}</td>
     <td class="py-1 simPriceReport">&#x20A6; ${data.simRegAmountInput}</td>
@@ -175,8 +194,10 @@ function renderSimRegTable() {
     <td class="py-1 simStatusReport ">${data.checkboxStatus}</td>
       `;
 
-    SimRegTableBody.appendChild(row);
-  });
+      SimRegTableBody.appendChild(row);
+    });
+  }
+
   updateTotalSimRegAmounts(storedSimRegData);
 }
 
@@ -189,11 +210,11 @@ function updateTotalSimRegAmounts(data) {
     0
   );
 
-  console.log(totalAmount);
-
-  totalSimRegAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-    totalAmount
-  )}</strong>`;
+  if (totalSimRegAmount) {
+    totalSimRegAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+      totalAmount
+    )}</strong>`;
+  }
 }
 
 renderSimRegTable();

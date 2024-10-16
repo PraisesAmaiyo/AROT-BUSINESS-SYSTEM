@@ -1,3 +1,6 @@
+const { addProduct, getProducts } = require('./apiServices/product');
+const { showToast } = require('./script');
+
 // function to format amounts with commas
 function formatAmountWithCommas(amount) {
   const amountString = amount.toString();
@@ -12,27 +15,42 @@ const addProductSellingPrice = document.getElementById(
 );
 const addProductQuantity = document.getElementById('addProductQuantity');
 
-function handleAddProductSubmit() {
-  let addProductNameInput = addProductName.value;
-  let addProductBoughtPriceInput = Number(addProductBoughtPrice.value);
-  let addProductSellingPriceInput = Number(addProductSellingPrice.value);
-  let addProductQuantityInput = Number(addProductQuantity.value);
-  let id = Math.random();
+async function handleAddProductSubmit(e) {
+  e.preventDefault();
 
   const addProductFormData = {
-    addProductNameInput,
-    addProductBoughtPriceInput,
-    addProductSellingPriceInput,
-    addProductQuantityInput,
-    id,
+    name: addProductName.value,
+    amount_bought: Number(addProductBoughtPrice.value),
+    amount_to_sell: Number(addProductSellingPrice.value),
+    quantity: Number(addProductQuantity.value),
   };
 
-  const storedData =
-    JSON.parse(localStorage.getItem('addProductFormData')) || [];
+  //   const storedData =
+  //     JSON.parse(localStorage.getItem('addProductFormData')) || [];
 
-  const allData = [addProductFormData, ...storedData];
+  //   const allData = [addProductFormData, ...storedData];
 
-  localStorage.setItem('addProductFormData', JSON.stringify(allData));
+  //   localStorage.setItem('addProductFormData', JSON.stringify(allData));
+
+  //   console.log(addProductFormData);
+
+  try {
+    const response = await addProduct({
+      data: {
+        ...addProductFormData,
+      },
+    });
+
+    if (response) {
+      console.log('Product added successfully:', response);
+      showToast('success', 'Product added successfully! ⭐');
+    }
+  } catch (error) {
+    console.error('Error adding product:', error);
+    showToast('fail', 'Product not added. ❌');
+  } finally {
+    getProducts();
+  }
 
   return addProductFormData;
 }
@@ -42,7 +60,7 @@ const addProductForm = document.querySelector('.add-product-form');
 if (addProductForm) {
   addProductForm.addEventListener('submit', function (e) {
     //  e.preventDefault();
-    handleAddProductSubmit();
+    handleAddProductSubmit(e);
 
     addProductName.value = '';
     addProductBoughtPrice.value = '';
@@ -52,36 +70,60 @@ if (addProductForm) {
   });
 }
 
-// JS to render items from LocalStorage
-const storedGoodsData =
-  JSON.parse(localStorage.getItem('addProductFormData')) || [];
+// JS to render items from database
 
-function renderAddedGoods() {
+// const storedGoodsData =
+//   JSON.parse(localStorage.getItem('addProductFormData')) || [];
+
+async function renderAddedGoods() {
   const goodsTableBody = document.querySelector('.product-table tbody');
+  const loadingRow = document.querySelector('.loading-row');
 
-  goodsTableBody.innerHTML = '';
+  if (!goodsTableBody || !loadingRow) {
+    console.error('Table or loading row not found');
+    return;
+  }
 
-  storedGoodsData.forEach((data, index) => {
-    const row = document.createElement('tr');
-    row.classList.add('table-body-row');
+  try {
+    loadingRow.style.display = 'table-row';
 
-    row.innerHTML = `
-    <td class="py-1 productSerialNumber">${index + 1}</td>
-    <td class="py-1 productName">${data.addProductNameInput}</td>
-    <td class="py-1 productAmountBought">&#x20A6;${formatAmountWithCommas(
-      data.addProductBoughtPriceInput
-    )}</td>
-    <td class="py-1 productQuantity">${data.addProductQuantityInput}</td>
-    <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
-      data.addProductSellingPriceInput
-    )}</td>
+    const productData = await getProducts();
+
+    const products = productData.data;
+
+    goodsTableBody.innerHTML = '';
+
+    if (products.length === 0) {
+      goodsTableBody.innerHTML =
+        '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+    } else {
+      products.forEach((product, index) => {
+        const row = document.createElement('tr');
+        row.classList.add('table-body-row');
+
+        row.innerHTML = `
+        <td class="py-1 productSerialNumber">${index + 1}</td>
+        <td class="py-1 productName">${product.name}</td>
+        <td class="py-1 productAmountBought">&#x20A6;${
+          product.amount_bought
+        }</td>
+         <td class="py-1 productQuantity">${product.quantity}</td>
+         <td class="py-1 productSellingPrice">&#x20A6;${
+           product.amount_to_sell
+         }</td>
     <td class="py-1 "><button class="hero-btn-light updatePriceButton"  data-product-id="${
-      data.id
+      product.id
     }">UPDATE PRICE</button></td>
    `;
 
-    goodsTableBody.appendChild(row);
-  });
+        goodsTableBody.appendChild(row);
+      });
+    }
+  } catch (error) {
+    console.error('Error rendering products:', error);
+  } finally {
+    loadingRow.style.display = 'none';
+  }
 }
 
 renderAddedGoods();
@@ -95,50 +137,59 @@ const previousItemPriceInput = document.getElementById('previousItemPrice');
 const newItemPriceInput = document.getElementById('newItemPrice');
 const saveProductButton = document.querySelector('.saveProductButton');
 
-updatePriceButton.forEach((button, index) => {
-  button.addEventListener('click', function (e) {
-    updatePriceContainer.classList.add('active');
-    main.classList.add('blur');
-    sidebar.classList.add('blur');
-    main.classList.add('no-scroll');
+if (updatePriceButton) {
+  updatePriceButton.forEach((button, index) => {
+    button.addEventListener('click', function (e) {
+      if (updatePriceContainer) {
+        updatePriceContainer.classList.add('active');
+        main.classList.add('blur');
+        sidebar.classList.add('blur');
+        main.classList.add('no-scroll');
 
-    const productId = this.dataset.productId;
-    const productData = storedGoodsData.find(
-      (product) => product.id.toString() === productId
-    );
+        const productId = this.dataset.productId;
+        const productData = storedGoodsData.find(
+          (product) => product.id.toString() === productId
+        );
+      }
 
-    if (productData) {
-      updatePriceNameInput.value = productData.addProductNameInput;
-      productBoughtPriceInput.value = productData.addProductBoughtPriceInput;
-      previousItemPriceInput.value = productData.addProductSellingPriceInput;
-      updatePriceContainer.classList.add('active');
-    } else {
-      console.error(`Product with id ${productId} not found in local storage.`);
-    }
+      if (productData) {
+        updatePriceNameInput.value = productData.addProductNameInput;
+        productBoughtPriceInput.value = productData.addProductBoughtPriceInput;
+        previousItemPriceInput.value = productData.addProductSellingPriceInput;
+        updatePriceContainer.classList.add('active');
+      } else {
+        console.error(
+          `Product with id ${productId} not found in local storage.`
+        );
+      }
+    });
   });
-});
+}
 
 // Handle form submission
-saveProductButton.addEventListener('click', function (e) {
-  //   e.preventDefault();
 
-  const updatedProductName = updatePriceNameInput.value;
-  const updatedProductBoughtPrice = productBoughtPriceInput.value;
-  const updatedNewItemPrice = newItemPriceInput.value;
+if (saveProductButton) {
+  saveProductButton.addEventListener('click', function (e) {
+    //   e.preventDefault();
 
-  const storedData =
-    JSON.parse(localStorage.getItem('addProductFormData')) || [];
+    const updatedProductName = updatePriceNameInput.value;
+    const updatedProductBoughtPrice = productBoughtPriceInput.value;
+    const updatedNewItemPrice = newItemPriceInput.value;
 
-  const productIndex = storedData.findIndex(
-    (product) => product.addProductNameInput === updatedProductName
-  );
+    const storedData =
+      JSON.parse(localStorage.getItem('addProductFormData')) || [];
 
-  storedData[productIndex].addProductSellingPriceInput = updatedNewItemPrice;
+    const productIndex = storedData.findIndex(
+      (product) => product.addProductNameInput === updatedProductName
+    );
 
-  localStorage.setItem('addProductFormData', JSON.stringify(storedData));
+    storedData[productIndex].addProductSellingPriceInput = updatedNewItemPrice;
 
-  closeModal();
-});
+    localStorage.setItem('addProductFormData', JSON.stringify(storedData));
+
+    closeModal();
+  });
+}
 
 // JS for Selling Products and adding to localStorage
 const soldProductPrice = document.getElementById('soldProductPrice');
@@ -209,6 +260,8 @@ closeModalButton.forEach((closeButton) => {
 });
 
 function closeModal() {
+  const addProductContainer = document.querySelector('.addProduct');
+
   updatePriceContainer.classList.remove('active');
   addProductContainer.classList.remove('active');
 
@@ -218,13 +271,16 @@ function closeModal() {
 }
 
 // JS for Modal
+document.addEventListener('DOMContentLoaded', function () {
+  const addButton = document.querySelector('.addProductButton');
+  const addProductContainer = document.querySelector('.addProduct');
 
-const addButton = document.querySelector('.addProductButton');
-const addProductContainer = document.querySelector('.addProduct');
-
-addButton.addEventListener('click', function () {
-  addProductContainer.classList.add('active');
-  main.classList.add('blur');
-  sidebar.classList.add('blur');
-  main.classList.add('no-scroll');
+  if (addButton) {
+    addButton.addEventListener('click', function () {
+      addProductContainer.classList.add('active');
+      main.classList.add('blur');
+      sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
+    });
+  }
 });

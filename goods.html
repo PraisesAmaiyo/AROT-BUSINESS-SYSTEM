@@ -22,14 +22,18 @@
 
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
-   <script defer type="module" src="JS/script.js"></script>
-   <script defer type="module" src="JS/goods.js"></script>
+   <!-- <script defer type="module" src="JS/script.js"></script>
+   <script defer type="module" src="JS/goods.js"></script> -->
+
+   <script src="dist/bundle.js" defer></script>
+   <script src="dist/goods.bundle.js" defer></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
 </head>
 
 <body class="container">
+
 
    <nav class="sidebar">
       <div class="sidebar-fixed">
@@ -114,6 +118,9 @@
                GOODS
             </h2>
 
+            <div id="toast" class="toast">This is a toast message!</div>
+
+
             <!-- <div class="table-header" style="display: flex; flex-direction: column; width: max-content;"> -->
             <div class="adminHeader">
 
@@ -141,46 +148,24 @@
                   </thead>
 
                   <tbody>
-                     <tr class="table-body-row" id="item-list">
-                        <td class="py-1 productSerialNumber">1</td>
-                        <td class="py-1 productName">New Age Powerbank</td>
-                        <td class="py-1 productAmountBought">&#x20A6;13,500</td>
-                        <td class="py-1 productQuantity">14</td>
-                        <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
-                        <td class="py-1 "><button class="hero-btn-light sellButton">Update Price</button></td>
+
+                     <tr class="loading-row">
+                        <td colspan="6" class="table-error-text">Loading Products...</td>
                      </tr>
 
-                     <tr class="table-body-row" id="item-list">
-                        <td class="py-1">1</td>
-                        <td class="py-1">Infinix Charger</td>
-                        <td class="py-1">&#x20A6;2,500</td>
-                        <td class="py-1">43</td>
-                        <td class="py-1">&#x20A6;4,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
-                     </tr>
+                     <!-- <tr class="table-body-row" id="item-list">
+                                             <td class="py-1 productSerialNumber">1</td>
+                                             <td class="py-1 productName">New Age Powerbank</td>
+                                             <td class="py-1 productAmountBought">&#x20A6;13,500</td>
+                                             <td class="py-1 productQuantity">14</td>
+                                             <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
+                                             <td class="py-1 "><button class="hero-btn-light sellButton">Update Price</button></td>
+                                          </tr> -->
+
+
                   </tbody>
 
-                  <tbody>
-                     <tr class="table-body-row">
-                        <td class="py-1">x</td>
-                        <td class="py-1">Powerbank</td>
-                        <td class="py-1">&#x20A6;15,000</td>
-                        <td class="py-1">21</td>
-                        <td class="py-1">&#x20A6;18,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
-                     </tr>
-                  </tbody>
 
-                  <tbody>
-                     <tr class="table-body-row">
-                        <td class="py-1">xx</td>
-                        <td class="py-1">Apple SmartWatch</td>
-                        <td class="py-1">&#x20A6;250,000</td>
-                        <td class="py-1">28</td>
-                        <td class="py-1">&#x20A6;320,000</td>
-                        <td class="py-1"><button class="hero-btn-light sellButton">Update Price</button></td>
-                     </tr>
-                  </tbody>
                </table>
             </div>
          </div>

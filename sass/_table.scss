@@ -106,3 +106,17 @@
       }
    }
 }
+
+.loading-row td {
+   padding: 1.5rem 1rem;
+   text-align: center;
+   font-size: 1.6rem;
+   font-weight: 500;
+}
+
+.table-error-text {
+   font-size: 1.6rem;
+   font-weight: 600;
+   text-align: center;
+   color: $color-grey-dark-1;
+}

@@ -3,7 +3,6 @@ function formatAmountWithCommas(amount) {
   const amountString = amount.toString();
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-
 const phoneAccessories = [
   { name: 'Phone Case', price: '₦1000' },
   { name: 'Screen Protector', price: '₦1500' },

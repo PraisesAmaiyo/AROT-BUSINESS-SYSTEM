@@ -9,6 +9,8 @@ $color-grey-light-2: #eef1f6;
 $color-grey-dark-1: #0F7A89;
 $color-grey-dark-2: #15464C;
 $color-grey-dark-3: #6FC1CC;
+$color-danger: #ec1a23;
+
 
 // FONT VARIABLES
 $font-primary: 'Inter Tight', sans-serif;
@@ -107,5 +109,65 @@ body {
 
    @media only screen and (max-width:$bp-medium) {
       padding: 1rem;
+   }
+}
+
+// Toast styling
+.toast {
+   visibility: hidden;
+   min-width: 25rem;
+   background-color: $color-primary;
+   color: $color-primary-light-1;
+   text-align: center;
+   border-radius: 10px;
+   padding: 1.2rem;
+   position: fixed;
+   z-index: 1;
+   left: 50%;
+   top: 3rem;
+   transform: translateX(-50%);
+   font-size: 1.6rem;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+// Success toast
+.toast.success {
+   background-color: $color-primary;
+}
+
+// Failure toast
+.toast.fail {
+   background-color: $color-danger;
+}
+
+// Toast visibility
+.toast.show {
+   visibility: visible;
+   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+// Toast fade in
+@keyframes fadein {
+   from {
+      top: 0;
+      opacity: 0;
+   }
+
+   to {
+      top: 30px;
+      opacity: 1;
+   }
+}
+
+// Toast fade out
+@keyframes fadeout {
+   from {
+      top: 30px;
+      opacity: 1;
+   }
+
+   to {
+      top: 0;
+      opacity: 0;
    }
 }
