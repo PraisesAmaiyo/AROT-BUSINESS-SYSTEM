@@ -29,13 +29,40 @@ label {
    color: $color-secondary-dark;
 }
 
+.input-container {
+   position: relative;
+   width: 35rem;
+
+   .clear-icon {
+      position: absolute;
+      padding: .5rem;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.6rem;
+      color: #a9a9a9;
+      cursor: pointer;
+      visibility: hidden;
+
+      @media only screen and (max-width:$bp-small) {
+         right: 2rem;
+
+      }
+
+   }
+
+   .clear-icon.show {
+      visibility: visible;
+   }
+
+}
+
 input,
 select {
    height: 100%;
    width: 100%;
    outline: none;
    padding: 1rem;
-   // padding-left: 3rem;
    font-size: 1.6rem;
    font-family: inherit;
    font-weight: 500;
@@ -54,9 +81,13 @@ select {
       width: 35rem;
 
       @media only screen and (max-width:$bp-small) {
-         width: 100%;
+         width: 95%;
       }
    }
+
+
+
+
 
    &:focus,
    &:valid {

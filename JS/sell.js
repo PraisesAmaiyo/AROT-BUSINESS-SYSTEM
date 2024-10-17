@@ -1,8 +1,15 @@
+import { getProducts } from './apiServices/product';
+
 // function to format amounts with commas
 function formatAmountWithCommas(amount) {
+  if (amount === null || amount === undefined) {
+    return amount; // return an empty string if amount is null or undefined
+  }
+
   const amountString = amount.toString();
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
 const phoneAccessories = [
   { name: 'Phone Case', price: '₦1000' },
   { name: 'Screen Protector', price: '₦1500' },
@@ -72,59 +79,82 @@ const productInput = document.getElementById('productInput');
 const autocompleteList = document.getElementById('autocompleteList');
 const priceInput = document.getElementById('itemSellingPrice');
 
+productInput.addEventListener('input', () => {
+  if (productInput.value.length > 0) {
+    clearIcon.classList.add('show');
+  } else {
+    clearIcon.classList.remove('show');
+  }
+});
+
+// Clear the input field when the "X" icon is clicked
+clearIcon.addEventListener('click', () => {
+  productInput.value = '';
+  clearIcon.classList.remove('show'); // Hide the icon again
+  productInput.focus(); // Refocus the input field
+});
+
 // Initial display of all products
 displayAllProducts();
 
-productInput.addEventListener('click', function () {
-  autocompleteList.style.display = 'block';
-});
+async function displayAllProducts() {
+  try {
+    const productData = await getProducts();
 
-productInput.addEventListener('input', function () {
-  const inputValue = productInput.value.toLowerCase();
-  const filteredProducts = phoneAccessories.filter((product) =>
-    product.name.toLowerCase().includes(inputValue)
-  );
+    const products = productData.data;
 
-  autocompleteList.innerHTML = '';
-
-  // Display filtered suggestions
-  if (filteredProducts.length === 0) {
-    const listItem = document.createElement('li');
-    listItem.textContent = 'Item Not Found';
-    listItem.classList.add('autocomplete-list-item');
-
-    autocompleteList.appendChild(listItem);
-  } else {
-    filteredProducts.forEach((product) => {
+    autocompleteList.innerHTML = '';
+    products.forEach((product) => {
       const listItem = document.createElement('li');
       listItem.textContent = product.name;
       listItem.classList.add('autocomplete-list-item');
 
       listItem.addEventListener('click', function () {
         productInput.value = product.name;
-        priceInput.value = product.price;
-        autocompleteList.innerHTML = '';
+        priceInput.value = formatAmountWithCommas(product.amount_to_sell);
+        autocompleteList.style.display = 'none';
       });
+
       autocompleteList.appendChild(listItem);
     });
-  }
-});
 
-function displayAllProducts() {
-  autocompleteList.innerHTML = '';
-  phoneAccessories.forEach((product) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = product.name;
-    listItem.classList.add('autocomplete-list-item');
-
-    listItem.addEventListener('click', function () {
-      productInput.value = product.name;
-      priceInput.value = formatAmountWithCommas(product.price);
-      autocompleteList.style.display = 'none';
+    // Autocompelte filter
+    productInput.addEventListener('click', function () {
+      autocompleteList.style.display = 'block';
     });
 
-    autocompleteList.appendChild(listItem);
-  });
+    productInput.addEventListener('input', function () {
+      const inputValue = productInput.value.toLowerCase();
+      const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(inputValue)
+      );
+      autocompleteList.innerHTML = '';
+
+      // Display filtered suggestions
+      if (filteredProducts.length === 0) {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Item Not Found';
+        listItem.classList.add('autocomplete-list-item');
+
+        autocompleteList.appendChild(listItem);
+      } else {
+        filteredProducts.forEach((product) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = product.name;
+          listItem.classList.add('autocomplete-list-item');
+
+          listItem.addEventListener('click', function () {
+            productInput.value = product.name;
+            priceInput.value = formatAmountWithCommas(product.amount_to_sell);
+            autocompleteList.innerHTML = '';
+          });
+          autocompleteList.appendChild(listItem);
+        });
+      }
+    });
+  } catch (error) {
+    console.log(object);
+  }
 }
 
 // Close the suggestions list when clicking outside

@@ -128,13 +128,13 @@ async function renderAddedGoods() {
         row.innerHTML = `
         <td class="py-1 productSerialNumber">${index + 1}</td>
         <td class="py-1 productName">${product.name}</td>
-        <td class="py-1 productAmountBought">&#x20A6;${
+        <td class="py-1 productAmountBought">&#x20A6;${formatAmountWithCommas(
           product.amount_bought
-        }</td>
+        )}</td>
          <td class="py-1 productQuantity">${product.quantity}</td>
-         <td class="py-1 productSellingPrice">&#x20A6;${
+         <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
            product.amount_to_sell
-         }</td>
+         )}</td>
     <td class="py-1 "><button class="hero-btn-light updatePriceButton"  data-product-id="${
       product.id
     }">UPDATE PRICE</button></td>
