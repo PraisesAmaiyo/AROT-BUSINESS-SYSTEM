@@ -119,7 +119,7 @@
                GOODS
             </h2>
 
-            <div id="toast" class="toast">This is a toast message!</div>
+
 
 
             <!-- <div class="table-header" style="display: flex; flex-direction: column; width: max-content;"> -->
@@ -153,15 +153,15 @@
                      <tr class="loading-row">
                         <td colspan="6" class="table-error-text">Loading Products...</td>
                      </tr>
-
-                     <!-- <tr class="table-body-row" id="item-list">
-                                             <td class="py-1 productSerialNumber">1</td>
-                                             <td class="py-1 productName">New Age Powerbank</td>
-                                             <td class="py-1 productAmountBought">&#x20A6;13,500</td>
-                                             <td class="py-1 productQuantity">14</td>
-                                             <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
-                                             <td class="py-1 "><button class="hero-btn-light sellButton">Update Price</button></td>
-                                          </tr> -->
+                     <!-- 
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1 productSerialNumber">1</td>
+                        <td class="py-1 productName">New Age Powerbank</td>
+                        <td class="py-1 productAmountBought">&#x20A6;13,500</td>
+                        <td class="py-1 productQuantity">14</td>
+                        <td class="py-1 productSellingPrice">&#x20A6;16,000</td>
+                        <td class="py-1 "><button class="hero-btn-light updateProductButton">Update Price</button></td>
+                     </tr> -->
 
 
                   </tbody>
@@ -174,21 +174,21 @@
 
    </main>
 
-   <form class="updatePrice-form" name="updatePrice" netlify>
-      <div class="card updatePrice modal ">
+   <div id="toast" class="toast">This is a toast message!</div>
+
+   <form class="updateProduct-form" name="updateProduct" netlify>
+      <div class="card updateProduct modal active ">
          <div>
-            <h1 class="heading-text addItemName">Update product price</h1>
+            <h1 class="heading-text addItemName">Update product</h1>
          </div>
 
-         <div class="updatePrice-form_input">
-            <label for="updatePriceItemName">Item Name</label>
+         <div class="updateProduct-form_input">
+            <label for="updateProductItemName">Item Name</label>
 
-            <!-- <div class="naira-input-container"> -->
-            <input id="updatePriceName" type="text" placeholder="Item Name" name="updatePriceName" disabled>
-            <!-- </div> -->
+            <input id="updateProductName" type="text" placeholder="Item Name" name="updateProductName" disabled>
          </div>
 
-         <div class="updatePrice-form_input">
+         <div class="updateProduct-form_input">
             <label for="productBoughtPrice">Amount Bought</label>
 
             <div class="naira-input-container">
@@ -198,7 +198,7 @@
             </div>
          </div>
 
-         <div class="updatePrice-form_input">
+         <div class="updateProduct-form_input">
             <label for="previousItemPrice">Previous Selling Price</label>
 
             <div class="naira-input-container">
@@ -208,15 +208,36 @@
             </div>
          </div>
 
-         <div class="updatePrice-form_input">
-            <label for="newItemPrice">New Selling Price</label>
+         <!-- <div class="updateProduct-form_input">
+            <label for="updateProductItemQuantity">Item Quantity</label>
+
+            <input id="updateProductQuantity" type="text" placeholder="Item Quantity" name="updateProductQuantity"
+               disabled>
+         </div> -->
+
+         <div class="updateProduct-form_input">
+            <label for="newItemName">New Item Name</label>
+
+            <input id="newItemName" type="text" placeholder="Enter New Name" name="newItemName" required>
+
+         </div>
+
+         <div class="updateProduct-form_input">
+            <label for="newItemSellingPrice">New Selling Price</label>
 
             <div class="naira-input-container">
-               <input id="newItemPrice" type="text" placeholder="Enter New Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="newItemPrice" required>
+               <input id="newItemSellingPrice" type="text" placeholder="Enter New Price"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="newItemSellingPrice" required>
                <span class="naira">&#x20A6;</span>
             </div>
          </div>
+
+         <!-- <div class="updateProduct-form_input">
+            <label for="newItemQuantity">New Item Quantity</label>
+
+            <input id="newItemQuantity" type="text" placeholder="Enter New Quantity" name="newItemQuantity">
+
+         </div> -->
 
          <div class="center-button">
             <button class="hero-btn-dark saveProductButton">UPDATE</button>
@@ -270,7 +291,7 @@
          </div>
 
          <div class="center-button">
-            <button class="hero-btn-dark saveProductButton adProductModalBtn">SAVE</button>
+            <button class="hero-btn-dark  addProductModalBtn">SAVE</button>
          </div>
 
          <div class="close closeModal" id="">&times;</div>

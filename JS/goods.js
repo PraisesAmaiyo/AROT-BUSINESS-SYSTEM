@@ -1,4 +1,8 @@
-const { addProduct, getProducts } = require('./apiServices/product');
+const {
+  addProduct,
+  getProducts,
+  updateProduct,
+} = require('./apiServices/product');
 const { showToast, formatAmountWithCommas } = require('./script');
 
 let isSubmitting = true;
@@ -40,7 +44,7 @@ async function handleAddProductSubmit(e) {
       isSubmitting = false;
     }
   } catch (error) {
-   //  console.error('Error adding product:', error);
+    //  console.error('Error adding product:', error);
     showToast('fail', 'Product not added. ❎');
   } finally {
     addProductName.value = '';
@@ -54,16 +58,16 @@ async function handleAddProductSubmit(e) {
 }
 
 const addProductForm = document.querySelector('.add-product-form');
-const adProductModalBtn = document.querySelector('.adProductModalBtn');
+const addProductModalBtn = document.querySelector('.addProductModalBtn');
 
 if (addProductForm) {
   addProductForm.addEventListener('submit', function (e) {
     handleAddProductSubmit(e);
 
-   //  console.log(isSubmitting);
+    //  console.log(isSubmitting);
 
     isSubmitting = true
-      ? (adProductModalBtn.innerHTML = 'Submitting...')
+      ? (addProductModalBtn.innerHTML = 'Submitting...')
       : 'Save';
   });
 }
@@ -72,6 +76,7 @@ if (addProductForm) {
 function appendProductToTable(product) {
   const goodsTableBody = document.querySelector('.product-table tbody');
   const row = document.createElement('tr');
+  row.setAttribute('data-document-id', product.documentId);
   row.classList.add('table-body-row');
 
   row.innerHTML = `
@@ -83,9 +88,9 @@ function appendProductToTable(product) {
      <td class="py-1 productQuantity">${product.quantity}</td>
      <td class="py-1 productSellingPrice">&#x20A6;${product.amount_to_sell}</td>
      <td class="py-1">
-       <button class="hero-btn-light updatePriceButton" data-product-id="${
+       <button class="hero-btn-light updateProductButton" data-product-id="${
          product.id
-       }">UPDATE PRICE</button>
+       }">UPDATE</button>
      </td>
    `;
 
@@ -117,6 +122,7 @@ async function renderAddedGoods() {
     } else {
       products.forEach((product, index) => {
         const row = document.createElement('tr');
+        row.setAttribute('data-document-id', product.documentId);
         row.classList.add('table-body-row');
 
         row.innerHTML = `
@@ -129,12 +135,20 @@ async function renderAddedGoods() {
          <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
            product.amount_to_sell
          )}</td>
-    <td class="py-1 "><button class="hero-btn-light updatePriceButton"  data-product-id="${
+    <td class="py-1 "><button class="hero-btn-light updateProductButton"  data-product-id="${
       product.id
-    }">UPDATE PRICE</button></td>
+    }">UPDATE</button></td>
    `;
 
         goodsTableBody.appendChild(row);
+      });
+
+      // Now attach event listeners after the buttons have been created
+      const updateProductButtons = document.querySelectorAll(
+        '.updateProductButton'
+      );
+      updateProductButtons.forEach((button) => {
+        button.addEventListener('click', handleUpdateBtnClick);
       });
     }
   } catch (error) {
@@ -146,69 +160,152 @@ async function renderAddedGoods() {
   }
 }
 
-renderAddedGoods();
-
-// JS to dispaly Item to be sold
-const updatePriceButton = document.querySelectorAll('.updatePriceButton');
-const updatePriceContainer = document.querySelector('.updatePrice');
-const updatePriceNameInput = document.getElementById('updatePriceName');
+// JS to dispaly Item to be Updated
+const updateProductButton = document.querySelectorAll('.updateProductButton');
+const updateProductContainer = document.querySelector('.updateProduct');
+const updateProductNameInput = document.getElementById('updateProductName');
 const productBoughtPriceInput = document.getElementById('productBoughtPrice');
 const previousItemPriceInput = document.getElementById('previousItemPrice');
-const newItemPriceInput = document.getElementById('newItemPrice');
+
+const newItemNameInput = document.getElementById('newItemName');
+const newItemPriceInput = document.getElementById('newItemSellingPrice');
 const saveProductButton = document.querySelector('.saveProductButton');
 
-if (updatePriceButton) {
-  updatePriceButton.forEach((button, index) => {
-    button.addEventListener('click', function (e) {
-      if (updatePriceContainer) {
-        updatePriceContainer.classList.add('active');
-        main.classList.add('blur');
-        sidebar.classList.add('blur');
-        main.classList.add('no-scroll');
+async function handleUpdateBtnClick(event) {
+  const button = event.target;
+  const productId = button.dataset.productId;
 
-        const productId = this.dataset.productId;
-        const productData = storedGoodsData.find(
-          (product) => product.id.toString() === productId
-        );
-      }
+  const productData = await getProducts();
 
-      if (productData) {
-        updatePriceNameInput.value = productData.addProductNameInput;
-        productBoughtPriceInput.value = productData.addProductBoughtPriceInput;
-        previousItemPriceInput.value = productData.addProductSellingPriceInput;
-        updatePriceContainer.classList.add('active');
-      } else {
-        console.error(
-          `Product with id ${productId} not found in local storage.`
-        );
-      }
-    });
-  });
+  const product = productData.data.find(
+    (product) => product.id.toString() === productId
+  );
+  console.log(product.id);
+
+  if (product) {
+    updateProductContainer.dataset.documentId = product.documentId;
+    updateProductContainer.dataset.productId = product.id;
+
+    updateProductContainer.classList.add('active');
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
+
+    updateProductNameInput.value = product.name;
+    productBoughtPriceInput.value = product.amount_bought;
+    previousItemPriceInput.value = product.amount_to_sell;
+    //  updateProductQuantityInput.value = product.quantity;
+  } else {
+    console.error(`Product with id ${productId} not found in Store.`);
+  }
 }
+
+// Call the function to render products
+renderAddedGoods();
 
 // Handle form submission - UPDATE
 
+async function handleUpdateProductSubmit(e) {
+  isSubmitting = true;
+  e.preventDefault();
+
+  const documentId = updateProductContainer.dataset.documentId;
+
+  const productData = await getProducts();
+  const existingProduct = productData.data.find(
+    (product) => product.documentId === documentId
+  );
+
+  // Prepare the update data, maintaining existing values if new ones are empty
+  const updateProductFormData = {
+    name: newItemNameInput.value.trim() || existingProduct.name,
+    amount_to_sell: newItemPriceInput.value
+      ? Number(newItemPriceInput.value)
+      : existingProduct.amount_to_sell,
+  };
+
+  // Only proceed if there are changes to be made
+  const hasChanges =
+    updateProductFormData.name !== existingProduct.name ||
+    updateProductFormData.amount_to_sell !== existingProduct.amount_to_sell;
+
+  if (!hasChanges) {
+    showToast('info', 'No changes detected. Please update fields to modify.');
+    isSubmitting = false;
+    return;
+  }
+
+  try {
+    const response = await updateProduct(documentId, {
+      data: { ...updateProductFormData },
+    });
+
+    if (response) {
+      isSubmitting = false;
+      // console.log('Product updated successfully:', response);
+      showToast('success', 'Product updated successfully! ⭐');
+
+      updateProductInTable(response.data);
+    } else {
+      showToast('fail', 'Product not updated. ❎');
+      isSubmitting = false;
+    }
+  } catch (error) {
+    console.error('Error adding product:', error);
+    showToast('fail', 'Product not updated. ❎');
+  } finally {
+    newItemNameInput.value = '';
+    newItemPriceInput.value = '';
+    isSubmitting = false;
+    closeModal();
+  }
+}
+
 if (saveProductButton) {
   saveProductButton.addEventListener('click', function (e) {
-    //   e.preventDefault();
+    handleUpdateProductSubmit(e);
 
-    const updatedProductName = updatePriceNameInput.value;
-    const updatedProductBoughtPrice = productBoughtPriceInput.value;
-    const updatedNewItemPrice = newItemPriceInput.value;
-
-    const storedData =
-      JSON.parse(localStorage.getItem('addProductFormData')) || [];
-
-    const productIndex = storedData.findIndex(
-      (product) => product.addProductNameInput === updatedProductName
-    );
-
-    storedData[productIndex].addProductSellingPriceInput = updatedNewItemPrice;
-
-    localStorage.setItem('addProductFormData', JSON.stringify(storedData));
-
-    closeModal();
+    isSubmitting = true
+      ? (addProductModalBtn.innerHTML = 'Submitting...')
+      : 'Save';
   });
+}
+
+// Update existing product in the table
+function updateProductInTable(product) {
+  const goodsTableBody = document.querySelector('.product-table tbody');
+  const existingRow = goodsTableBody.querySelector(
+    `tr[data-document-id="${product.documentId}"]`
+  );
+
+  if (existingRow) {
+    // Update the existing row with new product data
+    existingRow.innerHTML = `
+       <td class="py-1 productSerialNumber">${
+         Array.from(goodsTableBody.children).indexOf(existingRow) + 1
+       }</td>
+       <td class="py-1 productName">${product.name}</td>
+       <td class="py-1 productAmountBought">&#x20A6;${formatAmountWithCommas(
+         product.amount_bought
+       )}</td>
+       <td class="py-1 productQuantity">${product.quantity}</td>
+       <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
+         product.amount_to_sell
+       )}</td>
+       <td class="py-1">
+         <button class="hero-btn-light updateProductButton" data-product-id="${
+           product.id
+         }">UPDATE</button>
+       </td>
+     `;
+
+    const updateProductButtons = document.querySelectorAll(
+      '.updateProductButton'
+    );
+    updateProductButtons.forEach((button) => {
+      button.addEventListener('click', handleUpdateBtnClick);
+    });
+  }
 }
 
 // JS for modal
@@ -227,7 +324,7 @@ closeModalButton.forEach((closeButton) => {
 function closeModal() {
   const addProductContainer = document.querySelector('.addProduct');
 
-  updatePriceContainer.classList.remove('active');
+  updateProductContainer.classList.remove('active');
   addProductContainer.classList.remove('active');
 
   main.classList.remove('blur');

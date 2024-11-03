@@ -68,7 +68,7 @@ body {
   border-radius: 10px;
   padding: 1.2rem;
   position: fixed;
-  z-index: 1;
+  z-index: 100000000000;
   left: 50%;
   top: 3rem;
   transform: translateX(-50%);
@@ -968,7 +968,7 @@ body.authentication {
 
 .addProduct .checkbox,
 .sellProduct .checkbox,
-.updatePrice .checkbox,
+.updateProduct .checkbox,
 .addUser .checkbox {
   display: flex;
   align-items: center;
@@ -977,51 +977,51 @@ body.authentication {
   margin-top: 1.5rem; }
   .addProduct .checkbox label,
   .sellProduct .checkbox label,
-  .updatePrice .checkbox label,
+  .updateProduct .checkbox label,
   .addUser .checkbox label {
     margin-bottom: 0; }
   @media only screen and (max-width: 30.5em) {
     .addProduct .checkbox .checkbox-container,
     .sellProduct .checkbox .checkbox-container,
-    .updatePrice .checkbox .checkbox-container,
+    .updateProduct .checkbox .checkbox-container,
     .addUser .checkbox .checkbox-container {
       padding-bottom: 0; } }
 
 .addProduct-form_input,
 .sellProduct-form_input,
-.updatePrice-form_input,
+.updateProduct-form_input,
 .addUser-form_input {
   margin-top: 2rem;
   display: flex;
   align-items: center; }
   .addProduct-form_input.sellStatus,
   .sellProduct-form_input.sellStatus,
-  .updatePrice-form_input.sellStatus,
+  .updateProduct-form_input.sellStatus,
   .addUser-form_input.sellStatus {
     display: block; }
     .addProduct-form_input.sellStatus label,
     .sellProduct-form_input.sellStatus label,
-    .updatePrice-form_input.sellStatus label,
+    .updateProduct-form_input.sellStatus label,
     .addUser-form_input.sellStatus label {
       width: min-content; }
   @media only screen and (max-width: 30.5em) {
     .addProduct-form_input,
     .sellProduct-form_input,
-    .updatePrice-form_input,
+    .updateProduct-form_input,
     .addUser-form_input {
       margin-top: 1.5rem;
       display: block; } }
   .addProduct-form_input label,
   .sellProduct-form_input label,
-  .updatePrice-form_input label,
+  .updateProduct-form_input label,
   .addUser-form_input label {
     width: 20rem; }
   .addProduct-form_input input,
   .addProduct-form_input select,
   .sellProduct-form_input input,
   .sellProduct-form_input select,
-  .updatePrice-form_input input,
-  .updatePrice-form_input select,
+  .updateProduct-form_input input,
+  .updateProduct-form_input select,
   .addUser-form_input input,
   .addUser-form_input select {
     width: 100%; }
@@ -1029,8 +1029,8 @@ body.authentication {
     .addProduct-form_input select:disabled,
     .sellProduct-form_input input:disabled,
     .sellProduct-form_input select:disabled,
-    .updatePrice-form_input input:disabled,
-    .updatePrice-form_input select:disabled,
+    .updateProduct-form_input input:disabled,
+    .updateProduct-form_input select:disabled,
     .addUser-form_input input:disabled,
     .addUser-form_input select:disabled {
       background-color: #eef1f6;
@@ -1041,7 +1041,7 @@ body.authentication {
 
 .addProduct .hero-btn-dark,
 .sellProduct .hero-btn-dark,
-.updatePrice .hero-btn-dark,
+.updateProduct .hero-btn-dark,
 .addUser .hero-btn-dark {
   display: inline;
   margin-top: 3rem;
