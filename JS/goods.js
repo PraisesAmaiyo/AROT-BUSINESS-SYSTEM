@@ -66,9 +66,7 @@ if (addProductForm) {
 
     //  console.log(isSubmitting);
 
-    isSubmitting = true
-      ? (addProductModalBtn.innerHTML = 'Submitting...')
-      : 'Save';
+    addProductModalBtn.innerHTML = isSubmitting ? 'Submitting...' : 'Save';
   });
 }
 
@@ -113,6 +111,8 @@ async function renderAddedGoods() {
 
     const productData = await getProducts();
     const products = productData.data;
+
+    console.log(products);
 
     goodsTableBody.innerHTML = '';
 
