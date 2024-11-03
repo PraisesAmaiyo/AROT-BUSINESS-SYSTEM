@@ -3,9 +3,6 @@ import config from '../../config.js';
 const baseUrl = config.baseUrl;
 const apiToken = config.token;
 
-console.log(baseUrl);
-console.log(apiToken);
-
 export async function getPosTransactions() {
   try {
     //  console.log('Sending GET request...');
