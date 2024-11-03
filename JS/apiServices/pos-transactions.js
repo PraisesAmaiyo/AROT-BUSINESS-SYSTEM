@@ -24,7 +24,8 @@ export async function getPosTransactions() {
     }
 
     const data = await response.json();
-    console.log('PosTransactions:', data);
+    //  console.log('PosTransactions:', data);
+
     return data;
   } catch (error) {
     //  console.error('Error fetching PosTransactions:', error);

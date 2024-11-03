@@ -15,22 +15,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const transactionType = document.getElementById('transactionType');
   const withdrawalType = document.getElementById('withdrawalType');
   const posFeePaymentType = document.getElementById('posFeePaymentType');
+  const posTransactionConfirmation = document.getElementById(
+    'posTransactionConfirmation'
+  );
 
   if (transactionType) {
     transactionType.addEventListener('change', function (e) {
       const selectedType = e.target.value;
 
       if (
-        selectedType === 'withdraw' ||
+        selectedType === 'withdrawal' ||
         selectedType === 'withdrawal/transfer' ||
         selectedType === 'bill-Payment'
       ) {
         withdrawalTypeDiv.style.display = 'block';
+        posTransactionConfirmation.style.display = 'block';
       } else if (selectedType === 'deposit') {
         withdrawalType.value = 'cash';
         posFeePaymentType.value = 'cash';
-        withdrawalTypeDiv.style.display = 'none';
         posFeePaymentType.style.display = 'block';
+        withdrawalTypeDiv.style.display = 'none';
+        posTransactionConfirmation.style.display = 'none';
       }
 
       //  if (selectedType === 'Deposit') {

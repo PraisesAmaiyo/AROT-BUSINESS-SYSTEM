@@ -152,7 +152,7 @@ body.home {
       height: 30rem;
       position: relative;
       overflow: hidden;
-      border-radius: 10%;
+      border-radius: 10px;
       transition: transform .3s, box-shadow .3s; }
       body.home .action-group--1 {
         border: 1px solid #2998ff;
@@ -1035,38 +1035,6 @@ body.authentication {
   align-self: center;
   padding: 1rem 3rem;
   margin-top: 2rem; }
-
-.charging {
-  height: min-content;
-  color: #205329; }
-  .charging-method {
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    overflow: hidden; }
-    .charging-method-form_input {
-      margin-top: 2rem; }
-    .charging-method-form .hero-btn-dark {
-      display: inline;
-      margin-top: 3rem;
-      align-self: center;
-      padding: 1rem 3rem; }
-
-.simReg {
-  height: min-content;
-  color: #205329; }
-  .simReg-method {
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    overflow: hidden; }
-    .simReg-method-form_input {
-      margin-top: 2rem; }
-    .simReg-method-form .hero-btn-dark {
-      margin-top: 3rem; }
-  .simReg .hero-btn-dark {
-    display: inline;
-    margin-top: 3rem;
-    align-self: center;
-    padding: 1rem 3rem; }
 
 .reports,
 .goods {
