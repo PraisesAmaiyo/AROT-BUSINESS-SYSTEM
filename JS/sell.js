@@ -1,14 +1,5 @@
 import { getProducts } from './apiServices/product';
-
-// function to format amounts with commas
-function formatAmountWithCommas(amount) {
-  if (amount === null || amount === undefined) {
-    return amount; // return an empty string if amount is null or undefined
-  }
-
-  const amountString = amount.toString();
-  return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+import { formatAmountWithCommas } from './script';
 
 const phoneAccessories = [
   { name: 'Phone Case', price: '₦1000' },

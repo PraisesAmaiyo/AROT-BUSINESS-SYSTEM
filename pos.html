@@ -26,7 +26,7 @@
    <script defer type="module" src="JS/pos.js"></script> -->
 
 
-   <script src="dist/bundle.js" defer></script>
+   <script src="dist/main.bundle.js" defer></script>
    <script src="dist/pos.bundle.js" defer></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
@@ -113,6 +113,8 @@
       </div>
 
       <div class="pos card">
+         <div id="toast" class="toast">This is a toast message!</div>
+
          <div class="pos-method">
             <h2 class="heading-text">
                POS TRANSACTION
@@ -124,10 +126,10 @@
                   <label for="transactionType">Select Transaction Type:</label>
 
                   <select id="transactionType" name="transactionType">
-                     <option value="Withdraw">Withdraw</option>
-                     <option value="Deposit">Deposit</option>
-                     <option value="WithdrawAndTransfer">Withdrawal/Transfer</option>
-                     <option value="BillPayment">Bill Payment</option>
+                     <option value="withdrawal">Withdraw</option>
+                     <option value="deposit">Deposit</option>
+                     <option value="withdrawal/transfer">Withdrawal/Transfer</option>
+                     <option value="bill-Payment">Bill Payment</option>
                   </select>
                </div>
 
@@ -135,9 +137,9 @@
                   <label for="withdrawalType">Select Withdrawal Type:</label>
 
                   <select id="withdrawalType" name="withdrawalType">
-                     <option value="Card">Card</option>
-                     <option value="Transfer">Transfer</option>
-                     <option value="Cash">Cash</option>
+                     <option value="card">Card</option>
+                     <option value="transfer">Transfer</option>
+                     <option value="cash">Cash</option>
                   </select>
                </div>
 
@@ -165,9 +167,9 @@
                   <label for="feePaymentType">Fee Payment Method:</label>
 
                   <select id="posFeePaymentType" name="posFeePaymentType">
-                     <option value="Card">Card</option>
-                     <option value="Cash">Cash</option>
-                     <option value="Transfer">Transfer</option>
+                     <option value="card">Card</option>
+                     <option value="cash">Cash</option>
+                     <option value="transfer">Transfer</option>
                   </select>
                </div>
 

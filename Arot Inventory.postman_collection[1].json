@@ -31,10 +31,25 @@
       "response": []
     },
     {
-      "name": "Get Payment Methods",
+      "name": "Get Withdrawal Types",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseurl}}/api/withdrawal-types",
+          "host": ["{{baseurl}}"],
+          "path": ["api", "withdrawal-types"]
+        }
       },
       "response": []
     },
@@ -64,8 +79,23 @@
     {
       "name": "Get POS Transactions",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseurl}}/api/pos-transactions",
+          "host": ["{{baseurl}}"],
+          "path": ["api", "pos-transactions"]
+        }
       },
       "response": []
     }

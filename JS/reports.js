@@ -1,43 +1,93 @@
-// function to format amounts with commas
-function formatAmountWithCommas(amount) {
-  const amountString = amount.toString();
-  return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+import { getPosTransactions } from './apiServices/pos-transactions';
+import { formatAmountWithCommas } from './script';
 
-// JS to Render saved POS form data
-const storedPosData = JSON.parse(localStorage.getItem('posFormData')) || [];
+// JS to Render saved POS from Database
 
-function renderPosTable() {
+async function renderPosTable() {
   const posTableBody = document.querySelector('.posTableDisplay tbody');
+  const loadingRow = document.querySelector('.loading-row');
 
-  if (posTableBody) {
+  if (!posTableBody || !loadingRow) {
+    console.error('Table or loading row not found');
+    return;
+  }
+
+  try {
+    loadingRow.style.display = 'table-row';
+
+    const posTransactionData = await getPosTransactions();
+    const posTransactions = posTransactionData.data;
+
     posTableBody.innerHTML = '';
 
-    storedPosData.forEach((data, index) => {
-      const row = document.createElement('tr');
-      row.classList.add('table-body-row');
+    if (posTransactions.length === 0) {
+      posTableBody.innerHTML =
+        '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+    } else {
+      posTransactions.forEach((posTransaction, index) => {
+        const {
+          fee_payment_type,
+          transaction_amount,
+          transaction_fee,
+          transaction_remark,
+          transaction_type,
+          withdrawal_type,
+        } = posTransaction;
 
-      row.innerHTML = `
-    <td class="py-1">${index + 1}.</td>
-    <td class="py-1 posTransTypeReport">${data.selectedTransactionType}</td>
-    <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
-      data.posTransactionAmount
-    )}</td>
-      <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
-        data.posTransactionFee
-      )}</td>
-      <td class="py-1 posPaymentMethodReport">${
-        data.selectedWithdrawalType
-      }</td>
-      <td class="py-1 posPaymentMethodRemark">${
-        data.posTransactionRemarkInput
-      }</td>
-         `;
+        function toTitleCase(value) {
+          return value.charAt(0).toUpperCase() + value.slice(1);
+        }
 
-      posTableBody.appendChild(row);
-    });
+        function formatTransactionType(value) {
+          switch (value.toLowerCase()) {
+            case 'withdraw':
+              return 'Withdraw';
+            case 'withdrawal/transfer':
+              return 'Withdrawal & Transfer';
+            case 'bill-payment':
+              return 'Bill Payment';
+            case 'deposit':
+              return 'Deposit';
+            default:
+              return value;
+          }
+        }
+
+        const feePaymentType = toTitleCase(fee_payment_type || 'N/A');
+        const transactionType = transaction_type?.type || 'N/A';
+        const withdrawalType = toTitleCase(withdrawal_type?.type || 'N/A');
+
+        const row = document.createElement('tr');
+        row.classList.add('table-body-row');
+
+        row.innerHTML = `
+         <td class="py-1">${index + 1}.</td>
+         <td class="py-1 posTransTypeReport">${formatTransactionType(
+           transactionType
+         )}</td>
+         <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
+           transaction_amount
+         )}</td>
+           <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
+             transaction_fee
+           )}</td>
+           <td class="py-1 posFeePaymentMethodReport">${feePaymentType}</td>
+           <td class="py-1 posPaymentMethodReport">${withdrawalType}</td>
+           <td class="py-1 posPaymentMethodRemark">${transaction_remark}</td>
+              `;
+
+        posTableBody.appendChild(row);
+      });
+    }
+
+    updateTotalPosAmounts(posTransactions);
+  } catch (error) {
+    console.error('Error rendering products:', error);
+    goodsTableBody.innerHTML =
+      '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+  } finally {
+    loadingRow.style.display = 'none';
   }
-  updateTotalPosAmounts(storedPosData);
 }
 
 // JS to give total POS Amount and Fees
@@ -45,11 +95,21 @@ function updateTotalPosAmounts(data) {
   const totalPosAmount = document.getElementById('totalPosAmount');
   const totalPosFee = document.getElementById('totalPosFee');
 
+  if (!data || data.length === 0) {
+    if (totalPosAmount) {
+      totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;0</strong>`;
+    }
+    if (totalPosFee) {
+      totalPosFee.innerHTML = `<strong>Total Fees = &nbsp;&#x20A6;0</strong>`;
+    }
+    return;
+  }
+
   const totalAmount = data.reduce(
-    (sum, item) => sum + item.posTransactionAmount,
+    (sum, item) => sum + item.transaction_amount,
     0
   );
-  const totalFee = data.reduce((sum, item) => sum + item.posTransactionFee, 0);
+  const totalFee = data.reduce((sum, item) => sum + item.transaction_fee, 0);
 
   if (totalPosAmount) {
     totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
@@ -57,7 +117,7 @@ function updateTotalPosAmounts(data) {
     )}</strong>`;
   }
 
-  if (totalPosAmount) {
+  if (totalPosFee) {
     totalPosFee.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
       totalFee
     )}</strong>`;

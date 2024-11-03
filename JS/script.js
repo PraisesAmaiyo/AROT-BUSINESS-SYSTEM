@@ -33,3 +33,13 @@ export function showToast(type, message) {
     toast.classList.remove('show');
   }, 3000);
 }
+
+// function to format amounts with commas
+export function formatAmountWithCommas(amount) {
+  if (amount === null || amount === undefined) {
+    return amount; // return an empty string if amount is null or undefined
+  }
+
+  const amountString = amount.toString();
+  return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}

@@ -29,8 +29,6 @@ export async function getProducts() {
   }
 }
 
-getProducts();
-
 export async function addProduct(productData) {
   try {
     //  console.log('Sending POST request...');

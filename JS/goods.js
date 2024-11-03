@@ -1,13 +1,7 @@
 const { addProduct, getProducts } = require('./apiServices/product');
-const { showToast } = require('./script');
+const { showToast, formatAmountWithCommas } = require('./script');
 
 let isSubmitting = true;
-
-// function to format amounts with commas
-function formatAmountWithCommas(amount) {
-  const amountString = amount.toString();
-  return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
 
 // JS for Adding Products
 const addProductName = document.getElementById('addProductName');
@@ -42,12 +36,12 @@ async function handleAddProductSubmit(e) {
 
       appendProductToTable(response.data);
     } else {
-      showToast('fail', 'Product not added. ❌');
+      showToast('fail', 'Product not added. ❎');
       isSubmitting = false;
     }
   } catch (error) {
     console.error('Error adding product:', error);
-    showToast('fail', 'Product not added. ❌');
+    showToast('fail', 'Product not added. ❎');
   } finally {
     addProductName.value = '';
     addProductBoughtPrice.value = '';
@@ -192,7 +186,7 @@ if (updatePriceButton) {
   });
 }
 
-// Handle form submission
+// Handle form submission - UPDATE
 
 if (saveProductButton) {
   saveProductButton.addEventListener('click', function (e) {
@@ -213,61 +207,6 @@ if (saveProductButton) {
 
     localStorage.setItem('addProductFormData', JSON.stringify(storedData));
 
-    closeModal();
-  });
-}
-
-// JS for Selling Products and adding to localStorage
-const soldProductPrice = document.getElementById('soldProductPrice');
-const productBalancePrice = document.getElementById('productBalancePrice');
-const soldProductRemark = document.getElementById('soldProductRemark');
-
-function handleSellProduct() {
-  //   let soldItemNameInput = soldItemName.innerText;
-  let soldProductPriceInput = Number(soldProductPrice.value);
-  let productBalancePriceInput = Number(productBalancePrice.value);
-  let soldProductRemarkInput = soldProductRemark.value;
-  let id = Math.random();
-
-  if (productBalancePriceInput === 0 || productBalancePriceInput === '') {
-    productBalancePriceInput = '-';
-  }
-
-  const soldProductFormData = {
-    soldProductPriceInput,
-    productBalancePriceInput,
-    soldProductRemarkInput,
-    checkboxStatus,
-    id,
-  };
-
-  const storedData =
-    JSON.parse(localStorage.getItem('soldProductFormData')) || [];
-
-  const allData = [soldProductFormData, ...storedData];
-
-  localStorage.setItem('soldProductFormData', JSON.stringify(allData));
-
-  return soldProductFormData;
-}
-
-const sellProductForm = document.querySelector('.sell-product-form');
-
-if (sellProductForm) {
-  sellProductForm.addEventListener('submit', function (e) {
-    const balancePayment = document.querySelector('.balancePayment');
-    const balancePaymentInput = document.getElementById('productBalancePrice');
-
-    e.preventDefault();
-    handleSellProduct();
-
-    soldProductPrice.value = '';
-    productBalancePrice.value = '';
-    soldProductRemark.value = '';
-    completedCheckbox.checked = false;
-    balanceCheckbox.checked = false;
-    balancePayment.style.display = 'flex';
-    balancePaymentInput.disabled = false;
     closeModal();
   });
 }

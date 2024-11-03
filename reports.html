@@ -27,7 +27,7 @@
    <!-- <script defer type="module" src="JS/goods.js"></script> -->
 
 
-   <script src="dist/bundle.js" defer></script>
+   <script src="dist/main.bundle.js" defer></script>
    <script src="dist/reports.bundle.js" defer></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
@@ -145,51 +145,36 @@
                         <th class="py-1">Transaction Type</th>
                         <th class="py-1">Amount</th>
                         <th class="py-1">Fee</th>
+                        <th class="py-1">Fee Payment Method</th>
                         <th class="py-1">Payment Method</th>
                         <th class="py-1">Remarks</th>
                      </tr>
                   </thead>
 
                   <tbody>
-                     <tr class="table-body-row">
-                        <td class="py-1">1.</td>
-                        <td class="py-1 posTransTypeReport">Deposit</td>
-                        <td class="py-1 posAmountReport">&#x20A6;15,000</td>
-                        <td class="py-1 posFeeReport">&#x20A6;300</td>
-                        <td class="py-1 posPaymentMethodReport">Cash</td>
-                        <td class="py-1 posPaymentMethodRemark">Successful</td>
-                     </tr>
-                  </tbody>
 
-                  <tbody>
-                     <tr class="table-body-row" id="item-list">
-                        <td class="py-1">2.</td>
-                        <td class="py-1">Demo Withdraw</td>
-                        <td class="py-1">&#x20A6;00,000</td>
-                        <td class="py-1">&#x20A6;000</td>
-                        <td class="py-1">Card</td>
-                        <td class="py-1">Pending</td>
+                     <tr class="loading-row">
+                        <td colspan="6" class="table-error-text">Loading Transactions...</td>
                      </tr>
-                  </tbody>
-
-                  <tbody>
+                     <!-- 
                      <tr class="table-body-row">
                         <td class="py-1">3.</td>
                         <td class="py-1">Demo Withdraw</td>
                         <td class="py-1">&#x20A6;00,000</td>
                         <td class="py-1">&#x20A6;0,000</td>
+                        <td class="py-1">cash</td>
                         <td class="py-1">Transfer</td>
                         <td class="py-1">Successful</td>
-                     </tr>
+                     </tr> -->
                   </tbody>
 
                   <tfoot>
                      <tr class="table-foot-row px-2">
                         <td colspan="2"></td>
-                        <td id="totalPosAmount" class="py-1 px-2"><strong>Total Amount = &nbsp;&#x20A6;000,000</strong>
+                        <td id="totalPosAmount" class="py-1 px-2"></strong>
                         </td>
-                        <td id="totalPosFee" class="py-1 px-2"><strong>Total Fees = &nbsp;&#x20A6;00,000</strong></td>
-                        <td></td>
+                        <td id="totalPosFee" class="py-1 px-2"><strong></strong></td>
+                        <!-- <td></td> -->
                      </tr>
                   </tfoot>
                </table>
