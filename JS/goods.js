@@ -31,7 +31,7 @@ async function handleAddProductSubmit(e) {
 
     if (response) {
       isSubmitting = false;
-      console.log('Product added successfully:', response);
+      // console.log('Product added successfully:', response);
       showToast('success', 'Product added successfully! ⭐');
 
       appendProductToTable(response.data);
@@ -40,7 +40,7 @@ async function handleAddProductSubmit(e) {
       isSubmitting = false;
     }
   } catch (error) {
-    console.error('Error adding product:', error);
+   //  console.error('Error adding product:', error);
     showToast('fail', 'Product not added. ❎');
   } finally {
     addProductName.value = '';
@@ -60,7 +60,7 @@ if (addProductForm) {
   addProductForm.addEventListener('submit', function (e) {
     handleAddProductSubmit(e);
 
-    console.log(isSubmitting);
+   //  console.log(isSubmitting);
 
     isSubmitting = true
       ? (adProductModalBtn.innerHTML = 'Submitting...')

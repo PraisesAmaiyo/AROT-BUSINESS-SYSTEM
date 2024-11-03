@@ -75,11 +75,12 @@
 
 .addProduct,
 .sellProduct,
-.updatePrice {
+.updatePrice,
+.addUser {
    .checkbox {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.1rem;
       margin-left: 0;
       margin-top: 1.5rem;
 

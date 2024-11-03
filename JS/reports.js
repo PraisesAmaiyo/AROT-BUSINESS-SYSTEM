@@ -179,102 +179,141 @@ function updateTotalSoldAmounts(data) {
 
 renderGoodsTable();
 
-// JS to Render saved Charged form data
-const storedChargedData =
-  JSON.parse(localStorage.getItem('chargeFormData')) || [];
+// JS for modal
+const main = document.querySelector('.main');
+const sidebar = document.querySelector('.sidebar');
 
-function renderChargingTable() {
-  const chargingTableBody = document.querySelector(
-    '.chargingTableDisplay tbody'
-  );
+const closeModalButton = document.querySelectorAll('.closeModal');
+const closeImageModalBtn = document.querySelectorAll('.closeImageModal');
 
-  if (chargingTableBody) {
-    chargingTableBody.innerHTML = '';
+closeModalButton.forEach((closeButton) => {
+  closeButton.addEventListener('click', function () {
+    closeModal();
+  });
+});
 
-    storedChargedData.forEach((data, index) => {
-      const row = document.createElement('tr');
-      row.classList.add('table-body-row');
+function closeModal() {
+  const addUserContainer = document.querySelector('.addUser');
 
-      row.innerHTML = `
-    <td class="py-1">${index + 1}.</td>
-    <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
-    <td class="py-1 chargedItemPriceReport">&#x20A6; ${
-      data.deviceChargeFeeInput
-    }</td>
-    <td class="py-1 chargedItemOwnerReport ">${data.deviceOwnerNameInput}</td>
-    <td class="py-1 chargedItemIdReport ">${data.deviceIdInput}</td>
-    <td class="py-1 chargedItemAltNumberReport ">${
-      data.alternativeNumberInput
-    }</td>
-    <td class="py-1 chargedItemStatusReport ">${data.selectedDeviceStatus}</td>
-      `;
+  addUserContainer.classList.remove('active');
 
-      chargingTableBody.appendChild(row);
+  main.classList.remove('blur');
+  sidebar.classList.remove('blur');
+  main.classList.remove('no-scroll');
+}
+
+// JS for Modal
+document.addEventListener('DOMContentLoaded', function () {
+  const addButton = document.querySelector('.add-user');
+  const addUserContainer = document.querySelector('.addUser');
+
+  if (addButton) {
+    addButton.addEventListener('click', function () {
+      addUserContainer.classList.add('active');
+      main.classList.add('blur');
+      sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
     });
   }
+});
 
-  updateTotalChargedAmounts(storedChargedData);
-}
+//  Disabled Sim Registration and Charging features
+// // JS to Render saved Charged form data
+// const storedChargedData =
+//   JSON.parse(localStorage.getItem('chargeFormData')) || [];
 
-// JS to give total Charged Amount
-function updateTotalChargedAmounts(data) {
-  const totalChargedAmount = document.getElementById('totalChargedAmount');
+// function renderChargingTable() {
+//   const chargingTableBody = document.querySelector(
+//     '.chargingTableDisplay tbody'
+//   );
 
-  const totalAmount = data.reduce(
-    (sum, item) => sum + item.deviceChargeFeeInput,
-    0
-  );
+//   if (chargingTableBody) {
+//     chargingTableBody.innerHTML = '';
 
-  if (totalChargedAmount) {
-    totalChargedAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-      totalAmount
-    )}</strong>`;
-  }
-}
-renderChargingTable();
+//     storedChargedData.forEach((data, index) => {
+//       const row = document.createElement('tr');
+//       row.classList.add('table-body-row');
 
-// JS to Render saved Sim Registration form data
-const storedSimRegData =
-  JSON.parse(localStorage.getItem('simRegFormData')) || [];
+//       row.innerHTML = `
+//     <td class="py-1">${index + 1}.</td>
+//     <td class="py-1 chargedItemNameReport">${data.selectedDeviceType}</td>
+//     <td class="py-1 chargedItemPriceReport">&#x20A6; ${
+//       data.deviceChargeFeeInput
+//     }</td>
+//     <td class="py-1 chargedItemOwnerReport ">${data.deviceOwnerNameInput}</td>
+//     <td class="py-1 chargedItemIdReport ">${data.deviceIdInput}</td>
+//     <td class="py-1 chargedItemAltNumberReport ">${
+//       data.alternativeNumberInput
+//     }</td>
+//     <td class="py-1 chargedItemStatusReport ">${data.selectedDeviceStatus}</td>
+//       `;
 
-function renderSimRegTable() {
-  const SimRegTableBody = document.querySelector('.simRegTableDisplay tbody');
-  if (SimRegTableBody) {
-    SimRegTableBody.innerHTML = '';
+//       chargingTableBody.appendChild(row);
+//     });
+//   }
 
-    storedSimRegData.forEach((data, index) => {
-      const row = document.createElement('tr');
-      row.classList.add('table-body-row');
+//   updateTotalChargedAmounts(storedChargedData);
+// }
 
-      row.innerHTML = `
-    <td class="py-1">${index + 1}.</td>
-    <td class="py-1 simNameReport">${data.selectedSimName}</td>
-    <td class="py-1 simPriceReport">&#x20A6; ${data.simRegAmountInput}</td>
-    <td class="py-1 PhoneNumberReport">${data.phoneNumberInput}</td>
-    <td class="py-1 simStatusReport ">${data.checkboxStatus}</td>
-      `;
+// // JS to give total Charged Amount
+// function updateTotalChargedAmounts(data) {
+//   const totalChargedAmount = document.getElementById('totalChargedAmount');
 
-      SimRegTableBody.appendChild(row);
-    });
-  }
+//   const totalAmount = data.reduce(
+//     (sum, item) => sum + item.deviceChargeFeeInput,
+//     0
+//   );
 
-  updateTotalSimRegAmounts(storedSimRegData);
-}
+//   if (totalChargedAmount) {
+//     totalChargedAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+//       totalAmount
+//     )}</strong>`;
+//   }
+// }
+// renderChargingTable();
 
-// JS to give total SIM Reg Amount
-function updateTotalSimRegAmounts(data) {
-  const totalSimRegAmount = document.getElementById('totalSimRegAmount');
+// // JS to Render saved Sim Registration form data
+// const storedSimRegData =
+//   JSON.parse(localStorage.getItem('simRegFormData')) || [];
 
-  const totalAmount = data.reduce(
-    (sum, item) => sum + item.simRegAmountInput,
-    0
-  );
+// function renderSimRegTable() {
+//   const SimRegTableBody = document.querySelector('.simRegTableDisplay tbody');
+//   if (SimRegTableBody) {
+//     SimRegTableBody.innerHTML = '';
 
-  if (totalSimRegAmount) {
-    totalSimRegAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
-      totalAmount
-    )}</strong>`;
-  }
-}
+//     storedSimRegData.forEach((data, index) => {
+//       const row = document.createElement('tr');
+//       row.classList.add('table-body-row');
 
-renderSimRegTable();
+//       row.innerHTML = `
+//     <td class="py-1">${index + 1}.</td>
+//     <td class="py-1 simNameReport">${data.selectedSimName}</td>
+//     <td class="py-1 simPriceReport">&#x20A6; ${data.simRegAmountInput}</td>
+//     <td class="py-1 PhoneNumberReport">${data.phoneNumberInput}</td>
+//     <td class="py-1 simStatusReport ">${data.checkboxStatus}</td>
+//       `;
+
+//       SimRegTableBody.appendChild(row);
+//     });
+//   }
+
+//   updateTotalSimRegAmounts(storedSimRegData);
+// }
+
+// // JS to give total SIM Reg Amount
+// function updateTotalSimRegAmounts(data) {
+//   const totalSimRegAmount = document.getElementById('totalSimRegAmount');
+
+//   const totalAmount = data.reduce(
+//     (sum, item) => sum + item.simRegAmountInput,
+//     0
+//   );
+
+//   if (totalSimRegAmount) {
+//     totalSimRegAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
+//       totalAmount
+//     )}</strong>`;
+//   }
+// }
+
+// renderSimRegTable();

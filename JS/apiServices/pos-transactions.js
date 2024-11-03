@@ -35,7 +35,7 @@ export async function getPosTransactions() {
 
 export async function createPosTransaction(transactionDetail) {
   try {
-    console.log('Sending POST request...');
+    //  console.log('Sending POST request...');
     const response = await fetch(
       `${baseUrl}/api/pos-transactions?populate[transaction_type]=*&populate[withdrawal_type]=*`,
       {
@@ -48,14 +48,14 @@ export async function createPosTransaction(transactionDetail) {
       }
     );
 
-    console.log('Response received...');
+    //  console.log('Response received...');
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('Product added successfully:', data);
+    //  console.log('Product added successfully:', data);
     return data;
   } catch (error) {
     console.error('Error posting product:', error);

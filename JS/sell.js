@@ -144,7 +144,7 @@ async function displayAllProducts() {
       }
     });
   } catch (error) {
-    console.log(object);
+    console.log(error);
   }
 }
 

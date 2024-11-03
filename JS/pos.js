@@ -239,14 +239,14 @@ async function handlePosFormSubmit(
 
     if (response) {
       isSubmitting = false;
-      console.log('POS transaction sent successfully:', response);
+      // console.log('POS transaction sent successfully:', response);
       showToast('success', 'POS transaction sent  successfully! ⭐');
     } else {
       showToast('fail', 'Failed to send POS transaction. ❎');
       isSubmitting = false;
     }
   } catch (error) {
-    console.error('Error sending POS transaction:', error);
+    //  console.error('Error sending POS transaction:', error);
     showToast('fail', 'POS transaction not sent. ❎');
   } finally {
     //  addProductName.value = '';
@@ -256,7 +256,7 @@ async function handlePosFormSubmit(
     //  closeModal();
   }
 
-  console.log(posFormData);
+  //   console.log(posFormData);
 
   const storedData = JSON.parse(localStorage.getItem('posFormData')) || [];
 

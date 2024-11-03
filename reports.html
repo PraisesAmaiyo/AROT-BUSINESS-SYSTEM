@@ -120,7 +120,7 @@
 
                <button class="hero-btn-dark"> <a href="goods.html" class="button-link"></a>Available Products</button>
 
-               <button class="hero-btn-dark">Add User</button>
+               <button class="hero-btn-dark add-user">Add User</button>
             </div>
 
          </div>
@@ -421,6 +421,53 @@
       </div> -->
 
    </main>
+
+   <form class="add-user-form" name="add-user" netlify>
+      <div class="card addUser modal ">
+         <div>
+            <h1 class="heading-text  addItemName">Add User</h1>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addSurname">Surname Name</label>
+
+            <input id="addSurname" type="text" placeholder="Enter Surname" name="addSurname" required>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addFirstName">First Name</label>
+
+            <input id="addFirstName" type="text" placeholder="Enter First Name" name="addFirstName" required>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Staff Address</label>
+
+            <input id="addStaffAddress" type="text" placeholder="Enter Staff Address" name="addStaffAddress" required>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addGuarantorName">Guarantors Name</label>
+
+            <input id="addGuarantorName" type="text" placeholder="Enter Guarantor Name" name="addGuarantorName"
+               required>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addGuarantorAddress">Guarantors Address</label>
+
+            <input id="addGuarantorAddress" type="text" placeholder="Enter Guarantors Address"
+               name="addGuarantorAddress" required>
+         </div>
+
+         <div class="center-button">
+            <button class="hero-btn-dark saveUserButton addUserModalBtn">SAVE</button>
+         </div>
+
+         <div class="close closeModal" id="">&times;</div>
+      </div>
+   </form>
+
 </body>
 
 </html>
