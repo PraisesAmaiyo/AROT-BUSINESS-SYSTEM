@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const transactionType = document.getElementById('transactionType');
   const withdrawalType = document.getElementById('withdrawalType');
   const posFeePaymentType = document.getElementById('posFeePaymentType');
-  const posTransactionConfirmation = document.getElementById(
-    'posTransactionConfirmation'
-  );
+  //   const posTransactionConfirmation = document.getElementById(
+  //     'posTransactionConfirmation'
+  //   );
 
   if (transactionType) {
     transactionType.addEventListener('change', function (e) {
@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedType === 'bill-Payment'
       ) {
         withdrawalTypeDiv.style.display = 'block';
-        posTransactionConfirmation.style.display = 'block';
+        //   posTransactionConfirmation.style.display = 'block';
       } else if (selectedType === 'deposit') {
         withdrawalType.value = 'cash';
         posFeePaymentType.value = 'cash';
         posFeePaymentType.style.display = 'block';
         withdrawalTypeDiv.style.display = 'none';
-        posTransactionConfirmation.style.display = 'none';
+        //   posTransactionConfirmation.style.display = 'none';
       }
 
       //  if (selectedType === 'Deposit') {
