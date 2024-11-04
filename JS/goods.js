@@ -131,8 +131,6 @@ async function renderAddedGoods(page = 1) {
     const products = productData.data;
     totalPages = productData.meta.pagination.pageCount;
 
-    console.log(products);
-
     // Clear table only on the first page load
     if (page === 1) {
       goodsTableBody.innerHTML = ''; // Clear only if it's the first page
@@ -228,8 +226,6 @@ async function handleUpdateBtnClick(event) {
   );
 
   if (product) {
-    console.log(product.id);
-
     updateProductContainer.dataset.documentId = product.documentId;
     updateProductContainer.dataset.productId = product.id;
 
@@ -257,7 +253,7 @@ async function handleUpdateProductSubmit(e) {
   e.preventDefault();
 
   const documentId = updateProductContainer.dataset.documentId;
-  console.log('Document ID:', documentId);
+  //   console.log('Document ID:', documentId);
 
   const productData = await getProducts(currentPage, pageSize);
   const existingProduct = productData.data.find(
