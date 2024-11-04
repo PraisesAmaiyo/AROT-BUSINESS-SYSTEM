@@ -97,53 +97,81 @@ function appendProductToTable(product) {
 
 // JS to render items from database
 
-async function renderAddedGoods() {
-  const goodsTableBody = document.querySelector('.product-table tbody');
-  const loadingRow = document.querySelector('.loading-row');
+let currentPage = 1;
+const pageSize = 25;
+let totalPages = 1;
 
-  if (!goodsTableBody || !loadingRow) {
-    console.error('Table or loading row not found');
+async function renderAddedGoods(page = 1) {
+  const goodsTableBody = document.querySelector('.product-table tbody');
+  const loadMoreButton = document.getElementById('loadMoreButton');
+
+  // Check if goodsTableBody and loadMoreButton exist
+  if (!goodsTableBody) {
+    console.error('Error: Table body not found');
     return;
   }
 
-  try {
-    loadingRow.style.display = 'table-row';
+  if (!loadMoreButton) {
+    console.warn('Warning: Load More button not found');
+    return;
+  }
 
-    const productData = await getProducts();
+  // Add a loading row dynamically at the start of each call
+
+  let existingLoadingRow = goodsTableBody.querySelector('.loading-row');
+  if (!existingLoadingRow) {
+    let loadingRow = document.createElement('tr');
+    loadingRow.classList.add('loading-row');
+    loadingRow.innerHTML = `<td colspan="6" class="table-error-text">Loading Javascript page...</td>`;
+    goodsTableBody.appendChild(loadingRow);
+  }
+
+  try {
+    const productData = await getProducts(page, pageSize);
     const products = productData.data;
+    totalPages = productData.meta.pagination.pageCount;
 
     console.log(products);
 
-    goodsTableBody.innerHTML = '';
+    // Clear table only on the first page load
+    if (page === 1) {
+      goodsTableBody.innerHTML = ''; // Clear only if it's the first page
+    } else {
+      // Remove the loading row after loading
+      if (existingLoadingRow) existingLoadingRow.remove();
+    }
 
-    if (products.length === 0) {
+    if (products.length === 0 && page === 1) {
       goodsTableBody.innerHTML =
-        '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+        '<tr class="loading-row"><td colspan="6" class="table-error-text">No Products Available.</td></tr>';
     } else {
       products.forEach((product, index) => {
         const row = document.createElement('tr');
         row.setAttribute('data-document-id', product.documentId);
         row.classList.add('table-body-row');
 
-        row.innerHTML = `
-        <td class="py-1 productSerialNumber">${index + 1}</td>
-        <td class="py-1 productName">${product.name}</td>
-        <td class="py-1 productAmountBought">&#x20A6;${formatAmountWithCommas(
-          product.amount_bought
-        )}</td>
-         <td class="py-1 productQuantity">${product.quantity}</td>
-         <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
-           product.amount_to_sell
-         )}</td>
-    <td class="py-1 "><button class="hero-btn-light updateProductButton"  data-product-id="${
-      product.id
-    }">UPDATE</button></td>
-   `;
+        //   console.log(product);
 
+        row.innerHTML = `
+          <td class="py-1 productSerialNumber">${
+            (page - 1) * pageSize + index + 1
+          }</td>
+          <td class="py-1 productName">${product.name}</td>
+          <td class="py-1 productAmountBought">&#x20A6;${formatAmountWithCommas(
+            product.amount_bought
+          )}</td>
+          <td class="py-1 productQuantity">${product.quantity}</td>
+          <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
+            product.amount_to_sell
+          )}</td>
+          <td class="py-1"><button class="hero-btn-light updateProductButton" data-product-id="${
+            product.id
+          }">UPDATE</button></td>
+        `;
         goodsTableBody.appendChild(row);
       });
 
-      // Now attach event listeners after the buttons have been created
+      // Attach event listeners after rendering the rows
       const updateProductButtons = document.querySelectorAll(
         '.updateProductButton'
       );
@@ -154,11 +182,29 @@ async function renderAddedGoods() {
   } catch (error) {
     console.error('Error rendering products:', error);
     goodsTableBody.innerHTML =
-      '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+      '<tr class="loading-row"><td colspan="6" class="table-error-text">No Products Available.</td></tr>';
   } finally {
-    loadingRow.style.display = 'none';
+    //  loadingRow.remove(); // Ensure the loading row is always removed
+
+    const loadingRowToRemove = goodsTableBody.querySelector('.loading-row');
+    if (loadingRowToRemove) loadingRowToRemove.remove();
+
+    // Show or hide the Load More button
+    if (currentPage >= totalPages) {
+      loadMoreButton.style.display = 'none';
+    } else {
+      loadMoreButton.style.display = 'block';
+    }
   }
 }
+
+document.getElementById('loadMoreButton').addEventListener('click', () => {
+  currentPage++;
+  renderAddedGoods(currentPage);
+});
+
+// Initial load of the first page of products
+renderAddedGoods(currentPage);
 
 // JS to dispaly Item to be Updated
 const updateProductButton = document.querySelectorAll('.updateProductButton');
@@ -175,14 +221,15 @@ async function handleUpdateBtnClick(event) {
   const button = event.target;
   const productId = button.dataset.productId;
 
-  const productData = await getProducts();
+  const productData = await getProducts(currentPage, pageSize);
 
   const product = productData.data.find(
     (product) => product.id.toString() === productId
   );
-  console.log(product.id);
 
   if (product) {
+    console.log(product.id);
+
     updateProductContainer.dataset.documentId = product.documentId;
     updateProductContainer.dataset.productId = product.id;
 
@@ -210,8 +257,9 @@ async function handleUpdateProductSubmit(e) {
   e.preventDefault();
 
   const documentId = updateProductContainer.dataset.documentId;
+  console.log('Document ID:', documentId);
 
-  const productData = await getProducts();
+  const productData = await getProducts(currentPage, pageSize);
   const existingProduct = productData.data.find(
     (product) => product.documentId === documentId
   );
