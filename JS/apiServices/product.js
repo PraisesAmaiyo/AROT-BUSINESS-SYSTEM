@@ -82,7 +82,7 @@ export async function addProduct(productData) {
 
 export async function updateProduct(documentId, productData) {
   try {
-    console.log('Sending PUT request...');
+    //  console.log('Sending PUT request...');
     const response = await fetch(`${baseUrl}/api/products/${documentId}`, {
       method: 'PUT',
       headers: {
@@ -91,13 +91,13 @@ export async function updateProduct(documentId, productData) {
       },
       body: JSON.stringify(productData),
     });
-    console.log('Response received...');
+    //  console.log('Response received...');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('Product updated successfully:', data);
+    //  console.log('Product updated successfully:', data);
     return data;
   } catch (error) {
     console.error('Error updating product:', error);

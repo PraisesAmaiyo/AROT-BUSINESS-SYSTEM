@@ -2,93 +2,318 @@ import { getPosTransactions } from './apiServices/pos-transactions';
 import { formatAmountWithCommas } from './script';
 
 // JS to Render saved POS from Database
+let allPosTransactions = [];
 
-async function renderPosTable() {
+async function renderPosTable(page = 1, pageSize = 25) {
   const posTableBody = document.querySelector('.posTableDisplay tbody');
-  const loadingRow = document.querySelector('.loading-row');
 
-  if (!posTableBody || !loadingRow) {
-    console.error('Table or loading row not found');
+  if (!posTableBody) {
+    console.error('Error: Table body not found');
     return;
   }
 
-  try {
-    loadingRow.style.display = 'table-row';
+  // Check if the loading row already exists
+  let loadingRow = document.querySelector('.loading-row');
+  if (!loadingRow) {
+    // Create and add the loading row only if it doesn't exist
+    loadingRow = document.createElement('tr');
+    loadingRow.className = 'loading-row';
+    loadingRow.innerHTML = `<td colspan="6" class="table-loading-text">Loading transactions...</td>`;
+    posTableBody.appendChild(loadingRow);
+  }
 
-    const posTransactionData = await getPosTransactions();
+  try {
+    const posTransactionData = await getPosTransactions(page, pageSize);
     const posTransactions = posTransactionData.data;
 
-    posTableBody.innerHTML = '';
-
-    if (posTransactions.length === 0) {
-      posTableBody.innerHTML =
-        '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
-    } else {
-      posTransactions.forEach((posTransaction, index) => {
-        const {
-          fee_payment_type,
-          transaction_amount,
-          transaction_fee,
-          transaction_remark,
-          transaction_type,
-          withdrawal_type,
-        } = posTransaction;
-
-        function toTitleCase(value) {
-          return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-
-        function formatTransactionType(value) {
-          switch (value.toLowerCase()) {
-            case 'withdraw':
-              return 'Withdraw';
-            case 'withdrawal/transfer':
-              return 'Withdrawal & Transfer';
-            case 'bill-payment':
-              return 'Bill Payment';
-            case 'deposit':
-              return 'Deposit';
-            default:
-              return value;
-          }
-        }
-
-        const feePaymentType = toTitleCase(fee_payment_type || 'N/A');
-        const transactionType = transaction_type?.type || 'N/A';
-        const withdrawalType = toTitleCase(withdrawal_type?.type || 'N/A');
-
-        const row = document.createElement('tr');
-        row.classList.add('table-body-row');
-
-        row.innerHTML = `
-         <td class="py-1">${index + 1}.</td>
-         <td class="py-1 posTransTypeReport">${formatTransactionType(
-           transactionType
-         )}</td>
-         <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
-           transaction_amount
-         )}</td>
-           <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
-             transaction_fee
-           )}</td>
-           <td class="py-1 posFeePaymentMethodReport">${feePaymentType}</td>
-           <td class="py-1 posPaymentMethodReport">${withdrawalType}</td>
-           <td class="py-1 posPaymentMethodRemark">${transaction_remark}</td>
-              `;
-
-        posTableBody.appendChild(row);
-      });
+    // Remove the loading row if it exists
+    if (posTableBody.contains(loadingRow)) {
+      posTableBody.removeChild(loadingRow);
     }
 
-    updateTotalPosAmounts(posTransactions);
+    if (posTransactions.length === 0 && allPosTransactions.length === 0) {
+      posTableBody.innerHTML =
+        '<tr><td colspan="6" class="table-error-text">No Transactions Available.</td></tr>';
+      return;
+    }
+
+    // Check for duplicates by transaction ID if available (replace 'id' with your unique key)
+    posTransactions.forEach((transaction) => {
+      if (!allPosTransactions.some((t) => t.id === transaction.id)) {
+        allPosTransactions.push(transaction);
+      }
+    });
+
+    // Only clear and re-render table on the first page
+    if (page === 1) {
+      posTableBody.innerHTML = '';
+    }
+
+    // Calculate the starting serial number based on existing transactions
+    const startingSerialNumber =
+      allPosTransactions.length - posTransactions.length;
+
+    // Render only the new transactions
+    posTransactions.forEach((posTransaction, index) => {
+      const {
+        fee_payment_type,
+        transaction_amount,
+        transaction_fee,
+        transaction_remark,
+        transaction_type,
+        withdrawal_type,
+      } = posTransaction;
+
+      function toTitleCase(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      function formatTransactionType(value) {
+        switch (value.toLowerCase()) {
+          case 'withdraw':
+            return 'Withdraw';
+          case 'withdrawal/transfer':
+            return 'Withdrawal & Transfer';
+          case 'bill-payment':
+            return 'Bill Payment';
+          case 'deposit':
+            return 'Deposit';
+          default:
+            return value;
+        }
+      }
+
+      const feePaymentType = toTitleCase(fee_payment_type || 'N/A');
+      const transactionType = transaction_type?.type || 'N/A';
+      const withdrawalType = toTitleCase(withdrawal_type?.type || 'N/A');
+
+      const row = document.createElement('tr');
+      row.classList.add('table-body-row');
+
+      row.innerHTML = `
+        <td class="py-1">${startingSerialNumber + index + 1}.</td>
+        <td class="py-1 posTransTypeReport">${formatTransactionType(
+          transactionType
+        )}</td>
+        <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
+          transaction_amount
+        )}</td>
+        <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
+          transaction_fee
+        )}</td>
+        <td class="py-1 posFeePaymentMethodReport">${feePaymentType}</td>
+        <td class="py-1 posPaymentMethodReport">${withdrawalType}</td>
+        <td class="py-1 posPaymentMethodRemark">${transaction_remark}</td>
+       `;
+
+      posTableBody.appendChild(row);
+    });
+
+    // Update total amounts using the accumulated transactions
+    updateTotalPosAmounts(allPosTransactions);
   } catch (error) {
-    console.error('Error rendering products:', error);
-    goodsTableBody.innerHTML =
-      '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+    console.error('Error rendering transactions:', error);
+
+    // Show an error message in case of failure
+    posTableBody.innerHTML =
+      '<tr><td colspan="6" class="table-error-text">Error loading transactions.</td></tr>';
   } finally {
-    loadingRow.style.display = 'none';
+    // Ensure the loading row is removed after loading completes
+    if (posTableBody.contains(loadingRow)) {
+      posTableBody.removeChild(loadingRow);
+    }
   }
 }
+
+// Pagination control for load more
+let currentPage = 1;
+const pageSize = 25;
+const loadMoreButton = document.getElementById('loadMoreButton');
+
+loadMoreButton.addEventListener('click', () => {
+  currentPage += 1;
+  renderPosTable(currentPage, pageSize);
+});
+
+// async function renderPosTable() {
+//   const posTableBody = document.querySelector('.posTableDisplay tbody');
+//   const loadingRow = document.querySelector('.loading-row');
+//   const loadMoreButton = document.querySelector('#loadMoreButton');
+
+//   if (!posTableBody || !loadingRow) {
+//     console.error('Table or loading row not found');
+//     return;
+//   }
+
+//   try {
+//     loadingRow.style.display = 'table-row';
+
+//     const posTransactionData = await getPosTransactions(currentPage, pageSize);
+//     const posTransactions = posTransactionData.data;
+
+//     const pagination = posTransactionData.meta.pagination;
+
+//     loadingRow.style.display = 'none';
+
+//     if (posTransactions.length === 0 && currentPage === 1) {
+//       posTableBody.innerHTML =
+//         '<tr class="loading-row"><td colspan="7" class="table-error-text ">No Transactions Available.</td></tr>';
+//       return;
+//     }
+
+//     posTransactions.forEach((posTransaction, index) => {
+//       const {
+//         fee_payment_type,
+//         transaction_amount,
+//         transaction_fee,
+//         transaction_remark,
+//         transaction_type,
+//         withdrawal_type,
+//       } = posTransaction;
+
+//       function toTitleCase(value) {
+//         return value.charAt(0).toUpperCase() + value.slice(1);
+//       }
+
+//       function formatTransactionType(value) {
+//         switch (value.toLowerCase()) {
+//           case 'withdraw':
+//             return 'Withdraw';
+//           case 'withdrawal/transfer':
+//             return 'Withdrawal & Transfer';
+//           case 'bill-payment':
+//             return 'Bill Payment';
+//           case 'deposit':
+//             return 'Deposit';
+//           default:
+//             return value;
+//         }
+//       }
+
+//       const feePaymentType = toTitleCase(fee_payment_type || 'N/A');
+//       const transactionType = transaction_type?.type || 'N/A';
+//       const withdrawalType = toTitleCase(withdrawal_type?.type || 'N/A');
+
+//       const row = document.createElement('tr');
+//       row.classList.add('table-body-row');
+
+//       row.innerHTML = `
+//        <td class="py-1">${index + 1 + (currentPage - 1) * pageSize}.</td>
+//        <td class="py-1 posTransTypeReport">${formatTransactionType(
+//          transactionType
+//        )}</td>
+//        <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
+//          transaction_amount
+//        )}</td>
+//        <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
+//          transaction_fee
+//        )}</td>
+//        <td class="py-1 posFeePaymentMethodReport">${feePaymentType}</td>
+//        <td class="py-1 posPaymentMethodReport">${withdrawalType}</td>
+//        <td class="py-1 posPaymentMethodRemark">${transaction_remark}</td>
+//      `;
+
+//       posTableBody.appendChild(row);
+//     });
+
+//     updateTotalPosAmounts(posTransactions);
+
+//     // Show or hide the "Load More" button based on whether there are more pages
+//     if (currentPage < pagination.pageCount) {
+//       loadMoreButton.style.display = 'block';
+//     } else {
+//       loadMoreButton.style.display = 'none';
+//     }
+//   } catch (error) {
+//     console.error('Error rendering POS transactions:', error);
+//     posTableBody.innerHTML =
+//       '<tr class="loading-row"><td colspan="7" class="table-error-text ">Error Loading Transactions.</td></tr>';
+//   }
+
+//   //   try {
+//   //     loadingRow.style.display = 'table-row';
+
+//   //     const posTransactionData = await getPosTransactions(currentPage, pageSize);
+//   //     const posTransactions = posTransactionData.data;
+//   //     const pagination = posTransactionData.meta.pagination;
+
+//   //     posTableBody.innerHTML = '';
+
+//   //     if (posTransactions.length === 0) {
+//   //       posTableBody.innerHTML =
+//   //         '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+//   //     } else {
+//   //       posTransactions.forEach((posTransaction, index) => {
+//   //         const {
+//   //           fee_payment_type,
+//   //           transaction_amount,
+//   //           transaction_fee,
+//   //           transaction_remark,
+//   //           transaction_type,
+//   //           withdrawal_type,
+//   //         } = posTransaction;
+
+//   //         function toTitleCase(value) {
+//   //           return value.charAt(0).toUpperCase() + value.slice(1);
+//   //         }
+
+//   //         function formatTransactionType(value) {
+//   //           switch (value.toLowerCase()) {
+//   //             case 'withdraw':
+//   //               return 'Withdraw';
+//   //             case 'withdrawal/transfer':
+//   //               return 'Withdrawal & Transfer';
+//   //             case 'bill-payment':
+//   //               return 'Bill Payment';
+//   //             case 'deposit':
+//   //               return 'Deposit';
+//   //             default:
+//   //               return value;
+//   //           }
+//   //         }
+
+//   //         const feePaymentType = toTitleCase(fee_payment_type || 'N/A');
+//   //         const transactionType = transaction_type?.type || 'N/A';
+//   //         const withdrawalType = toTitleCase(withdrawal_type?.type || 'N/A');
+
+//   //         const row = document.createElement('tr');
+//   //         row.classList.add('table-body-row');
+
+//   //         row.innerHTML = `
+//   //          <td class="py-1">${index + 1}.</td>
+//   //          <td class="py-1 posTransTypeReport">${formatTransactionType(
+//   //            transactionType
+//   //          )}</td>
+//   //          <td class="py-1 posAmountReport">&#x20A6;${formatAmountWithCommas(
+//   //            transaction_amount
+//   //          )}</td>
+//   //            <td class="py-1 posFeeReport">&#x20A6;${formatAmountWithCommas(
+//   //              transaction_fee
+//   //            )}</td>
+//   //            <td class="py-1 posFeePaymentMethodReport">${feePaymentType}</td>
+//   //            <td class="py-1 posPaymentMethodReport">${withdrawalType}</td>
+//   //            <td class="py-1 posPaymentMethodRemark">${transaction_remark}</td>
+//   //               `;
+
+//   //         posTableBody.appendChild(row);
+//   //       });
+//   //     }
+
+//   //     updateTotalPosAmounts(posTransactions);
+//   //   } catch (error) {
+//   //     console.error('Error rendering products:', error);
+//   //     goodsTableBody.innerHTML =
+//   //       '<tr class="loading-row"><td colspan="6" class="table-error-text ">No Products Available.</td></tr>';
+//   //   } finally {
+//   //     loadingRow.style.display = 'none';
+//   //   }
+// }
+
+// JavaScript to Load More
+document.getElementById('loadMoreButton').addEventListener('click', () => {
+  currentPage += 1;
+  renderPosTable();
+});
 
 // JS to give total POS Amount and Fees
 function updateTotalPosAmounts(data) {

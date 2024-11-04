@@ -3,11 +3,10 @@ import config from '../../config.js';
 const baseUrl = config.baseUrl;
 const apiToken = config.token;
 
-export async function getPosTransactions() {
+export async function getPosTransactions(page = 1, pageSize = 25) {
   try {
-    //  console.log('Sending GET request...');
     const response = await fetch(
-      `${baseUrl}/api/pos-transactions?populate[transaction_type]=*&populate[withdrawal_type]=*`,
+      `${baseUrl}/api/pos-transactions?pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true&populate[transaction_type]=*&populate[withdrawal_type]=*`,
       {
         method: 'GET',
         headers: {
@@ -17,21 +16,47 @@ export async function getPosTransactions() {
       }
     );
 
-    //  console.log('Response received...');
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    //  console.log('PosTransactions:', data);
-
-    return data;
+    return data; // Return both transaction data and pagination metadata
   } catch (error) {
-    //  console.error('Error fetching PosTransactions:', error);
-    return [];
+    console.error('Error fetching POS transactions:', error);
+    return { data: [], meta: { pagination: { pageCount: 1 } } };
   }
 }
+
+// export async function getPosTransactions() {
+//   try {
+//     //  console.log('Sending GET request...');
+//     const response = await fetch(
+//       `${baseUrl}/api/pos-transactions?populate[transaction_type]=*&populate[withdrawal_type]=*`,
+//       {
+//         method: 'GET',
+//         headers: {
+//           Authorization: `Bearer ${apiToken}`,
+//           'Content-Type': 'application/json',
+//         },
+//       }
+//     );
+
+//     //  console.log('Response received...');
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     //  console.log('PosTransactions:', data);
+
+//     return data;
+//   } catch (error) {
+//     //  console.error('Error fetching PosTransactions:', error);
+//     return [];
+//   }
+// }
 
 export async function createPosTransaction(transactionDetail) {
   try {
