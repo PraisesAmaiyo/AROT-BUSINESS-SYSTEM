@@ -34,6 +34,7 @@ async function renderPosTable(page = 1, pageSize = 25) {
     if (posTransactions.length === 0 && allPosTransactions.length === 0) {
       posTableBody.innerHTML =
         '<tr><td colspan="6" class="table-error-text">No Transactions Available.</td></tr>';
+      loadMoreButton.style.display = 'none';
       return;
     }
 
