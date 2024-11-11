@@ -151,6 +151,9 @@ if (posForm) {
     const posTransactionRemark = document.getElementById(
       'posTransactionRemark'
     );
+    const posTransactionConfirmation = document.getElementById(
+      'posTransactionConfirmation'
+    );
 
     handlePosFormSubmit(
       e,
@@ -159,7 +162,8 @@ if (posForm) {
       amount,
       fee,
       posFeePaymentType,
-      posTransactionRemark
+      posTransactionRemark,
+      posTransactionConfirmation
     );
 
     transactionType.value = 'withdrawal';
@@ -168,6 +172,7 @@ if (posForm) {
     amount.value = '';
     fee.value = '';
     posTransactionRemark.value = '';
+    posTransactionConfirmation.value = '';
     posSuccessfulCheckbox.checked = false;
     posPendingCheckbox.checked = false;
     withdrawalTypeDiv.style.display = 'block';
@@ -202,7 +207,8 @@ async function handlePosFormSubmit(
   amount,
   fee,
   posFeePaymentType,
-  posTransactionRemark
+  posTransactionRemark,
+  posTransactionConfirmation
 ) {
   isSubmitting = true;
   e.preventDefault();
