@@ -110,10 +110,26 @@ body.home {
     color: #ebfbee; }
   body.home .account-overview {
     display: flex;
-    justify-content: end;
-    gap: 1rem; }
+    justify-content: center;
+    gap: 1rem;
+    margin: 5rem 0;
+    padding: 0 2rem; }
+    @media only screen and (max-width: 43.3em) {
+      body.home .account-overview-method {
+        width: 100%; } }
+    @media only screen and (max-width: 43.3em) {
+      body.home .account-overview-method .double-input {
+        flex-direction: column; } }
+    body.home .account-overview-method .daily-profit-input {
+      width: 50%;
+      margin: 0 auto;
+      text-align: right; }
+      @media only screen and (max-width: 43.3em) {
+        body.home .account-overview-method .daily-profit-input {
+          width: 100%;
+          margin: 0; } }
     body.home .account-overview-input {
-      width: max-content; }
+      width: 100%; }
     body.home .account-overview .heading-subtext {
       font-weight: 600;
       font-size: 2rem;
@@ -137,16 +153,22 @@ body.home {
     justify-content: center;
     display: grid;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
     gap: 3rem;
     margin: 0 auto;
     padding: 4rem; }
-    body.home .action-link:active .action-group {
-      transform: translateY(-1px); }
-    body.home .action-link:active .action-group-icons.action-group-icons--1 {
-      background-color: #3c2faf;
-      border: 1px solid #2998ff;
-      box-shadow: inset 0 0 5px 1.5px #2998ff; }
+    @media only screen and (max-width: 43.3em) {
+      body.home .action {
+        grid-template-columns: 100%;
+        grid-template-rows: auto; } }
+    body.home .action-link {
+      text-decoration: none; }
+      body.home .action-link:active .action-group {
+        transform: translateY(-1px); }
+      body.home .action-link:active .action-group-icons.action-group-icons--1 {
+        background-color: #3c2faf;
+        border: 1px solid #2998ff;
+        box-shadow: inset 0 0 5px 1.5px #2998ff; }
     body.home .action-group {
       width: 100%;
       height: 30rem;
@@ -216,20 +238,20 @@ body.home {
           body.home .action-group .overlay.overlay--1.overlay--1::before {
             background: linear-gradient(to right bottom, rgba(41, 152, 255, 0.4), rgba(86, 67, 250, 0.2)); }
       body.home .action-group-name {
-        position: absolute;
-        bottom: 0;
         font-size: 2rem;
         color: #ebfbee;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        height: 30%;
+        height: 100%;
         width: 100%;
-        clip-path: polygon(100% 100%, 0% 100%, 0% 20%, 100% 0%);
         z-index: 10; }
         body.home .action-group-name--1 {
           background: linear-gradient(to right bottom, #2998ff, #5643fa); }
+  body.home .depositPosCapital .heading-text {
+    color: #15464C;
+    font-size: 2.5rem; }
 
 .naira-input-container input {
   padding-left: 3rem; }
@@ -397,7 +419,8 @@ select {
 
 .hero-btn-dark,
 .hero-btn-light,
-.hero-btn-dark_square {
+.hero-btn-dark_square,
+.deposit-btn {
   position: relative;
   background-color: #0F7A89;
   color: #fff;
@@ -415,26 +438,31 @@ select {
   text-decoration: none; }
   .hero-btn-dark:not(:last-child),
   .hero-btn-light:not(:last-child),
-  .hero-btn-dark_square:not(:last-child) {
+  .hero-btn-dark_square:not(:last-child),
+  .deposit-btn:not(:last-child) {
     margin-right: 1.5rem; }
     @media only screen and (max-width: 75em) {
       .hero-btn-dark:not(:last-child),
       .hero-btn-light:not(:last-child),
-      .hero-btn-dark_square:not(:last-child) {
+      .hero-btn-dark_square:not(:last-child),
+      .deposit-btn:not(:last-child) {
         margin-bottom: 1.5rem; } }
   .hero-btn-dark:hover,
   .hero-btn-light:hover,
-  .hero-btn-dark_square:hover {
+  .hero-btn-dark_square:hover,
+  .deposit-btn:hover {
     transform: scale(1.03);
     box-shadow: inset 0 0 0 2px #51cf66; }
   .hero-btn-dark:active,
   .hero-btn-light:active,
-  .hero-btn-dark_square:active {
+  .hero-btn-dark_square:active,
+  .deposit-btn:active {
     transform: scale(1);
     background-color: #0F7A89; }
   .hero-btn-dark .button-link,
   .hero-btn-light .button-link,
-  .hero-btn-dark_square .button-link {
+  .hero-btn-dark_square .button-link,
+  .deposit-btn .button-link {
     position: absolute;
     top: 0;
     left: 0;
@@ -445,6 +473,17 @@ select {
     justify-content: center;
     color: inherit;
     text-decoration: none; }
+
+.deposit-btn {
+  background-color: #fff;
+  color: #0F7A89;
+  font-size: 1.6rem; }
+  .deposit-btn:hover {
+    transform: scale(1.07);
+    background-color: #eef1f6; }
+  .deposit-btn:active {
+    transform: scale(1.04);
+    background-color: #fff; }
 
 .hero-btn-light {
   background-color: #0F7A89;
@@ -472,6 +511,10 @@ select {
 .center-button {
   display: flex;
   justify-content: center; }
+
+.left-button {
+  display: flex;
+  justify-content: end; }
 
 .py-1 {
   padding: 1rem; }
@@ -969,6 +1012,7 @@ body.authentication {
 .addProduct .checkbox,
 .sellProduct .checkbox,
 .updateProduct .checkbox,
+.depositPosCapital .checkbox,
 .addUser .checkbox {
   display: flex;
   align-items: center;
@@ -978,18 +1022,21 @@ body.authentication {
   .addProduct .checkbox label,
   .sellProduct .checkbox label,
   .updateProduct .checkbox label,
+  .depositPosCapital .checkbox label,
   .addUser .checkbox label {
     margin-bottom: 0; }
   @media only screen and (max-width: 30.5em) {
     .addProduct .checkbox .checkbox-container,
     .sellProduct .checkbox .checkbox-container,
     .updateProduct .checkbox .checkbox-container,
+    .depositPosCapital .checkbox .checkbox-container,
     .addUser .checkbox .checkbox-container {
       padding-bottom: 0; } }
 
 .addProduct-form_input,
 .sellProduct-form_input,
 .updateProduct-form_input,
+.depositPosCapital-form_input,
 .addUser-form_input {
   margin-top: 2rem;
   display: flex;
@@ -997,23 +1044,27 @@ body.authentication {
   .addProduct-form_input.sellStatus,
   .sellProduct-form_input.sellStatus,
   .updateProduct-form_input.sellStatus,
+  .depositPosCapital-form_input.sellStatus,
   .addUser-form_input.sellStatus {
     display: block; }
     .addProduct-form_input.sellStatus label,
     .sellProduct-form_input.sellStatus label,
     .updateProduct-form_input.sellStatus label,
+    .depositPosCapital-form_input.sellStatus label,
     .addUser-form_input.sellStatus label {
       width: min-content; }
   @media only screen and (max-width: 30.5em) {
     .addProduct-form_input,
     .sellProduct-form_input,
     .updateProduct-form_input,
+    .depositPosCapital-form_input,
     .addUser-form_input {
       margin-top: 1.5rem;
       display: block; } }
   .addProduct-form_input label,
   .sellProduct-form_input label,
   .updateProduct-form_input label,
+  .depositPosCapital-form_input label,
   .addUser-form_input label {
     width: 20rem; }
   .addProduct-form_input input,
@@ -1022,6 +1073,8 @@ body.authentication {
   .sellProduct-form_input select,
   .updateProduct-form_input input,
   .updateProduct-form_input select,
+  .depositPosCapital-form_input input,
+  .depositPosCapital-form_input select,
   .addUser-form_input input,
   .addUser-form_input select {
     width: 100%; }
@@ -1031,6 +1084,8 @@ body.authentication {
     .sellProduct-form_input select:disabled,
     .updateProduct-form_input input:disabled,
     .updateProduct-form_input select:disabled,
+    .depositPosCapital-form_input input:disabled,
+    .depositPosCapital-form_input select:disabled,
     .addUser-form_input input:disabled,
     .addUser-form_input select:disabled {
       background-color: #eef1f6;
@@ -1042,6 +1097,7 @@ body.authentication {
 .addProduct .hero-btn-dark,
 .sellProduct .hero-btn-dark,
 .updateProduct .hero-btn-dark,
+.depositPosCapital .hero-btn-dark,
 .addUser .hero-btn-dark {
   display: inline;
   margin-top: 3rem;
@@ -1062,8 +1118,10 @@ body.authentication {
       margin-bottom: 2rem; }
     .reports-method .reports-table-container,
     .reports-method .product-table-container,
+    .reports-method .staff-table-container,
     .goods-method .reports-table-container,
-    .goods-method .product-table-container {
+    .goods-method .product-table-container,
+    .goods-method .staff-table-container {
       overflow-x: auto;
       max-height: 40rem;
       height: 100%;
@@ -1072,34 +1130,46 @@ body.authentication {
       box-shadow: 0px 1px 5px rgba(15, 122, 137, 0.3); }
       .reports-method .reports-table-container::-webkit-scrollbar,
       .reports-method .product-table-container::-webkit-scrollbar,
+      .reports-method .staff-table-container::-webkit-scrollbar,
       .goods-method .reports-table-container::-webkit-scrollbar,
-      .goods-method .product-table-container::-webkit-scrollbar {
+      .goods-method .product-table-container::-webkit-scrollbar,
+      .goods-method .staff-table-container::-webkit-scrollbar {
         width: .5rem;
         height: rem; }
       .reports-method .reports-table-container::-webkit-scrollbar-thumb,
       .reports-method .product-table-container::-webkit-scrollbar-thumb,
+      .reports-method .staff-table-container::-webkit-scrollbar-thumb,
       .goods-method .reports-table-container::-webkit-scrollbar-thumb,
-      .goods-method .product-table-container::-webkit-scrollbar-thumb {
+      .goods-method .product-table-container::-webkit-scrollbar-thumb,
+      .goods-method .staff-table-container::-webkit-scrollbar-thumb {
         background-color: #51cf66;
         border-radius: 10px; }
         .reports-method .reports-table-container::-webkit-scrollbar-thumb:active,
         .reports-method .product-table-container::-webkit-scrollbar-thumb:active,
+        .reports-method .staff-table-container::-webkit-scrollbar-thumb:active,
         .goods-method .reports-table-container::-webkit-scrollbar-thumb:active,
-        .goods-method .product-table-container::-webkit-scrollbar-thumb:active {
+        .goods-method .product-table-container::-webkit-scrollbar-thumb:active,
+        .goods-method .staff-table-container::-webkit-scrollbar-thumb:active {
           background-color: #10AB2B; }
       .reports-method .reports-table-container::-webkit-scrollbar-track,
       .reports-method .product-table-container::-webkit-scrollbar-track,
+      .reports-method .staff-table-container::-webkit-scrollbar-track,
       .goods-method .reports-table-container::-webkit-scrollbar-track,
-      .goods-method .product-table-container::-webkit-scrollbar-track {
+      .goods-method .product-table-container::-webkit-scrollbar-track,
+      .goods-method .staff-table-container::-webkit-scrollbar-track {
         background-color: #eef1f6; }
       .reports-method .reports-table-container .product-table,
       .reports-method .reports-table-container .reports-table,
       .reports-method .product-table-container .product-table,
       .reports-method .product-table-container .reports-table,
+      .reports-method .staff-table-container .product-table,
+      .reports-method .staff-table-container .reports-table,
       .goods-method .reports-table-container .product-table,
       .goods-method .reports-table-container .reports-table,
       .goods-method .product-table-container .product-table,
-      .goods-method .product-table-container .reports-table {
+      .goods-method .product-table-container .reports-table,
+      .goods-method .staff-table-container .product-table,
+      .goods-method .staff-table-container .reports-table {
         margin: 0 auto;
         width: 100%;
         border-collapse: collapse; }
@@ -1107,18 +1177,24 @@ body.authentication {
         .reports-method .reports-table-container .reports-table thead,
         .reports-method .product-table-container .product-table thead,
         .reports-method .product-table-container .reports-table thead,
+        .reports-method .staff-table-container .product-table thead,
+        .reports-method .staff-table-container .reports-table thead,
         .goods-method .reports-table-container .product-table thead,
         .goods-method .reports-table-container .reports-table thead,
         .goods-method .product-table-container .product-table thead,
-        .goods-method .product-table-container .reports-table thead {
+        .goods-method .product-table-container .reports-table thead,
+        .goods-method .staff-table-container .product-table thead,
+        .goods-method .staff-table-container .reports-table thead {
           position: sticky;
           top: 0;
           background-color: #ebfbee;
           z-index: 1; }
       .reports-method .reports-table-container .table-header-row,
       .reports-method .product-table-container .table-header-row,
+      .reports-method .staff-table-container .table-header-row,
       .goods-method .reports-table-container .table-header-row,
-      .goods-method .product-table-container .table-header-row {
+      .goods-method .product-table-container .table-header-row,
+      .goods-method .staff-table-container .table-header-row {
         color: #0F7A89;
         font-size: 1.6rem;
         text-align: left;
@@ -1128,10 +1204,14 @@ body.authentication {
       .reports-method .reports-table-container .table-foot-row,
       .reports-method .product-table-container .table-body-row,
       .reports-method .product-table-container .table-foot-row,
+      .reports-method .staff-table-container .table-body-row,
+      .reports-method .staff-table-container .table-foot-row,
       .goods-method .reports-table-container .table-body-row,
       .goods-method .reports-table-container .table-foot-row,
       .goods-method .product-table-container .table-body-row,
-      .goods-method .product-table-container .table-foot-row {
+      .goods-method .product-table-container .table-foot-row,
+      .goods-method .staff-table-container .table-body-row,
+      .goods-method .staff-table-container .table-foot-row {
         color: #0F7A89;
         font-weight: 500;
         font-size: 1.5rem;
@@ -1141,30 +1221,42 @@ body.authentication {
         .reports-method .reports-table-container .table-foot-row .hero-btn-light,
         .reports-method .product-table-container .table-body-row .hero-btn-light,
         .reports-method .product-table-container .table-foot-row .hero-btn-light,
+        .reports-method .staff-table-container .table-body-row .hero-btn-light,
+        .reports-method .staff-table-container .table-foot-row .hero-btn-light,
         .goods-method .reports-table-container .table-body-row .hero-btn-light,
         .goods-method .reports-table-container .table-foot-row .hero-btn-light,
         .goods-method .product-table-container .table-body-row .hero-btn-light,
-        .goods-method .product-table-container .table-foot-row .hero-btn-light {
+        .goods-method .product-table-container .table-foot-row .hero-btn-light,
+        .goods-method .staff-table-container .table-body-row .hero-btn-light,
+        .goods-method .staff-table-container .table-foot-row .hero-btn-light {
           margin: 0; }
         .reports-method .reports-table-container .table-body-row strong,
         .reports-method .reports-table-container .table-foot-row strong,
         .reports-method .product-table-container .table-body-row strong,
         .reports-method .product-table-container .table-foot-row strong,
+        .reports-method .staff-table-container .table-body-row strong,
+        .reports-method .staff-table-container .table-foot-row strong,
         .goods-method .reports-table-container .table-body-row strong,
         .goods-method .reports-table-container .table-foot-row strong,
         .goods-method .product-table-container .table-body-row strong,
-        .goods-method .product-table-container .table-foot-row strong {
+        .goods-method .product-table-container .table-foot-row strong,
+        .goods-method .staff-table-container .table-body-row strong,
+        .goods-method .staff-table-container .table-foot-row strong {
           font-size: 1.6rem; }
       .reports-method .reports-table-container .table-body-row:hover,
       .reports-method .product-table-container .table-body-row:hover,
+      .reports-method .staff-table-container .table-body-row:hover,
       .goods-method .reports-table-container .table-body-row:hover,
-      .goods-method .product-table-container .table-body-row:hover {
+      .goods-method .product-table-container .table-body-row:hover,
+      .goods-method .staff-table-container .table-body-row:hover {
         background-color: #0F7A89;
         color: #ebfbee; }
         .reports-method .reports-table-container .table-body-row:hover .hero-btn-light,
         .reports-method .product-table-container .table-body-row:hover .hero-btn-light,
+        .reports-method .staff-table-container .table-body-row:hover .hero-btn-light,
         .goods-method .reports-table-container .table-body-row:hover .hero-btn-light,
-        .goods-method .product-table-container .table-body-row:hover .hero-btn-light {
+        .goods-method .product-table-container .table-body-row:hover .hero-btn-light,
+        .goods-method .staff-table-container .table-body-row:hover .hero-btn-light {
           background-color: #ebfbee;
           color: #0F7A89; }
 

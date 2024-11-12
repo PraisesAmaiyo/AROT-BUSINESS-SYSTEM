@@ -1,14 +1,34 @@
+// Thsi
+
 import { getPosTransactions } from './apiServices/pos-transactions';
 import { formatAmountWithCommas } from './script';
 
 // JS to Render saved POS from Database
 let allPosTransactions = [];
 
+// Pagination control for load more
+let currentPage = 1;
+const pageSize = 25;
+let totalPages = 1;
+
+const loadMoreButton = document.getElementById('loadMoreButton');
+
+loadMoreButton.addEventListener('click', () => {
+  currentPage += 1;
+  renderPosTable(currentPage, pageSize);
+});
+
 async function renderPosTable(page = 1, pageSize = 25) {
   const posTableBody = document.querySelector('.posTableDisplay tbody');
+  const loadMoreButton = document.getElementById('loadMoreButton');
 
   if (!posTableBody) {
     console.error('Error: Table body not found');
+    return;
+  }
+
+  if (!loadMoreButton) {
+    console.warn('Warning: Load More button not found');
     return;
   }
 
@@ -25,6 +45,7 @@ async function renderPosTable(page = 1, pageSize = 25) {
   try {
     const posTransactionData = await getPosTransactions(page, pageSize);
     const posTransactions = posTransactionData.data;
+    totalPages = posTransactionData.meta.pagination.pageCount;
 
     // Remove the loading row if it exists
     if (posTableBody.contains(loadingRow)) {
@@ -48,6 +69,9 @@ async function renderPosTable(page = 1, pageSize = 25) {
     // Only clear and re-render table on the first page
     if (page === 1) {
       posTableBody.innerHTML = '';
+    } else {
+      // Remove the loading row after loading
+      if (loadingRow) loadingRow.remove();
     }
 
     // Calculate the starting serial number based on existing transactions
@@ -117,24 +141,26 @@ async function renderPosTable(page = 1, pageSize = 25) {
 
     // Show an error message in case of failure
     posTableBody.innerHTML =
-      '<tr><td colspan="6" class="table-error-text">Error loading transactions.</td></tr>';
+      '<tr  class="loading-row"><td colspan="6" class="table-error-text">Error loading transactions.</td></tr>';
   } finally {
     // Ensure the loading row is removed after loading completes
-    if (posTableBody.contains(loadingRow)) {
-      posTableBody.removeChild(loadingRow);
+    //  if (posTableBody.contains(loadingRow)) {
+    //    posTableBody.removeChild(loadingRow);
+    //    console.log('hello Load More 2');
+    //  }
+    //  console.log('hello Load More');
+
+    const loadingRowToRemove = posTableBody.querySelector('.loading-row');
+    if (loadingRowToRemove) loadingRowToRemove.remove();
+
+    // Show or hide the Load More button
+    if (currentPage >= totalPages) {
+      loadMoreButton.style.display = 'none';
+    } else {
+      loadMoreButton.style.display = 'block';
     }
   }
 }
-
-// Pagination control for load more
-let currentPage = 1;
-const pageSize = 25;
-const loadMoreButton = document.getElementById('loadMoreButton');
-
-loadMoreButton.addEventListener('click', () => {
-  currentPage += 1;
-  renderPosTable(currentPage, pageSize);
-});
 
 // async function renderPosTable() {
 //   const posTableBody = document.querySelector('.posTableDisplay tbody');

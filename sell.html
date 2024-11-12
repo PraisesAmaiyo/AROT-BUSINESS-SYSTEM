@@ -89,11 +89,20 @@
                </li>
             </a>
          </ul>
+
+         <ul class="side-nav">
+            <a href="/manage.html" class="side-nav_link">
+               <li class="side-nav_item ">
+                  <i class="fa-solid fa-users-gear"></i>
+                  <span>MANAGE</span>
+               </li>
+            </a>
+         </ul>
       </div>
    </nav>
 
    <main class="main">
-      <div class="main-heading card">
+      <header class="main-heading card">
          <div class="main-heading_intro">
 
             <div>
@@ -106,10 +115,12 @@
          </div>
 
          <div class="main-heading_left">
-            <button class="hero-btn-dark"><a href="/login.html" class="button-link"></a>LOGOUT</button>
+            <a href="/login.html">
+               <button class="hero-btn-dark">LOGOUT</button>
+            </a>
             <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
-      </div>
+      </header>
 
       <form class="sell-product-form" name="sell-product" netlify>
          <div class="card sellProduct">

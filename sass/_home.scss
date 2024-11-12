@@ -10,11 +10,39 @@ body.home {
 
    .account-overview {
       display: flex;
-      justify-content: end;
+      justify-content: center;
       gap: 1rem;
+      margin: 5rem 0;
+      padding: 0 2rem;
+
+      &-method {
+         @media only screen and (max-width:$bp-large-2) {
+            width: 100%;
+
+         }
+
+         .double-input {
+            @media only screen and (max-width:$bp-large-2) {
+               flex-direction: column;
+
+            }
+         }
+
+         .daily-profit-input {
+            width: 50%;
+            margin: 0 auto;
+            text-align: right;
+
+            @media only screen and (max-width:$bp-large-2) {
+               width: 100%;
+               margin: 0;
+
+            }
+         }
+      }
 
       &-input {
-         width: max-content;
+         width: 100%;
       }
 
       .heading-subtext {
@@ -49,20 +77,30 @@ body.home {
       justify-content: center;
       display: grid;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
       gap: 3rem;
       margin: 0 auto;
       padding: 4rem;
 
-      &-link:active {
-         .action-group {
-            transform: translateY(-1px);
-         }
+      @media only screen and (max-width:$bp-large-2) {
+         grid-template-columns: 100%;
+         grid-template-rows: auto;
 
-         .action-group-icons.action-group-icons--1 {
-            background-color: #3c2faf;
-            border: 1px solid #2998ff;
-            box-shadow: inset 0 0 5px 1.5px #2998ff;
+      }
+
+      &-link {
+         text-decoration: none;
+
+         &:active {
+            .action-group {
+               transform: translateY(-1px);
+            }
+
+            .action-group-icons.action-group-icons--1 {
+               background-color: #3c2faf;
+               border: 1px solid #2998ff;
+               box-shadow: inset 0 0 5px 1.5px #2998ff;
+            }
          }
       }
 
@@ -168,23 +206,30 @@ body.home {
          }
 
          &-name {
-            position: absolute;
-            bottom: 0;
+            // position: absolute;
+            // bottom: 0;
             font-size: 2rem;
             color: $color-primary-light-1;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            height: 30%;
+            height: 100%;
             width: 100%;
-            clip-path: polygon(100% 100%, 0% 100%, 0% 20%, 100% 0%);
+            // clip-path: polygon(100% 100%, 0% 100%, 0% 20%, 100% 0%);
             z-index: 10;
 
             &--1 {
                background: linear-gradient(to right bottom, #2998ff, #5643fa);
             }
          }
+      }
+   }
+
+   .depositPosCapital {
+      .heading-text {
+         color: $color-grey-dark-2;
+         font-size: 2.5rem;
       }
    }
 }

@@ -43,3 +43,42 @@ export function formatAmountWithCommas(amount) {
   const amountString = amount.toString();
   return amountString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+// JS For Modal
+
+const main = document.querySelector('.main');
+// const sidebar = document.querySelector('.sidebar');
+const closeModalButton = document.querySelectorAll('.closeModal');
+
+closeModalButton.forEach((closeButton) => {
+  closeButton.addEventListener('click', function () {
+    closeModal();
+  });
+});
+
+function closeModal() {
+  const depositPosCapitalContainer =
+    document.querySelector('.depositPosCapital');
+
+  depositPosCapitalContainer.classList.remove('active');
+
+  main.classList.remove('blur');
+  //   sidebar.classList.remove('blur');
+  main.classList.remove('no-scroll');
+}
+
+// JS for Modal
+document.addEventListener('DOMContentLoaded', function () {
+  const depositButton = document.querySelector('.deposit-btn');
+  const depositPosCapitalContainer =
+    document.querySelector('.depositPosCapital');
+
+  if (depositButton) {
+    depositButton.addEventListener('click', function () {
+      depositPosCapitalContainer.classList.add('active');
+      main.classList.add('blur');
+      // sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
+    });
+  }
+});

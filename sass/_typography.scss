@@ -226,7 +226,8 @@ select {
 
 .hero-btn-dark,
 .hero-btn-light,
-.hero-btn-dark_square {
+.hero-btn-dark_square,
+.deposit-btn {
    position: relative;
    background-color: $color-grey-dark-1;
    color: $color-grey-light-1;
@@ -275,6 +276,23 @@ select {
    }
 }
 
+
+.deposit-btn {
+   background-color: $color-grey-light-1;
+   color: $color-grey-dark-1;
+   font-size: 1.6rem;
+
+   &:hover {
+      transform: scale(1.07);
+      background-color: $color-grey-light-2;
+   }
+
+   &:active {
+      transform: scale(1.04);
+      background-color: $color-grey-light-1;
+   }
+}
+
 .hero-btn-light {
    background-color: $color-grey-dark-1;
    color: $color-grey-light-1;
@@ -310,6 +328,11 @@ select {
 .center-button {
    display: flex;
    justify-content: center;
+}
+
+.left-button {
+   display: flex;
+   justify-content: end;
 }
 
 .py-1 {

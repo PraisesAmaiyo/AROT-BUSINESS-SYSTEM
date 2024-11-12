@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
 
-   <meta name="description" content="AROT" />
+   <meta name="description" content="POSBOK" />
 
    <link
       href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,600|Nunito:300,300i,400,600&display=swap"
@@ -28,13 +28,14 @@
    <script src="dist/main.bundle.js" defer></script>
 
 
-   <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
+   <title>POSBOK &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
 </head>
 
 <body class="container home">
    <main class="main home">
-      <div class="main-heading card">
+
+      <header class="main-heading card">
          <div class="main-heading_intro">
 
             <div>
@@ -52,42 +53,29 @@
             </a>
             <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
-      </div>
+      </header>
 
       <div>
          <h1 class="heading-text">AROT COMMUNICATIONS</h1>
       </div>
 
-      <div class="account-overview">
-         <div class="account-overview-input">
-            <label class="heading-subtext" for="amount">Cash In Machine</label>
 
-            <div class="naira-input-container">
-               <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable" disabled>
-               <span class="naira">&#x20A6;</span>
-            </div>
-         </div>
-
-         <div class="account-overview-input">
-            <label class="heading-subtext" for="amount">Cash At Hand</label>
-
-            <div class="naira-input-container">
-               <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable" disabled>
-               <span class="naira">&#x20A6;</span>
-            </div>
-         </div>
+      <div class="left-button">
+         <button class="deposit-btn mb-2 " type="submit">Deposit</button>
       </div>
+
+
 
       <div class="action">
          <a class="action-link" href="sell.html">
             <div class="action-group action-group--1">
-               <img class="action-group-image" src="/img/sales.jpg" alt="sales photo">
+               <!-- <img class="action-group-image" src="/img/sales.jpg" alt="sales photo"> -->
 
-               <div class="overlay overlay--1"></div>
+               <!-- <div class="overlay overlay--1"></div> -->
 
-               <div class="action-group-icons action-group-icons--1">
+               <!-- <div class="action-group-icons action-group-icons--1">
                   <i class="fa-solid fa-cart-shopping icon"></i>
-               </div>
+               </div> -->
 
                <div class="action-group-name action-group-name--1">
                   <h1>SELL</h1>
@@ -97,17 +85,33 @@
 
          <a class="action-link" href="pos.html">
             <div class="action-group action-group--1">
-               <img class="action-group-image" src="/img/pos.webp" alt="POS photo">
+               <!-- <img class="action-group-image" src="/img/pos.webp" alt="POS photo"> -->
 
-               <div class="overlay overlay--1"></div>
+               <!-- <div class="overlay overlay--1"></div> -->
 
-               <div class="action-group-icons action-group-icons--1">
+               <!-- <div class="action-group-icons action-group-icons--1">
                   <img
                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVR4nO2ZzUrDQBDHc5CCUBA8efMBrOBRrJ59AR/FV/Dz3KfoW1jwUCsIvoAK1d68eVCqP9mwkWWT2HzMJhDmBzk0E+a//5ntJLBRVACgB1wBb4TnFbgwmpE0wCXNcx7CiKmS4UA8eVprmHQmRPIY8cRN6+ElBnaBe+BbYAstgRkwaMOIEZbmrg0jSSf6Arn7SWeiHL2QRkSFQuf/Q40URDtSli5vrWVXptYMeaZtGBmYF5jTmTqYHFNg5x+9G1M8cSOhIW1ERr+zRoAx8O5dIyc+yoiPS8QbM5LFwokvsh4oEY9RI3lkVGhCmrG39XwmJeIxeb8rI5aooh5qZHWFdGoZdGoF2Fo6tYqATq0V6NTycAqj31q1yKioTq2KhYuRPB8Z1k62WuvQas2dey/As0RycxTWNGeO/qa5JIz0rJmkMyGZGxNBzhA7C7Bnq/dQ4NkUXjx5p2wFXXTO4tSIQTsijW4ti1cU/bPXpktba9uKP9UxAqwBH/b2RvCF5yww+Vw5BdbLGrFHbtf21mOji3cBToAfZE6sjqI2AY7N/wT4qmDgE7gF9iUW8wspHQAWQI+qIgAAAABJRU5ErkJggg==">
-               </div>
+               </div> -->
 
                <div class="action-group-name action-group-name--1">
                   <h1>POS</h1>
+               </div>
+            </div>
+         </a>
+
+         <a class="action-link" href="/reports.html">
+            <div class="action-group action-group--1">
+               <div class="action-group-name action-group-name--1">
+                  <h1>REPORTS</h1>
+               </div>
+            </div>
+         </a>
+
+         <a class="action-link" href="/manage.html">
+            <div class="action-group action-group--1">
+               <div class="action-group-name action-group-name--1">
+                  <h1>MANAGE</h1>
                </div>
             </div>
          </a>
@@ -144,7 +148,198 @@
             </div>
          </a> -->
       </div>
+
+
+      <section class="account-overview ">
+         <div class="account-overview-method">
+
+
+            <form class="account-overview-method-form" name="account-overview-form" netlify>
+
+               <div class="double-input mb-2 mt-2">
+
+                  <div class="account-overview-input mt-2 mt-2">
+                     <label class="heading-subtext" for="amount">CASH IN MACHINE</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+
+                  <div class="account-overview-input mt-2 mt-2">
+                     <label class="heading-subtext" for="amount">CASH AT HAND</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="double-input mb-2 mt-2">
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext " for="amount">TOTAL POS CAPITAL</label>
+
+                     <div class="naira-input-container ">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+
+                  <div class="account-overview-input mt-2">
+
+
+                     <div class="double-input mb-2">
+
+                        <div class="account-overview-input mt-2">
+                           <label class="heading-subtext" for="amount">CHARGES (Machine)</label>
+
+                           <div class="naira-input-container">
+                              <input id="cashInMachineOverview" type="text" name="cashInMachineOverview"
+                                 value="Unavailable" disabled>
+                              <span class="naira">&#x20A6;</span>
+                           </div>
+                        </div>
+
+                        <div class="account-overview-input mt-2">
+                           <label class="heading-subtext" for="amount">CHARGES (Cash) </label>
+
+                           <div class="naira-input-container">
+                              <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable"
+                                 disabled>
+                              <span class="naira">&#x20A6;</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="double-input mb-2 mt-2">
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">MACHINE FEES</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">TOTAL POS CHARGES</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="double-input mb-2 mt-2">
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">SHORTAGE/MACHINE FEES</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">TOTAL GOODS SOLD</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="double-input mb-2 mt-2">
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">TOTAL GOODS CAPITAL</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+
+                  <div class="account-overview-input mt-2">
+                     <label class="heading-subtext" for="amount">TOTAL GOODS PROFITS</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashAtHandOverview" type="text" name="cashAtHandOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="daily-profit-input">
+
+                  <div class="account-overview-input mt-2 mb-2 ">
+                     <label class="heading-subtext" for="amount">DAILY PROFIT</label>
+
+                     <div class="naira-input-container">
+                        <input id="cashInMachineOverview" type="text" name="cashInMachineOverview" value="Unavailable"
+                           disabled>
+                        <span class="naira">&#x20A6;</span>
+                     </div>
+                  </div>
+               </div>
+
+            </form>
+         </div>
+      </section>
    </main>
+
+
+   <div id="toast" class="toast">This is a toast message!</div>
+
+   <form class="depositPosCapital-form" name="depositPosCapital" netlify>
+      <div class="card depositPosCapital modal ">
+         <div>
+            <h1 class="heading-text addItemName">Deposit POS Capital</h1>
+         </div>
+
+
+         <div class="depositPosCapital-form_input">
+            <label for="newItemSellingPrice">Enter Amount</label>
+
+            <div class="naira-input-container">
+               <input id="newItemSellingPrice" type="text" placeholder="Enter Amount"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="newItemSellingPrice" required>
+               <span class="naira">&#x20A6;</span>
+            </div>
+         </div>
+
+         <!-- <div class="depositPosCapital-form_input">
+            <label for="newItemQuantity">New Item Quantity</label>
+
+            <input id="newItemQuantity" type="text" placeholder="Enter New Quantity" name="newItemQuantity">
+
+         </div> -->
+
+         <div class="center-button">
+            <button class="hero-btn-dark saveProductButton">DEPOSIT</button>
+         </div>
+
+         <div class="close closeModal" id="">&times;</div>
+      </div>
+   </form>
 
    <script>
       const isLoggedIn = localStorage.getItem('isLoggedIn');
