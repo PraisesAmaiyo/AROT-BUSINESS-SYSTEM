@@ -27,14 +27,13 @@
    <script defer type="module" src="JS/goods.js"></script> -->
 
    <script src="dist/main.bundle.js" defer></script>
-   <script src="dist/goods.bundle.js" defer></script>
+   <script src="dist/staff.bundle.js" defer></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
 </head>
 
 <body class="container">
-
 
    <nav class="sidebar">
       <div class="sidebar-fixed">
@@ -161,20 +160,44 @@
 
                      <tr class="table-body-row" id="item-list">
                         <td class="py-1 staffSerialNumber">1</td>
-                        <td class="py-1 staffName"></td>
-                        <td class="py-1 staffPhoneNumber">&#x20A6;13,500</td>
-                        <td class="py-1 staffGuarantorName">14</td>
-                        <td class="py-1 staffGuarantorPhoneNumber">&#x20A6;16,000</td>
-                        <td class="py-1 "><button class="hero-btn-light updateProductButton">Update Price</button></td>
+                        <td class="py-1 staffName">Oghenero Priscilia</td>
+                        <td class="py-1 staffPhoneNumber">08012341234</td>
+                        <td class="py-1 staffGuarantorName">Oghenero Festus</td>
+                        <td class="py-1 staffGuarantorPhoneNumber">09087658765</td>
+
+                        <td class="py-1 action-buttons">
+
+                           <button class="hero-btn-outline editStButtonaff"><i
+                                 class="fa-solid fa-pen-to-square"></i></button>
+
+                           <button class="hero-btn-outline deleteStaffButton"><i
+                                 class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                     </tr>
+
+                     <tr class="table-body-row" id="item-list">
+                        <td class="py-1 staffSerialNumber">2</td>
+                        <td class="py-1 staffName">Obinna Prcious</td>
+                        <td class="py-1 staffPhoneNumber">08012341234</td>
+                        <td class="py-1 staffGuarantorName">Edafe Monday</td>
+                        <td class="py-1 staffGuarantorPhoneNumber">09087658765</td>
+                        <td class="py-1 action-buttons">
+
+                           <button class="hero-btn-outline editStButtonaff"><i
+                                 class="fa-solid fa-pen-to-square"></i></button>
+
+                           <button class="hero-btn-outline deleteStaffButton"><i
+                                 class="fa-solid fa-trash-can"></i></button>
+                        </td>
                      </tr>
 
 
                   </tbody>
                </table>
-               <!-- 
+
                <div class="center-button mt-2">
                   <button id="loadMoreButton" class="hero-btn-dark">Load More</button>
-               </div> -->
+               </div>
 
             </div>
          </div>
@@ -183,122 +206,46 @@
 
    <div id="toast" class="toast">This is a toast message!</div>
 
-   <form class="updateProduct-form" name="updateProduct" netlify>
-      <div class="card updateProduct modal ">
+   <form class="add-user-form" name="add-user" netlify>
+      <div class="card addUser modal ">
          <div>
-            <h1 class="heading-text addItemName">Update product</h1>
+            <h1 class="heading-text  addItemName">Add User</h1>
          </div>
 
-         <div class="updateProduct-form_input">
-            <label for="updateProductItemName">Item Name</label>
+         <div class="addUser-form_input">
+            <label for="addSurname">Surname Name</label>
 
-            <input id="updateProductName" type="text" placeholder="Item Name" name="updateProductName" disabled>
+            <input id="addSurname" type="text" placeholder="Enter Surname" name="addSurname" required>
          </div>
 
-         <div class="updateProduct-form_input">
-            <label for="productBoughtPrice">Amount Bought</label>
+         <div class="addUser-form_input">
+            <label for="addFirstName">First Name</label>
 
-            <div class="naira-input-container">
-               <input id="productBoughtPrice" type="text" placeholder="Bought Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="productBoughtPrice" disabled>
-               <span class="naira">&#x20A6;</span>
-            </div>
+            <input id="addFirstName" type="text" placeholder="Enter First Name" name="addFirstName" required>
          </div>
 
-         <div class="updateProduct-form_input">
-            <label for="previousItemPrice">Previous Selling Price</label>
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Staff Address</label>
 
-            <div class="naira-input-container">
-               <input id="previousItemPrice" type="text" placeholder="Current Selling Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="previousItemPrice" disabled>
-               <span class="naira">&#x20A6;</span>
-            </div>
+            <input id="addStaffAddress" type="text" placeholder="Enter Staff Address" name="addStaffAddress" required>
          </div>
 
-         <!-- <div class="updateProduct-form_input">
-            <label for="updateProductItemQuantity">Item Quantity</label>
+         <div class="addUser-form_input">
+            <label for="addGuarantorName">Guarantors Name</label>
 
-            <input id="updateProductQuantity" type="text" placeholder="Item Quantity" name="updateProductQuantity"
-               disabled>
-         </div> -->
-
-         <div class="updateProduct-form_input">
-            <label for="newItemName">New Item Name</label>
-
-            <input id="newItemName" type="text" placeholder="Enter New Name" name="newItemName" required>
-
-         </div>
-
-         <div class="updateProduct-form_input">
-            <label for="newItemSellingPrice">New Selling Price</label>
-
-            <div class="naira-input-container">
-               <input id="newItemSellingPrice" type="text" placeholder="Enter New Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="newItemSellingPrice" required>
-               <span class="naira">&#x20A6;</span>
-            </div>
-         </div>
-
-         <!-- <div class="updateProduct-form_input">
-            <label for="newItemQuantity">New Item Quantity</label>
-
-            <input id="newItemQuantity" type="text" placeholder="Enter New Quantity" name="newItemQuantity">
-
-         </div> -->
-
-         <div class="center-button">
-            <button class="hero-btn-dark saveProductButton">UPDATE</button>
-         </div>
-
-         <div class="close closeModal" id="">&times;</div>
-      </div>
-   </form>
-
-   <form class="add-product-form" name="add-product" netlify>
-      <div class="card addProduct modal ">
-         <div>
-            <h1 class="heading-text  addItemName">Add product</h1>
-         </div>
-
-         <div class="addProduct-form_input">
-            <label for="addProductName">Item Name</label>
-
-            <!-- <div class="naira-input-container"> -->
-            <input id="addProductName" type="text" placeholder="Enter Item Name" name="addProductName" required>
-            <!-- </div> -->
-         </div>
-
-         <div class="addProduct-form_input">
-            <label for="productBoughtPrice">Amount Bought</label>
-
-            <div class="naira-input-container">
-               <input id="addProductBoughtPrice" type="text" placeholder="Enter Buying Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductBoughtPrice" required>
-               <span class="naira">&#x20A6;</span>
-            </div>
-         </div>
-
-         <div class="addProduct-form_input">
-            <label for="productSellingPrice">Amount To Sell</label>
-
-            <div class="naira-input-container">
-               <input id="addProductSellingPrice" type="text" placeholder="Enter Selling Price"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addProductSellingPrice" required>
-               <span class="naira">&#x20A6;</span>
-            </div>
-         </div>
-
-         <div class="addProduct-form_input">
-            <label for="productQuantity">Product Quantity</label>
-
-            <!-- <div class="naira-input-container"> -->
-            <input id="addProductQuantity" type="text" placeholder="Enter Product Quantity" name="addProductQuantity"
+            <input id="addGuarantorName" type="text" placeholder="Enter Guarantor Name" name="addGuarantorName"
                required>
-            <!-- </div> -->
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addGuarantorAddress">Guarantors Address</label>
+
+            <input id="addGuarantorAddress" type="text" placeholder="Enter Guarantors Address"
+               name="addGuarantorAddress" required>
          </div>
 
          <div class="center-button">
-            <button class="hero-btn-dark  addProductModalBtn">SAVE</button>
+            <button class="hero-btn-dark saveUserButton addUserModalBtn">SAVE</button>
          </div>
 
          <div class="close closeModal" id="">&times;</div>

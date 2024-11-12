@@ -419,6 +419,7 @@ select {
 
 .hero-btn-dark,
 .hero-btn-light,
+.hero-btn-outline,
 .hero-btn-dark_square,
 .deposit-btn {
   position: relative;
@@ -438,29 +439,34 @@ select {
   text-decoration: none; }
   .hero-btn-dark:not(:last-child),
   .hero-btn-light:not(:last-child),
+  .hero-btn-outline:not(:last-child),
   .hero-btn-dark_square:not(:last-child),
   .deposit-btn:not(:last-child) {
     margin-right: 1.5rem; }
     @media only screen and (max-width: 75em) {
       .hero-btn-dark:not(:last-child),
       .hero-btn-light:not(:last-child),
+      .hero-btn-outline:not(:last-child),
       .hero-btn-dark_square:not(:last-child),
       .deposit-btn:not(:last-child) {
         margin-bottom: 1.5rem; } }
   .hero-btn-dark:hover,
   .hero-btn-light:hover,
+  .hero-btn-outline:hover,
   .hero-btn-dark_square:hover,
   .deposit-btn:hover {
     transform: scale(1.03);
     box-shadow: inset 0 0 0 2px #51cf66; }
   .hero-btn-dark:active,
   .hero-btn-light:active,
+  .hero-btn-outline:active,
   .hero-btn-dark_square:active,
   .deposit-btn:active {
     transform: scale(1);
     background-color: #0F7A89; }
   .hero-btn-dark .button-link,
   .hero-btn-light .button-link,
+  .hero-btn-outline .button-link,
   .hero-btn-dark_square .button-link,
   .deposit-btn .button-link {
     position: absolute;
@@ -473,6 +479,14 @@ select {
     justify-content: center;
     color: inherit;
     text-decoration: none; }
+
+.hero-btn-outline {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 !important;
+  padding: 1rem 1rem; }
+  .hero-btn-outline:hover {
+    transform: scale(1.15); }
 
 .deposit-btn {
   background-color: #fff;
@@ -1259,6 +1273,27 @@ body.authentication {
         .goods-method .staff-table-container .table-body-row:hover .hero-btn-light {
           background-color: #ebfbee;
           color: #0F7A89; }
+        .reports-method .reports-table-container .table-body-row:hover .hero-btn-outline,
+        .reports-method .product-table-container .table-body-row:hover .hero-btn-outline,
+        .reports-method .staff-table-container .table-body-row:hover .hero-btn-outline,
+        .goods-method .reports-table-container .table-body-row:hover .hero-btn-outline,
+        .goods-method .product-table-container .table-body-row:hover .hero-btn-outline,
+        .goods-method .staff-table-container .table-body-row:hover .hero-btn-outline {
+          background-color: #ebfbee;
+          color: #0F7A89; }
+          .reports-method .reports-table-container .table-body-row:hover .hero-btn-outline:active,
+          .reports-method .product-table-container .table-body-row:hover .hero-btn-outline:active,
+          .reports-method .staff-table-container .table-body-row:hover .hero-btn-outline:active,
+          .goods-method .reports-table-container .table-body-row:hover .hero-btn-outline:active,
+          .goods-method .product-table-container .table-body-row:hover .hero-btn-outline:active,
+          .goods-method .staff-table-container .table-body-row:hover .hero-btn-outline:active {
+            background-color: #eef1f6; }
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center; }
 
 .loading-row td {
   padding: 1.5rem 1rem;

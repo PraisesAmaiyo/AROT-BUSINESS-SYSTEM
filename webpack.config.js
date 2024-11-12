@@ -9,6 +9,7 @@ module.exports = {
     pos: './JS/pos.js',
     reports: './JS/reports.js',
     sell: './JS/sell.js',
+    staff: './JS/staff.js',
     simReg: './JS/simReg.js',
     main: './JS/script.js', // Common JS for the main page if needed
   },

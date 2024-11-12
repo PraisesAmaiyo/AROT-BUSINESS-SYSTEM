@@ -60,7 +60,9 @@ function closeModal() {
   const depositPosCapitalContainer =
     document.querySelector('.depositPosCapital');
 
-  depositPosCapitalContainer.classList.remove('active');
+  if (depositPosCapitalContainer) {
+    depositPosCapitalContainer.classList.remove('active');
+  }
 
   main.classList.remove('blur');
   //   sidebar.classList.remove('blur');
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const depositPosCapitalContainer =
     document.querySelector('.depositPosCapital');
 
-  if (depositButton) {
+  if (depositButton && depositPosCapitalContainer) {
     depositButton.addEventListener('click', function () {
       depositPosCapitalContainer.classList.add('active');
       main.classList.add('blur');

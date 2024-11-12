@@ -226,6 +226,7 @@ select {
 
 .hero-btn-dark,
 .hero-btn-light,
+.hero-btn-outline,
 .hero-btn-dark_square,
 .deposit-btn {
    position: relative;
@@ -276,6 +277,17 @@ select {
    }
 }
 
+.hero-btn-outline {
+   // background-color: transparent;
+   color: $color-grey-light-1;
+   font-size: 1.5rem;
+   margin: 0 !important;
+   padding: 1rem 1rem;
+
+   &:hover {
+      transform: scale(1.15);
+   }
+}
 
 .deposit-btn {
    background-color: $color-grey-light-1;
