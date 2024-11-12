@@ -2,6 +2,7 @@ body.home {
    background-image: linear-gradient(to right top, rgba($color-grey-dark-3, 0.9), rgba($color-grey-dark-2, 0.83)), url(/img/home.jpeg);
    background-size: cover;
    background-repeat: no-repeat;
+   background-position: center;
 
    .heading-text {
       font-size: 3.5rem;

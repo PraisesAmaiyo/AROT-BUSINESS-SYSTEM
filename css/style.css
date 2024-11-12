@@ -104,7 +104,8 @@ body {
 body.home {
   background-image: linear-gradient(to right top, rgba(111, 193, 204, 0.9), rgba(21, 70, 76, 0.83)), url(/img/home.jpeg);
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-position: center; }
   body.home .heading-text {
     font-size: 3.5rem;
     color: #ebfbee; }
