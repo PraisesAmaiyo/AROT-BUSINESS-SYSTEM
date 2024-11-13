@@ -8,9 +8,11 @@
    transform: translate(-50%, -50%);
    width: 60%;
    max-width: 100rem;
-   height: max-content;
+   max-height: 85vh;
+   height: auto;
    z-index: 10000;
    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+   overflow-y: auto;
 
    @media only screen and (max-width:$bp-big) {
       padding: 1.7rem;
@@ -132,6 +134,11 @@
                cursor: not-allowed;
             }
          }
+
+         select {
+            width: max-content;
+         }
+
       }
    }
 

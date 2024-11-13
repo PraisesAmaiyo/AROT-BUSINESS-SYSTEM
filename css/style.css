@@ -975,9 +975,11 @@ body.authentication {
   transform: translate(-50%, -50%);
   width: 60%;
   max-width: 100rem;
-  height: max-content;
+  max-height: 85vh;
+  height: auto;
   z-index: 10000;
-  transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
+  transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+  overflow-y: auto; }
   @media only screen and (max-width: 50.3em) {
     .modal {
       padding: 1.7rem;
@@ -1108,6 +1110,12 @@ body.authentication {
       color: #999;
       border: 1px solid #ddd;
       cursor: not-allowed; }
+  .addProduct-form_input select,
+  .sellProduct-form_input select,
+  .updateProduct-form_input select,
+  .depositPosCapital-form_input select,
+  .addUser-form_input select {
+    width: max-content; }
 
 .addProduct .hero-btn-dark,
 .sellProduct .hero-btn-dark,

@@ -123,7 +123,7 @@
          </div>
       </header>
 
-      <div class="goods card">
+      <section class="goods card">
          <div class="goods-method">
             <h2 class="heading-text" style="margin-bottom: 1.5rem;">
                Staff Informations
@@ -201,13 +201,13 @@
 
             </div>
          </div>
-      </div>
+      </section>
    </main>
 
    <div id="toast" class="toast">This is a toast message!</div>
 
    <form class="add-user-form" name="add-user" netlify>
-      <div class="card addUser modal ">
+      <div class="card addUser modal active">
          <div>
             <h1 class="heading-text  addItemName">Add User</h1>
          </div>
@@ -231,6 +231,13 @@
          </div>
 
          <div class="addUser-form_input">
+            <label for="addStaffAddress">Phone No.</label>
+
+            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         </div>
+
+         <div class="addUser-form_input">
             <label for="addGuarantorName">Guarantors Name</label>
 
             <input id="addGuarantorName" type="text" placeholder="Enter Guarantor Name" name="addGuarantorName"
@@ -242,6 +249,34 @@
 
             <input id="addGuarantorAddress" type="text" placeholder="Enter Guarantors Address"
                name="addGuarantorAddress" required>
+         </div>
+
+         <!--  -->
+
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Phone No.</label>
+
+            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         </div>
+
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Phone No.</label>
+
+            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         </div>
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Phone No.</label>
+
+            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         </div>
+         <div class="addUser-form_input">
+            <label for="addStaffAddress">Phone No.</label>
+
+            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
          </div>
 
          <div class="center-button">
