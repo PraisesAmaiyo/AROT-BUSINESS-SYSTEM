@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+   <meta name="description" content="AROT" />
+
+   <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,600|Nunito:300,300i,400,600&display=swap"
+      rel="stylesheet" />
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+   <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+   <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+
+   <!-- <script defer type="module" src="JS/script.js"></script> -->
+   <!-- <script defer type="module" src="JS/login.js"></script> -->
+
+   <script src="dist/main.bundle.js" defer></script>
+   <script src="dist/login.bundle.js" defer></script>
+
+   <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
+   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+</head>
+
+<body class="authentication">
+
+   <div class="authentication-container" id="container">
+
+      <div class="form-container sign-in-container">
+
+         <div class="signup-header">
+            <h1 class="heading-text">Sign up</h1>
+            <h2 class="heading-subtext">Admin Account Creation</h2>
+         </div>
+
+         <form name="signup form" netlify>
+
+            <div class="signup-form_input">
+               <label for="businessName">Business Name</label>
+
+               <input id="businessName" type="text" placeholder="Enter Business Name" name="businessName" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessAddress">Business Address </label>
+
+               <input id="businessAddress" type="text" placeholder="Enter Business Address" name="businessAddress"
+                  required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessState">State Of Operatiton </label>
+
+               <input id="businessState" type="text" placeholder="Enter Business State" name="businessState" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessLga">L.G.A </label>
+
+               <input id="businessLga" type="text" placeholder="Enter Business L.G.A" name="businessLga" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessPhoneNumber">Phone Number </label>
+
+               <input id="businessPhoneNumber" type="text" placeholder="Enter Business Phone No."
+                  name="businessPhoneNumber" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessEmail">Business Email </label>
+
+               <input id="businessEmail" type="text" placeholder="Enter Business Email" name="businessEmail" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessCacRegNo">CAC Reg. Number </label>
+
+               <input id="businessCacRegNo" type="text" placeholder="Enter CAC Reg No (Optional)"
+                  name="businessCacRegNo" required>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessCacRegNo">TAX ID</label>
+
+               <input id="businessCacRegNo" type="text" placeholder="Enter Tax ID (Optional)" name="businessCacRegNo"
+                  required>
+            </div>
+
+            <div class="signup-form_input ">
+               <label for="Status" class="heading-subtext">Status</label>
+
+               <div class="checkbox">
+                  <div class="checkbox-container">
+                     <input id="pos" type="checkbox" name="pos" required>
+                     <label for="pos">POS</label>
+                  </div>
+
+                  <div class="checkbox-container">
+                     <input id="sellCheckbox" type="checkbox" name="sellCheckbox" required>
+                     <label for="sellCheckbox">SELL</label>
+                  </div>
+
+                  <div class="checkbox-container">
+                     <input id="posAndSllCheckbox" type="checkbox" name="posAndSllCheckbox" required>
+                     <label for="posAndSllCheckbox">POS & SELL</label>
+                  </div>
+               </div>
+            </div>
+
+            <div class="signup-form_input">
+               <label for="businessCacRegNo">Account Type</label>
+
+               <input id="businessCacRegNo" type="text" placeholder="Enter Tax ID (Optional)" name="businessCacRegNo"
+                  required>
+            </div>
+
+            <input type="email" name="signup Up Email " placeholder="Email" required />
+
+            <input type="password" name="signup Up Password " placeholder="Password" required />
+
+            <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign In</button>
+
+            <p class="heading-subtext">Forgot password? <a href="#">Click here</a></p>
+
+            <p class="heading-subtext">Don't have an account? <a href="/signup.html">Sign up</a></p>
+
+            <a class="heading-subtext mt-2" href="/index.html">Click here for demo login to landing page &rarr;
+            </a>
+
+         </form>
+      </div>
+   </div>
+
+
+</body>
+
+</html>

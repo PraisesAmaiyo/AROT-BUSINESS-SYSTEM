@@ -390,6 +390,7 @@ select {
   font-weight: 500; }
   .checkbox-container {
     display: flex;
+    gap: .5rem;
     align-items: center; }
     .checkbox-container input[type="checkbox"] {
       appearance: none;
@@ -417,6 +418,130 @@ select {
   padding: 1rem;
   font-weight: bold;
   cursor: pointer; }
+
+.addProduct .checkbox,
+.sellProduct .checkbox,
+.updateProduct .checkbox,
+.depositPosCapital .checkbox,
+.signup .checkbox,
+.addUser .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-left: 0;
+  margin-top: 1.5rem; }
+  .addProduct .checkbox label,
+  .sellProduct .checkbox label,
+  .updateProduct .checkbox label,
+  .depositPosCapital .checkbox label,
+  .signup .checkbox label,
+  .addUser .checkbox label {
+    margin-bottom: 0; }
+  @media only screen and (max-width: 30.5em) {
+    .addProduct .checkbox .checkbox-container,
+    .sellProduct .checkbox .checkbox-container,
+    .updateProduct .checkbox .checkbox-container,
+    .depositPosCapital .checkbox .checkbox-container,
+    .signup .checkbox .checkbox-container,
+    .addUser .checkbox .checkbox-container {
+      padding-bottom: 0; } }
+
+.addProduct-form_input,
+.sellProduct-form_input,
+.updateProduct-form_input,
+.depositPosCapital-form_input,
+.signup-form_input,
+.addUser-form_input {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center; }
+  .addProduct-form_input.sellStatus,
+  .sellProduct-form_input.sellStatus,
+  .updateProduct-form_input.sellStatus,
+  .depositPosCapital-form_input.sellStatus,
+  .signup-form_input.sellStatus,
+  .addUser-form_input.sellStatus {
+    display: block; }
+    .addProduct-form_input.sellStatus label,
+    .sellProduct-form_input.sellStatus label,
+    .updateProduct-form_input.sellStatus label,
+    .depositPosCapital-form_input.sellStatus label,
+    .signup-form_input.sellStatus label,
+    .addUser-form_input.sellStatus label {
+      width: min-content; }
+  @media only screen and (max-width: 30.5em) {
+    .addProduct-form_input,
+    .sellProduct-form_input,
+    .updateProduct-form_input,
+    .depositPosCapital-form_input,
+    .signup-form_input,
+    .addUser-form_input {
+      margin-top: 1.5rem;
+      display: block; } }
+  .addProduct-form_input label,
+  .sellProduct-form_input label,
+  .updateProduct-form_input label,
+  .depositPosCapital-form_input label,
+  .signup-form_input label,
+  .addUser-form_input label {
+    width: 20rem; }
+  .addProduct-form_input input,
+  .addProduct-form_input select,
+  .sellProduct-form_input input,
+  .sellProduct-form_input select,
+  .updateProduct-form_input input,
+  .updateProduct-form_input select,
+  .depositPosCapital-form_input input,
+  .depositPosCapital-form_input select,
+  .signup-form_input input,
+  .signup-form_input select,
+  .addUser-form_input input,
+  .addUser-form_input select {
+    width: 100%; }
+    .addProduct-form_input input:disabled,
+    .addProduct-form_input select:disabled,
+    .sellProduct-form_input input:disabled,
+    .sellProduct-form_input select:disabled,
+    .updateProduct-form_input input:disabled,
+    .updateProduct-form_input select:disabled,
+    .depositPosCapital-form_input input:disabled,
+    .depositPosCapital-form_input select:disabled,
+    .signup-form_input input:disabled,
+    .signup-form_input select:disabled,
+    .addUser-form_input input:disabled,
+    .addUser-form_input select:disabled {
+      background-color: #eef1f6;
+      box-shadow: 0 0 0.2rem 0.5rem rgba(248, 153, 66, 0.36);
+      color: #999;
+      border: 1px solid #ddd;
+      cursor: not-allowed; }
+  .addProduct-form_input select,
+  .sellProduct-form_input select,
+  .updateProduct-form_input select,
+  .depositPosCapital-form_input select,
+  .signup-form_input select,
+  .addUser-form_input select {
+    width: max-content; }
+
+.addProduct .hero-btn-dark,
+.sellProduct .hero-btn-dark,
+.updateProduct .hero-btn-dark,
+.depositPosCapital .hero-btn-dark,
+.signup .hero-btn-dark,
+.addUser .hero-btn-dark {
+  display: inline;
+  margin-top: 3rem;
+  align-self: center;
+  padding: 1rem 3rem;
+  margin-top: 2rem; }
+
+.signup-form_input {
+  margin-top: 0rem; }
+  .signup-form_input label {
+    width: 22rem; }
+  .signup-form_input .checkbox-container input[type="checkbox"] {
+    width: max-content;
+    margin: 0; }
 
 .hero-btn-dark,
 .hero-btn-light,
@@ -748,20 +873,7 @@ body.authentication {
   background-image: linear-gradient(to right, rgba(32, 83, 41, 0.93), rgba(21, 70, 76, 0.93)), url(/img/bg-image.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
-  body.authentication p {
-    font-size: 1.3rem;
-    line-height: 2rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem; }
-  body.authentication a {
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    margin: .3rem 0; }
-  body.authentication button.ghost {
-    background-color: transparent;
-    border-color: #FFFFFF; }
-  body.authentication form {
+  body.authentication .form-container {
     background-color: #ebfbee;
     color: #205329;
     display: flex;
@@ -772,14 +884,18 @@ body.authentication {
     height: 100%;
     text-align: center; }
     @media only screen and (max-width: 62.5em) {
-      body.authentication form {
+      body.authentication .form-container {
         padding: 0 3rem; } }
-  body.authentication input {
-    margin: 8px 0;
-    width: 100%;
-    height: auto; }
+    body.authentication .form-container a {
+      color: inherit; }
+    body.authentication .form-container button.ghost {
+      background-color: transparent;
+      border-color: #FFFFFF; }
+    body.authentication .form-container input {
+      margin: 8px 0;
+      width: 100%;
+      height: auto; }
   body.authentication .authentication-container {
-    background-image: linear-gradient(to right, rgba(32, 83, 41, 0.93), rgba(32, 83, 41, 0.93)), url(/img/bg-image.jpg);
     background-size: cover;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -788,123 +904,9 @@ body.authentication {
     min-height: 100%;
     width: 80%;
     min-height: 480px; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .authentication-container {
-        background-image: linear-gradient(to right, rgba(32, 83, 41, 0.93), rgba(32, 83, 41, 0.93)), url(/img/bg-image.jpg); } }
-  body.authentication .form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .form-container {
-        top: 35%;
-        bottom: 0;
-        height: 65%; } }
-  body.authentication .sign-in-container {
-    left: 0;
-    width: 50%;
-    z-index: 2; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .sign-in-container {
-        width: 100%; } }
-  body.authentication .authentication-container.right-panel-active .sign-in-container {
-    transform: translateX(100%); }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .authentication-container.right-panel-active .sign-in-container {
-        transform: translateX(-100%); } }
-  body.authentication .sign-up-container {
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .sign-up-container {
-        width: 100%; } }
-  body.authentication .authentication-container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .authentication-container.right-panel-active .sign-up-container {
-        transform: translateX(0%);
-        animation: none; } }
-
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
-    z-index: 1; }
-  50%,
-  100% {
-    opacity: 1;
-    z-index: 5; } }
-  body.authentication .overlay-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .overlay-container {
-        height: 35%;
-        width: 100%;
-        left: 0; } }
-  body.authentication .authentication-container.right-panel-active .overlay-container {
-    transform: translateX(-100%); }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .authentication-container.right-panel-active .overlay-container {
-        transform: translateX(0); } }
-  body.authentication .overlay {
-    background: linear-gradient(to right, rgba(16, 171, 43, 0.3), rgba(16, 171, 43, 0.3));
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    color: #ebfbee;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out; }
-    @media only screen and (max-width: 45.7em) {
-      body.authentication .overlay {
-        height: 100%; } }
-  body.authentication .authentication-container.right-panel-active .overlay {
-    transform: translateX(50%); }
-  body.authentication .overlay-panel {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out; }
-    @media only screen and (max-width: 62.5em) {
-      body.authentication .overlay-panel {
-        padding: .8rem; }
-        body.authentication .overlay-panel .heading-text {
-          font-size: 2rem; } }
-    body.authentication .overlay-panel h1.heading-text {
-      font-size: 1.6rem; }
-  body.authentication .overlay-left {
-    transform: translateX(-20%); }
-  body.authentication .authentication-container.right-panel-active .overlay-left {
-    transform: translateX(0); }
-  body.authentication .overlay-right {
-    right: 0;
-    transform: translateX(0); }
-  body.authentication .authentication-container.right-panel-active .overlay-right {
-    transform: translateX(20%); }
+    body.authentication .authentication-container .heading-subtext {
+      text-align: center;
+      margin-bottom: 1.5rem; }
 
 .pos {
   height: min-content;
@@ -1025,108 +1027,6 @@ body.authentication {
 @media only screen and (max-width: 50.3em) {
   .sidebar.blur::before {
     background-color: none; } }
-
-.addProduct .checkbox,
-.sellProduct .checkbox,
-.updateProduct .checkbox,
-.depositPosCapital .checkbox,
-.addUser .checkbox {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  margin-left: 0;
-  margin-top: 1.5rem; }
-  .addProduct .checkbox label,
-  .sellProduct .checkbox label,
-  .updateProduct .checkbox label,
-  .depositPosCapital .checkbox label,
-  .addUser .checkbox label {
-    margin-bottom: 0; }
-  @media only screen and (max-width: 30.5em) {
-    .addProduct .checkbox .checkbox-container,
-    .sellProduct .checkbox .checkbox-container,
-    .updateProduct .checkbox .checkbox-container,
-    .depositPosCapital .checkbox .checkbox-container,
-    .addUser .checkbox .checkbox-container {
-      padding-bottom: 0; } }
-
-.addProduct-form_input,
-.sellProduct-form_input,
-.updateProduct-form_input,
-.depositPosCapital-form_input,
-.addUser-form_input {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center; }
-  .addProduct-form_input.sellStatus,
-  .sellProduct-form_input.sellStatus,
-  .updateProduct-form_input.sellStatus,
-  .depositPosCapital-form_input.sellStatus,
-  .addUser-form_input.sellStatus {
-    display: block; }
-    .addProduct-form_input.sellStatus label,
-    .sellProduct-form_input.sellStatus label,
-    .updateProduct-form_input.sellStatus label,
-    .depositPosCapital-form_input.sellStatus label,
-    .addUser-form_input.sellStatus label {
-      width: min-content; }
-  @media only screen and (max-width: 30.5em) {
-    .addProduct-form_input,
-    .sellProduct-form_input,
-    .updateProduct-form_input,
-    .depositPosCapital-form_input,
-    .addUser-form_input {
-      margin-top: 1.5rem;
-      display: block; } }
-  .addProduct-form_input label,
-  .sellProduct-form_input label,
-  .updateProduct-form_input label,
-  .depositPosCapital-form_input label,
-  .addUser-form_input label {
-    width: 20rem; }
-  .addProduct-form_input input,
-  .addProduct-form_input select,
-  .sellProduct-form_input input,
-  .sellProduct-form_input select,
-  .updateProduct-form_input input,
-  .updateProduct-form_input select,
-  .depositPosCapital-form_input input,
-  .depositPosCapital-form_input select,
-  .addUser-form_input input,
-  .addUser-form_input select {
-    width: 100%; }
-    .addProduct-form_input input:disabled,
-    .addProduct-form_input select:disabled,
-    .sellProduct-form_input input:disabled,
-    .sellProduct-form_input select:disabled,
-    .updateProduct-form_input input:disabled,
-    .updateProduct-form_input select:disabled,
-    .depositPosCapital-form_input input:disabled,
-    .depositPosCapital-form_input select:disabled,
-    .addUser-form_input input:disabled,
-    .addUser-form_input select:disabled {
-      background-color: #eef1f6;
-      box-shadow: 0 0 0.2rem 0.5rem rgba(248, 153, 66, 0.36);
-      color: #999;
-      border: 1px solid #ddd;
-      cursor: not-allowed; }
-  .addProduct-form_input select,
-  .sellProduct-form_input select,
-  .updateProduct-form_input select,
-  .depositPosCapital-form_input select,
-  .addUser-form_input select {
-    width: max-content; }
-
-.addProduct .hero-btn-dark,
-.sellProduct .hero-btn-dark,
-.updateProduct .hero-btn-dark,
-.depositPosCapital .hero-btn-dark,
-.addUser .hero-btn-dark {
-  display: inline;
-  margin-top: 3rem;
-  align-self: center;
-  padding: 1rem 3rem;
-  margin-top: 2rem; }
 
 .reports,
 .goods {

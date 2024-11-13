@@ -35,30 +35,57 @@
 <body class="authentication">
 
    <div class="authentication-container" id="container">
+      <!-- <div> -->
+      <div class="form-container sign-up-container">
+         <form name="signup form" netlify>
+            <h1 class="heading-text mb-2">Create Account</h1>
+
+            <input type="text" name="Sign Up FullName " placeholder="Full Name" required />
+
+            <input type="email" name="Sign Up Email " placeholder="Email" required />
+
+            <input type="password" name="Sign Up Password " placeholder="Password" required />
+
+            <button class="hero-btn-dark mt-2">Sign Up</button>
+
+         </form>
+      </div>
 
       <div class="form-container sign-in-container">
-
-         <div class="login-header">
-            <h1 class="heading-text">POSBOK</h1>
-            <h2 class="heading-subtext">A product of AROT TELECOMS 2024</h2>
-         </div>
-
          <form name="login form" netlify>
+            <h1 class="heading-text mb-2">Sign in</h1>
 
             <input type="email" name="Login Up Email " placeholder="Email" required />
 
             <input type="password" name="Login Up Password " placeholder="Password" required />
 
+            <a href="#">Forgot your password?</a>
+
             <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign In</button>
 
-            <p class="heading-subtext">Forgot password? <a href="#">Click here</a></p>
-
-            <p class="heading-subtext">Don't have an account? <a href="/signup.html">Sign up</a></p>
-
-            <a class="heading-subtext mt-2" href="/index.html">Click here for demo login to landing page &rarr;
+            <a href="/index.html">Click here for demo login to landing page &rarr;
             </a>
 
+
          </form>
+      </div>
+      <!-- </div> -->
+
+      <div class="overlay-container">
+         <div class="overlay">
+            <div class="overlay-panel overlay-left">
+               <h1 class="heading-text ">Hello, there!</h1>
+               <p>Got an account? Sign in with your personal info here.</p>
+               <button class=" hero-btn-dark ghost" id="signIn">Sign In</button>
+            </div>
+
+            <div class="overlay-panel overlay-right">
+               <h1 class="heading-text">Welcome <br>
+                  to AROT Communications</h1>
+               <p>Don't have an account? Sign Up with a few details and start your journey with us.</p>
+               <button class="hero-btn-dark ghost" id="signUp">Sign Up</button>
+            </div>
+         </div>
       </div>
    </div>
 
