@@ -97,43 +97,69 @@
                   required>
             </div>
 
-            <div class="signup-form_input ">
-               <label for="Status" class="heading-subtext">Status</label>
+            <div class="signup-form_input mb-1">
+               <label for="accountType" class="heading-subtext">Account Type</label>
 
                <div class="checkbox">
                   <div class="checkbox-container">
-                     <input id="pos" type="checkbox" name="pos" required>
-                     <label for="pos">POS</label>
+                     <input id="posCheckbox" type="checkbox" name="posCheckbox">
+                     <label for="posCheckbox">POS</label>
                   </div>
 
                   <div class="checkbox-container">
-                     <input id="sellCheckbox" type="checkbox" name="sellCheckbox" required>
+                     <input id="sellCheckbox" type="checkbox" name="sellCheckbox">
                      <label for="sellCheckbox">SELL</label>
                   </div>
 
                   <div class="checkbox-container">
-                     <input id="posAndSllCheckbox" type="checkbox" name="posAndSllCheckbox" required>
-                     <label for="posAndSllCheckbox">POS & SELL</label>
+                     <input id="posAndSellCheckbox" type="checkbox" name="posAndSellCheckbox">
+                     <label for="posAndSellCheckbox">POS & SELL</label>
                   </div>
                </div>
             </div>
 
             <div class="signup-form_input">
-               <label for="businessCacRegNo">Account Type</label>
+               <label for="businessCacRegNo">Staff Size</label>
 
                <input id="businessCacRegNo" type="text" placeholder="Enter Tax ID (Optional)" name="businessCacRegNo"
                   required>
             </div>
 
-            <input type="email" name="signup Up Email " placeholder="Email" required />
+            <div class="signup-form_input  mb-1">
+               <label for="accountType" class="heading-subtext">Version Preference</label>
 
-            <input type="password" name="signup Up Password " placeholder="Password" required />
+               <div class="checkbox">
+                  <div class="checkbox-container">
+                     <input id="webCheckbox" type="checkbox" name="webCheckbox">
+                     <label for="webCheckbox">Web</label>
+                  </div>
+
+                  <div class="checkbox-container">
+                     <input id="mobileCheckbox" type="checkbox" name="mobileCheckbox">
+                     <label for="mobileCheckbox">Mobile</label>
+                  </div>
+
+                  <div class="checkbox-container">
+                     <input id="standaloneCheckbox" type="checkbox" name="standaloneCheckbox">
+                     <label for="standaloneCheckbox">Standalone</label>
+                  </div>
+               </div>
+            </div>
+
+            <div class="signup-form_input mt-2 terms-container">
+               <div class="checkbox-container">
+                  <input id="termsCheckbox" type="checkbox" name="termsCheckbox" required>
+                  <label for="termsCheckbox">I accept the <a href="#">terms and conditions</a></label>
+               </div>
+            </div>
+
+
 
             <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign In</button>
 
-            <p class="heading-subtext">Forgot password? <a href="#">Click here</a></p>
+            <p class="heading-subtext mb-1">Forgot password? <a href="#">Click here</a></p>
 
-            <p class="heading-subtext">Don't have an account? <a href="/signup.html">Sign up</a></p>
+            <p class="heading-subtext  mb-1">Do you have an account? <a href="/login.html">Login</a></p>
 
             <a class="heading-subtext mt-2" href="/index.html">Click here for demo login to landing page &rarr;
             </a>
