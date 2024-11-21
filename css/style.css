@@ -543,6 +543,16 @@ select {
     width: max-content;
     margin: 0; }
 
+.addUser-form_input .checkbox {
+  display: block; }
+
+.addUser-form_input .double-input {
+  width: 100%; }
+  .addUser-form_input .double-input .access-time_input {
+    width: 100%; }
+  .addUser-form_input .double-input input {
+    width: 80%; }
+
 .hero-btn-dark,
 .hero-btn-light,
 .hero-btn-outline,
@@ -670,6 +680,15 @@ select {
 
 .mt-2 {
   margin-top: 2rem; }
+
+.mr-1 {
+  margin-right: 1rem; }
+
+.mr-2 {
+  margin-right: 2rem; }
+
+.flex-gap-2 {
+  gap: 2rem; }
 
 .heading-text {
   text-align: center;
@@ -1026,7 +1045,7 @@ body.authentication {
   @media only screen and (max-width: 50.3em) {
     .modal {
       padding: 1.7rem;
-      width: 70%; } }
+      width: 80%; } }
   @media only screen and (max-width: 38.6em) {
     .modal {
       width: 85%;

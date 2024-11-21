@@ -207,29 +207,56 @@
    <div id="toast" class="toast">This is a toast message!</div>
 
    <form class="add-user-form" name="add-user" netlify>
-      <div class="card addUser modal active">
+      <div class="card addUser modal">
          <div>
             <h1 class="heading-text  addItemName">Add User</h1>
          </div>
 
+         <!-- Surname -->
          <div class="addUser-form_input">
             <label for="addSurname">Surname Name</label>
 
             <input id="addSurname" type="text" placeholder="Enter Surname" name="addSurname" required>
          </div>
 
+         <!-- FIrst name -->
          <div class="addUser-form_input">
             <label for="addFirstName">First Name</label>
 
             <input id="addFirstName" type="text" placeholder="Enter First Name" name="addFirstName" required>
          </div>
 
+         <!-- staff Address -->
          <div class="addUser-form_input">
             <label for="addStaffAddress">Staff Address</label>
 
             <input id="addStaffAddress" type="text" placeholder="Enter Staff Address" name="addStaffAddress" required>
          </div>
 
+         <!-- Date of Birth -->
+         <div class="addUser-form_input">
+            <label for="dob">Date of Birth</label>
+
+            <input id="dob" type="date" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="dob" required>
+         </div>
+
+         <!-- State of origin -->
+         <div class="addUser-form_input">
+            <label for="addStateofOrigin">State Of Origin</label>
+
+            <input id="addStateofOrigin" type="text" placeholder="Enter State of Origin" name="addStateofOrigin"
+               required>
+         </div>
+
+         <!-- LGA -->
+         <div class="addUser-form_input">
+            <label for="addStateofOrigin">LGA</label>
+
+            <input id="addStateofOrigin" type="text" placeholder="Enter LGA" name="addStateofOrigin" required>
+         </div>
+
+         <!-- Staff Phone Number -->
          <div class="addUser-form_input">
             <label for="addStaffAddress">Phone No.</label>
 
@@ -237,6 +264,14 @@
                oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
          </div>
 
+         <!-- Staff Email -->
+         <div class="addUser-form_input">
+            <label for="staffEmail">Staff Email </label>
+
+            <input id="staffEmail" type="email" placeholder="Enter Staff Email" name="staffEmail" required>
+         </div>
+
+         <!-- Guarantors Name -->
          <div class="addUser-form_input">
             <label for="addGuarantorName">Guarantors Name</label>
 
@@ -244,6 +279,15 @@
                required>
          </div>
 
+         <!-- Guarantor Phone NUmber -->
+         <div class="addUser-form_input">
+            <label for="addGuarantorPhoneNumber">Guarantor Phone No.</label>
+
+            <input id="addGuarantorPhoneNumber" type="text" placeholder="Enter Phone No."
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addGuarantorPhoneNumber" required>
+         </div>
+
+         <!-- Guarantor Address -->
          <div class="addUser-form_input">
             <label for="addGuarantorAddress">Guarantors Address</label>
 
@@ -251,36 +295,69 @@
                name="addGuarantorAddress" required>
          </div>
 
-         <!--  -->
-
+         <!-- Staff Password -->
          <div class="addUser-form_input">
-            <label for="addStaffAddress">Phone No.</label>
+            <label for="addStaffPassword">Staff Password</label>
 
-            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
-               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+            <input id="addStaffPassword" type="text" placeholder="Enter Staff Password." name="addStaffPassword"
+               required>
          </div>
 
+         <!-- COnfirm Staff Password -->
          <div class="addUser-form_input">
-            <label for="addStaffAddress">Phone No.</label>
+            <label for="ConfirmPassword">Confirm Password</label>
 
-            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
-               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+            <input id="ConfirmPassword" type="password" placeholder="Confirm Staff Password" name="ConfirmPassword"
+               required>
          </div>
-         <div class="addUser-form_input">
-            <label for="addStaffAddress">Phone No.</label>
 
-            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
-               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         <!--  Staff Access Time -->
+         <div class="addUser-form_input flex-gap-2">
+            <div class="double-input mb-2 mt-2">
+               <label for="start-time">Access Time</label>
+
+               <div class="access-time_input">
+                  <div class="mb-1">
+                     <label for="">Start</label>
+                     <input id="start-time" type="time" name="start-time" class="mr-2" required>
+                  </div>
+                  <!-- </div> -->
+
+                  <!-- <div class="addUser-form_input"> -->
+                  <!-- <label for="end-time">Access End Time</label> -->
+
+                  <div class="mb-1">
+                     <label for="">Start</label>
+                     <input id="end-time" type="time" name="end-time" required>
+                  </div>
+               </div>
+            </div>
          </div>
-         <div class="addUser-form_input">
-            <label for="addStaffAddress">Phone No.</label>
 
-            <input id="addStaffPhoneNumber" type="text" placeholder="Enter Phone No."
-               oninput="this.value=this.value.replace(/[^0-9]/g,'')" name="addStaffPhoneNumber" required>
+         <!-- Staff Access Service -->
+         <div class="addUser-form_input mb-1">
+            <label for="accessType" class="heading-subtext">Access Type</label>
+
+            <div class="checkbox">
+               <div class="checkbox-container mb-1">
+                  <input id="staffPosCheckbox" type="checkbox" name="staffPosCheckbox">
+                  <label for="staffPosCheckbox">POS</label>
+               </div>
+
+               <div class="checkbox-container mb-1">
+                  <input id="staffSellCheckbox" type="checkbox" name="staffSellCheckbox">
+                  <label for="staffSellCheckbox">SELL</label>
+               </div>
+
+               <div class="checkbox-container mb-1">
+                  <input id="staffPosAndSellCheckbox" type="checkbox" name="staffPosAndSellCheckbox">
+                  <label for="staffPosAndSellCheckbox">POS & SELL</label>
+               </div>
+            </div>
          </div>
 
          <div class="center-button">
-            <button class="hero-btn-dark saveUserButton addUserModalBtn">SAVE</button>
+            <button class="hero-btn-dark saveUserButton addUserModalBtn">Create Account</button>
          </div>
 
          <div class="close closeModal" id="">&times;</div>
