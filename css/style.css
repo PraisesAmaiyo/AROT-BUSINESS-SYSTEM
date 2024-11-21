@@ -118,6 +118,8 @@ body.home {
     @media only screen and (max-width: 43.3em) {
       body.home .account-overview-method {
         width: 100%; } }
+    body.home .account-overview-method .double-input input {
+      width: 70%; }
     @media only screen and (max-width: 43.3em) {
       body.home .account-overview-method .double-input {
         flex-direction: column; } }
@@ -125,6 +127,8 @@ body.home {
       width: 50%;
       margin: 0 auto;
       text-align: right; }
+      body.home .account-overview-method .daily-profit-input input {
+        width: 70%; }
       @media only screen and (max-width: 43.3em) {
         body.home .account-overview-method .daily-profit-input {
           width: 100%;
@@ -891,11 +895,11 @@ body.authentication {
   height: 100vh;
   background-image: linear-gradient(to right, rgba(32, 83, 41, 0.93), rgba(21, 70, 76, 0.93)), url(/img/bg-image.jpg);
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  overflow-y: auto; }
 
 .sign-in-container.form-container {
-  justify-content: start;
-  padding: 3rem 0; }
+  justify-content: start; }
 
 .form-container {
   background-color: #ebfbee;
@@ -904,19 +908,17 @@ body.authentication {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 5rem;
+  padding: 3rem;
   height: 100%;
   text-align: center;
   height: auto;
   min-height: 100%;
-  max-height: 85vh;
   overflow-y: auto; }
   @media only screen and (max-width: 38.6em) {
     .form-container {
-      width: 90%; } }
-  @media only screen and (max-width: 62.5em) {
-    .form-container {
-      padding: 0 3rem; } }
+      width: 100%; } }
+  .form-container .signup-form_container {
+    width: 100%; }
   .form-container a {
     color: inherit; }
   .form-container button.ghost {
@@ -930,19 +932,22 @@ body.authentication {
 .authentication-container {
   background-size: cover;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
   width: 80%;
   max-height: 85vh;
   height: 100%; }
-  @media only screen and (max-width: 38.6em) {
+  .authentication-container.login {
+    max-height: 60vh; }
+  @media only screen and (max-width: 45.7em) {
     .authentication-container {
       width: 90%; } }
   .authentication-container .login-header .heading-subtext,
   .authentication-container .signup-header .heading-subtext {
     text-align: center;
     margin-bottom: 1.5rem; }
+  .authentication-container .signup-form {
+    width: 100%; }
   @media only screen and (max-width: 35.6em) {
     .authentication-container .signup-form_input {
       margin-top: 1.5rem;
@@ -977,6 +982,11 @@ body.authentication {
     overflow: hidden; }
     .pos-method-form_input {
       margin-top: 2rem; }
+    .pos-method-form_input.machine-fee {
+      width: 15rem;
+      display: none; }
+      .pos-method-form_input.machine-fee .posMachineFee {
+        cursor: not-allowed; }
     .pos-method-form .hero-btn-dark {
       margin-top: 3rem; }
 

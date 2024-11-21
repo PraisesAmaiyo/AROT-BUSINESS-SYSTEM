@@ -13,6 +13,15 @@
             margin-top: 2rem;
          }
 
+         &_input.machine-fee {
+            width: 15rem;
+            display: none;
+
+            .posMachineFee {
+               cursor: not-allowed;
+            }
+         }
+
          .hero-btn-dark {
             margin-top: 3rem;
          }

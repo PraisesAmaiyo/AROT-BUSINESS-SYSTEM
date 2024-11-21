@@ -23,6 +23,10 @@ body.home {
          }
 
          .double-input {
+            input {
+               width: 70%;
+            }
+
             @media only screen and (max-width:$bp-large-2) {
                flex-direction: column;
 
@@ -33,6 +37,10 @@ body.home {
             width: 50%;
             margin: 0 auto;
             text-align: right;
+
+            input {
+               width: 70%;
+            }
 
             @media only screen and (max-width:$bp-large-2) {
                width: 100%;

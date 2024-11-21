@@ -134,6 +134,52 @@ const fee = document.getElementById('posTransactionFee');
 const posFeePaymentType = document.getElementById('posFeePaymentType');
 const posForm = document.querySelector('.pos-method-form');
 
+const machineFeeContainer = document.querySelector('.machine-fee');
+const machineFeeInput = document.getElementById('posMachineFee');
+const posMachineFee = document.getElementById('posMachineFee');
+
+amount.addEventListener('input', () => {
+  const value = amount.value.trim(); // Get the input value
+
+  let machineFee = '';
+
+  if (!value || value <= 0) {
+    machineFee = ''; // No machine fee if no valid amount entered
+    machineFeeContainer.style.display = 'none';
+  } else {
+    machineFeeContainer.style.display = 'block'; // Show the fee container
+
+    if (value <= 100) {
+      machineFee = 0.5;
+    } else if (value <= 200) {
+      machineFee = 1;
+    } else if (value <= 500) {
+      machineFee = 3;
+    } else if (value <= 1100) {
+      machineFee = 5;
+    } else if (value <= 1600) {
+      machineFee = 8;
+    } else if (value <= 2000) {
+      machineFee = 10;
+    } else if (value <= 2100) {
+      machineFee = 11;
+    } else if (value <= 3100) {
+      machineFee = 16;
+    } else if (value <= 5200) {
+      machineFee = 26;
+    } else if (value <= 10000) {
+      machineFee = 50;
+    } else if (value <= 12000) {
+      machineFee = 64;
+    } else if (value <= 20000 || value > 20000) {
+      machineFee = 100;
+    }
+  }
+
+  // Update the machine fee input field
+  machineFeeInput.value = machineFee ? `₦${machineFee}` : '';
+});
+
 if (posForm) {
   posForm.addEventListener('submit', function (e) {
     e.preventDefault();

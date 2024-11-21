@@ -145,7 +145,8 @@
                </div>
 
                <div class="pos-method-form_input withdrawalTransactionType">
-                  <label for="withdrawalType">Select Withdrawal Type:</label>
+                  <!-- The backend still uses withdrawalType -->
+                  <label for="withdrawalType">Transaction Payment Method:</label>
 
                   <select id="withdrawalType" name="withdrawalType">
                      <option value="card">Card</option>
@@ -163,6 +164,17 @@
                      <span class="naira">&#x20A6;</span>
                   </div>
                </div>
+
+               <!-- Machine Fee -->
+               <div class="pos-method-form_input machine-fee">
+                  <label for="Pos Machine Fee">Machine Fee</label>
+
+                  <div class="naira-input-container">
+                     <input class="posMachineFee" id="posMachineFee" type="text" name="posMachineFee" disabled>
+                     <span class="naira">&#x20A6;</span>
+                  </div>
+               </div>
+
 
                <div class="pos-method-form_input">
                   <label for="fee">Set Fee</label>
