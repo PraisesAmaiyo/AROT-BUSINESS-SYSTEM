@@ -289,7 +289,10 @@ async function fetchAllTransactionsForTotals() {
     let allTransactions = [];
     while (true) {
       const { data, meta } = await getPosTransactions(page, pageSize);
+      console.log('data:', data);
+
       allTransactions = allTransactions.concat(data);
+      console.log('allTransactions:', allTransactions);
 
       if (page >= meta.pagination.pageCount) break;
       page++;
@@ -307,6 +310,7 @@ function updateTotalPosAmounts(data) {
   const totalPosAmount = document.getElementById('totalPosAmount');
   const totalPosFee = document.getElementById('totalPosFee');
   const totalMachineFee = document.getElementById('totalMachineFee');
+  const totalDepositAmount = document.getElementById('totalDepositAmount');
 
   if (!data || data.length === 0) {
     if (totalPosAmount) {
@@ -318,10 +322,26 @@ function updateTotalPosAmounts(data) {
     if (totalMachineFee) {
       totalMachineFee.innerHTML = `<strong>Machine Fees = &nbsp;&#x20A6;0</strong>`;
     }
+    if (totalDepositAmount) {
+      totalDepositAmount.innerHTML = `<strong>Machine Fees = &nbsp;&#x20A6;0</strong>`;
+    }
     return;
   }
 
-  const totalAmount = data.reduce(
+  const filteredDepositTransactions = data.filter(
+    (item) => item.transaction_type.type === 'deposit'
+  );
+
+  const filteredTransactions = data.filter(
+    (item) => item.transaction_type.type !== 'deposit'
+  );
+
+  const DepositAmount = filteredDepositTransactions.reduce(
+    (sum, item) => sum + item.transaction_amount,
+    0
+  );
+
+  const totalAmount = filteredTransactions.reduce(
     (sum, item) => sum + item.transaction_amount,
     0
   );
@@ -345,6 +365,12 @@ function updateTotalPosAmounts(data) {
   if (totalMachineFee) {
     totalMachineFee.innerHTML = `<strong>Total Machine Fee = &nbsp;&#x20A6;${formatAmountWithCommas(
       machineFee
+    )}</strong>`;
+  }
+
+  if (totalDepositAmount) {
+    totalDepositAmount.innerHTML = `<strong>Total Deposits = &nbsp;&#x20A6;${formatAmountWithCommas(
+      DepositAmount
     )}</strong>`;
   }
 }
