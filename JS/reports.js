@@ -12,8 +12,8 @@ function toTitleCase(value) {
 
 function formatTransactionType(value) {
   switch (value.toLowerCase()) {
-    case 'withdraw':
-      return 'Withdraw';
+    case 'withdrawal':
+      return 'Withdrawal';
     case 'withdrawal/transfer':
       return 'Withdrawal & Transfer';
     case 'bill-payment':
@@ -291,8 +291,6 @@ async function fetchAllTransactionsForTotals() {
       const { data, meta } = await getPosTransactions(page, pageSize);
       allTransactions = allTransactions.concat(data);
 
-      console.log(`Page ${page} data:`, data);
-
       if (page >= meta.pagination.pageCount) break;
       page++;
     }
@@ -331,8 +329,6 @@ function updateTotalPosAmounts(data) {
   const totalFee = data.reduce((sum, item) => sum + item.transaction_fee, 0);
 
   const machineFee = data.reduce((sum, item) => sum + item.machine_fee, 0);
-
-  console.log('machineFee', machineFee);
 
   if (totalPosAmount) {
     totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;${formatAmountWithCommas(
@@ -410,31 +406,31 @@ renderGoodsTable();
 
 //  Delete POS Transactiion Data
 
-document
-  .getElementById('deleteAllButton')
-  .addEventListener('click', async () => {
-    const confirmDelete = confirm(
-      'Are you sure you want to delete all transactions for the day? This action cannot be undone.'
-    );
+// document
+//   .getElementById('deleteAllButton')
+//   .addEventListener('click', async () => {
+//     const confirmDelete = confirm(
+//       'Are you sure you want to delete all transactions for the day? This action cannot be undone.'
+//     );
 
-    if (confirmDelete) {
-      try {
-        const response = await deleteAllTransactions();
-        if (response.success) {
-          alert('All transactions have been successfully deleted.');
-          // Clear the table and update totals
-          allPosTransactions = [];
-          renderPosTable(); // Clear table display
-          updateTotalPosAmounts([]); // Reset totals to zero
-        } else {
-          alert('Failed to delete transactions. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error deleting transactions:', error);
-        alert('An error occurred while trying to delete transactions.');
-      }
-    }
-  });
+//     if (confirmDelete) {
+//       try {
+//         const response = await deleteAllTransactions();
+//         if (response.success) {
+//           alert('All transactions have been successfully deleted.');
+//           // Clear the table and update totals
+//           allPosTransactions = [];
+//           renderPosTable(); // Clear table display
+//           updateTotalPosAmounts([]); // Reset totals to zero
+//         } else {
+//           alert('Failed to delete transactions. Please try again.');
+//         }
+//       } catch (error) {
+//         console.error('Error deleting transactions:', error);
+//         alert('An error occurred while trying to delete transactions.');
+//       }
+//     }
+//   });
 
 // JS for modal
 const main = document.querySelector('.main');

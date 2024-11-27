@@ -3,10 +3,25 @@ import config from '../../config.js';
 const baseUrl = config.baseUrl;
 const apiToken = config.token;
 
+function getCurrentDateISO() {
+  const now = new Date();
+  const localMidnight = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  ); // Local midnight
+  return localMidnight.toISOString();
+}
+
 export async function getPosTransactions(page = 1, pageSize = 25) {
+  const todayISO = getCurrentDateISO();
+
   try {
     const response = await fetch(
-      `${baseUrl}/api/pos-transactions?pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true&populate[transaction_type]=*&populate[withdrawal_type]=*`,
+      `${baseUrl}/api/pos-transactions?filters[createdAt][$gte]=${todayISO}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true&populate[transaction_type]=*&populate[withdrawal_type]=*`,
+
+      // `${baseUrl}/api/pos-transactions?pagination[page]=${page}&pagination[pageSize]=${pageSize}&pagination[withCount]=true&populate[transaction_type]=*&populate[withdrawal_type]=*`,
+
       {
         method: 'GET',
         headers: {
