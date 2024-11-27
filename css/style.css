@@ -1069,6 +1069,20 @@ body.authentication {
     opacity: 1;
     visibility: visible;
     transition: opacity .3s ease-in-out, visibility .2s; }
+  .modal .confirmation-text {
+    margin-top: 3rem; }
+  .modal .confirmation-btn_container {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+    margin-top: 5rem; }
+    .modal .confirmation-btn_container .hero-btn-dark {
+      font-size: 1.2rem;
+      padding-left: 1rem; }
+      .modal .confirmation-btn_container .hero-btn-dark.cancel-delete {
+        color: inherit;
+        background: linear-gradient(to bottom, #fff, #eef1f6);
+        margin-bottom: 0; }
 
 .main.blur,
 .sidebar.blur {

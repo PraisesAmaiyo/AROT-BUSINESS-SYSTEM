@@ -86,3 +86,28 @@ export async function createPosTransaction(transactionDetail) {
     console.error('Error posting product:', error);
   }
 }
+
+export async function deleteAllTransactions() {
+  const apiUrl = '${baseUrl}/api/pos-transactions';
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Pos transcation deleted successfully:', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error deleting all transactions:', error);
+    return { success: false, error };
+  }
+}

@@ -95,7 +95,7 @@
          <ul class="side-nav">
             <a href="/manage.html" class="side-nav_link">
                <li class="side-nav_item ">
-                  <i class="fa-solid fa-users-gear"></i>
+                  <i class="fa-solid fa-users-gear icon"></i>
                   <span>MANAGE</span>
                </li>
             </a>
@@ -121,6 +121,10 @@
             <a href="/login.html">
                <button class="hero-btn-dark">LOGOUT</button>
             </a>
+
+            <!-- <button id="deleteAllButton" class="btn-danger">Delete All Transactions</button> -->
+
+
             <img src="img/profile-image.jpg" alt="Logo" class="main-heading-profile--image" />
          </div>
       </header>
@@ -158,6 +162,7 @@
                         <th class="py-1">Transaction Type</th>
                         <th class="py-1">Amount</th>
                         <th class="py-1">Fee</th>
+                        <th class="py-1">Machine Fee</th>
                         <th class="py-1">Fee Payment Method</th>
                         <th class="py-1">Payment Method</th>
                         <th class="py-1">Remarks</th>
@@ -184,9 +189,17 @@
                   <tfoot>
                      <tr class="table-foot-row px-2">
                         <td colspan="2"></td>
-                        <td id="totalPosAmount" class="py-1 px-2"></strong>
+                        <td id="totalPosAmount" class="py-1 px-2">
+                           <strong></strong>
                         </td>
-                        <td id="totalPosFee" class="py-1 px-2"><strong></strong></td>
+
+                        <td id="totalPosFee" class="py-1 px-2">
+                           <strong></strong>
+                        </td>
+
+                        <td id="totalMachineFee" class="py-1 px-2">
+                           <strong></strong>
+                        </td>
                         <!-- <td></td> -->
                      </tr>
                   </tfoot>

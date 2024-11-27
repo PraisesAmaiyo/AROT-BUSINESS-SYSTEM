@@ -95,7 +95,7 @@
          <ul class="side-nav">
             <a href="/manage.html" class="side-nav_link">
                <li class="side-nav_item active">
-                  <i class="fa-solid fa-users-gear"></i>
+                  <i class="fa-solid fa-users-gear icon"></i>
                   <span>MANAGE</span>
                </li>
             </a>
@@ -137,8 +137,8 @@
             <div class="adminHeader">
 
                <button class="hero-btn-dark">
-                  <a href="reports.html" class="button-link"></a>
-                  Reports
+                  <a href="/manage.html" class="button-link"></a>
+                  Manage
                </button>
 
                <button class="hero-btn-dark addProductButton mr-0 ">Add Product</button>
@@ -176,6 +176,7 @@
                      </tr> -->
 
 
+
                   </tbody>
                </table>
 
@@ -189,6 +190,21 @@
    </main>
 
    <div id="toast" class="toast">This is a toast message!</div>
+
+   <div class="card confirmation modal ">
+      <h1 class="confirmation-text">Are you sure you want to delete product <span id="product-name"></span>?</h1>
+
+
+      <div class="confirmation-btn_container">
+
+         <button class="hero-btn-dark cancel-delete">Cancel</button>
+
+         <button class="hero-btn-dark deleteProductButton">Delete</button>
+
+      </div>
+
+      <div class="close closeModal" id="">&times;</div>
+   </div>
 
    <form class="updateProduct-form" name="updateProduct" netlify>
       <div class="card updateProduct modal ">

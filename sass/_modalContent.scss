@@ -28,7 +28,6 @@
    @media only screen and (max-width:$bp-small) {
       width: 90%;
       padding: 1.3rem;
-
    }
 
    &.active,
@@ -36,6 +35,32 @@
       opacity: 1;
       visibility: visible;
       transition: opacity .3s ease-in-out, visibility .2s;
+   }
+
+   .confirmation {
+
+      &-text {
+         margin-top: 3rem;
+      }
+
+      &-btn_container {
+         display: flex;
+         gap: 1rem;
+         justify-content: end;
+         margin-top: 5rem;
+
+         .hero-btn-dark {
+            font-size: 1.2rem;
+            padding-left: 1rem;
+
+            &.cancel-delete {
+               color: inherit;
+               background: linear-gradient(to bottom, $color-grey-light-1, $color-grey-light-2);
+               margin-bottom: 0;
+            }
+         }
+      }
+
    }
 }
 

@@ -2,10 +2,12 @@ const {
   addProduct,
   getProducts,
   updateProduct,
+  deleteProduct,
 } = require('./apiServices/product');
 const { showToast, formatAmountWithCommas } = require('./script');
 
-let isSubmitting = true;
+let isSubmitting = false;
+const deleteProductButton = document.querySelector('.deleteProductButton');
 
 // JS for Adding Products
 const addProductName = document.getElementById('addProductName');
@@ -16,8 +18,10 @@ const addProductSellingPrice = document.getElementById(
 const addProductQuantity = document.getElementById('addProductQuantity');
 
 async function handleAddProductSubmit(e) {
-  isSubmitting = true;
   e.preventDefault();
+  isSubmitting = true;
+
+  addProductModalBtn.innerHTML = 'Submitting...';
 
   const addProductFormData = {
     name: addProductName.value,
@@ -33,24 +37,29 @@ async function handleAddProductSubmit(e) {
       },
     });
 
+    console.log('Response from addProduct:', response);
+
     if (response) {
       isSubmitting = false;
-      // console.log('Product added successfully:', response);
+      console.log('Product added successfully:', response);
       showToast('success', 'Product added successfully! ⭐');
 
       appendProductToTable(response.data);
     } else {
-      showToast('fail', 'Product not added. ❎');
+      showToast('fail', 'Product not added 1. ❎');
       isSubmitting = false;
     }
   } catch (error) {
-    //  console.error('Error adding product:', error);
-    showToast('fail', 'Product not added. ❎');
+    console.error('Error adding product:', error);
+    showToast('fail', 'Product not added 2. ❎');
   } finally {
     addProductName.value = '';
     addProductBoughtPrice.value = '';
     addProductSellingPrice.value = '';
     addProductQuantity.value = '';
+    isSubmitting = false;
+    addProductModalBtn.innerHTML = isSubmitting ? 'Submitting...' : 'Save';
+
     closeModal();
   }
 
@@ -63,10 +72,6 @@ const addProductModalBtn = document.querySelector('.addProductModalBtn');
 if (addProductForm) {
   addProductForm.addEventListener('submit', function (e) {
     handleAddProductSubmit(e);
-
-    //  console.log(isSubmitting);
-
-    addProductModalBtn.innerHTML = isSubmitting ? 'Submitting...' : 'Save';
   });
 }
 
@@ -85,14 +90,75 @@ function appendProductToTable(product) {
      <td class="py-1 productAmountBought">&#x20A6;${product.amount_bought}</td>
      <td class="py-1 productQuantity">${product.quantity}</td>
      <td class="py-1 productSellingPrice">&#x20A6;${product.amount_to_sell}</td>
-     <td class="py-1">
-       <button class="hero-btn-light updateProductButton" data-product-id="${
-         product.id
-       }">UPDATE</button>
-     </td>
+  
+     <td class="py-1 action-buttons">
+     <button class="hero-btn-outline updateProductButton" data-product-id="${
+       product.id
+     }">
+        <i class="fa-solid fa-pen-to-square" data-product-id="${
+          product.id
+        }"></i>
+        </button>
+
+     <button class="hero-btn-outline deleteProductModalButtons" data-product-id="${
+       product.id
+     }"><i class="fa-solid fa-trash-can" data-product-id="${product.id}"></i>
+        </button>
+  </td>
    `;
 
   goodsTableBody.appendChild(row);
+
+  // Attach event listeners after rendering the rows
+  const updateProductButtons = document.querySelectorAll(
+    '.updateProductButton'
+  );
+
+  updateProductButtons.forEach((button) => {
+    button.addEventListener('click', handleUpdateBtnClick);
+  });
+
+  // Attach delete button modal trigger event listeners
+  const deleteProductModalButtons = document.querySelectorAll(
+    '.deleteProductModalButtons'
+  );
+
+  deleteProductModalButtons.forEach((button) => {
+    button.addEventListener('click', function () {
+      const productId = button.dataset.productId; // Get product ID
+      const productName = button
+        .closest('tr')
+        .querySelector('.productName').textContent;
+
+      deleteProductButton.dataset.productId = productId; // Pass the product ID to the delete button
+      const confirmationText = document.querySelector('.confirmation-text');
+      confirmationText.textContent = `Are you sure you want to delete "${productName}"?`;
+
+      // Show modal
+      confirmation.classList.add('active');
+      main.classList.add('blur');
+      sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
+
+      // Dont delete
+      //  const documentId = button.dataset.documentId; // Get the documentId
+      //  deleteProductButton.dataset.productId = button.dataset.productId; // Pass it to the modal delete button
+      //  confirmation.classList.add('active'); // Show modal
+      //  main.classList.add('blur');
+      //  sidebar.classList.add('blur');
+      //  main.classList.add('no-scroll');
+    });
+  });
+
+  // Handle actual delete in the modal
+  deleteProductButton.addEventListener('click', async function () {
+    confirmation.classList.remove('active'); // Hide modal
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+    main.classList.remove('no-scroll');
+    await handleDeleteBtnClick({ target: deleteProductButton }); // Pass button as event target
+    renderAddedGoods();
+  });
 }
 
 // JS to render items from database
@@ -104,6 +170,8 @@ let totalPages = 1;
 async function renderAddedGoods(page = 1) {
   const goodsTableBody = document.querySelector('.product-table tbody');
   const loadMoreButton = document.getElementById('loadMoreButton');
+
+  const deleteProductButton = document.querySelector('.deleteProductButton');
 
   // Check if goodsTableBody and loadMoreButton exist
   if (!goodsTableBody) {
@@ -122,7 +190,7 @@ async function renderAddedGoods(page = 1) {
   if (!existingLoadingRow) {
     let loadingRow = document.createElement('tr');
     loadingRow.classList.add('loading-row');
-    loadingRow.innerHTML = `<td colspan="6" class="table-error-text">Loading Javascript page...</td>`;
+    loadingRow.innerHTML = `<td colspan="6" class="table-error-text">Loading Products...</td>`;
     goodsTableBody.appendChild(loadingRow);
   }
 
@@ -162,9 +230,24 @@ async function renderAddedGoods(page = 1) {
           <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
             product.amount_to_sell
           )}</td>
-          <td class="py-1"><button class="hero-btn-light updateProductButton" data-product-id="${
-            product.id
-          }">UPDATE</button></td>
+     
+
+            <td class="py-1 action-buttons">
+               <button class="hero-btn-outline updateProductButton" data-product-id="${
+                 product.id
+               }">
+                  <i class="fa-solid fa-pen-to-square" data-product-id="${
+                    product.id
+                  }"></i>
+                  </button>
+
+               <button class="hero-btn-outline deleteProductModalButtons" data-product-id="${
+                 product.id
+               }"><i class="fa-solid fa-trash-can" data-product-id="${
+          product.id
+        }"></i>
+                  </button>
+            </td>
         `;
         goodsTableBody.appendChild(row);
       });
@@ -173,8 +256,51 @@ async function renderAddedGoods(page = 1) {
       const updateProductButtons = document.querySelectorAll(
         '.updateProductButton'
       );
+
       updateProductButtons.forEach((button) => {
         button.addEventListener('click', handleUpdateBtnClick);
+      });
+
+      // Attach delete button modal trigger event listeners
+      const deleteProductModalButtons = document.querySelectorAll(
+        '.deleteProductModalButtons'
+      );
+
+      deleteProductModalButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          const productId = button.dataset.productId; // Get product ID
+          const productName = button
+            .closest('tr')
+            .querySelector('.productName').textContent;
+
+          deleteProductButton.dataset.productId = productId; // Pass the product ID to the delete button
+          const confirmationText = document.querySelector('.confirmation-text');
+          confirmationText.textContent = `Are you sure you want to delete "${productName}"?`;
+
+          // Show modal
+          confirmation.classList.add('active');
+          main.classList.add('blur');
+          sidebar.classList.add('blur');
+          main.classList.add('no-scroll');
+
+          // Dont delete
+          //  const documentId = button.dataset.documentId; // Get the documentId
+          //  deleteProductButton.dataset.productId = button.dataset.productId; // Pass it to the modal delete button
+          //  confirmation.classList.add('active'); // Show modal
+          //  main.classList.add('blur');
+          //  sidebar.classList.add('blur');
+          //  main.classList.add('no-scroll');
+        });
+      });
+
+      // Handle actual delete in the modal
+      deleteProductButton.addEventListener('click', async function () {
+        confirmation.classList.remove('active'); // Hide modal
+        main.classList.remove('blur');
+        sidebar.classList.remove('blur');
+        main.classList.remove('no-scroll');
+        await handleDeleteBtnClick({ target: deleteProductButton }); // Pass button as event target
+        renderAddedGoods();
       });
     }
   } catch (error) {
@@ -243,17 +369,109 @@ async function handleUpdateBtnClick(event) {
   }
 }
 
-// Call the function to render products
+async function handleDeleteBtnClick(event) {
+  const button = event.target;
+  const productId = button.dataset.productId;
+
+  // Get products from the current page
+  const productData = await getProducts(currentPage, pageSize);
+
+  // Find the product by productId
+  const product = productData.data.find(
+    (product) => product.id.toString() === productId.toString()
+  );
+
+  // Check if product was found before attempting to delete
+
+  //   if (!product) {
+  //     showToast('fail', 'Product not found. ❎');
+  //     return;
+  //   }
+
+  if (product) {
+    const documentId = product.documentId; // Get the documentId
+
+    try {
+      // Call the deleteProduct function with documentId
+      const deletionSuccess = await deleteProduct(documentId);
+
+      // If deletion is successful, show success message
+      if (deletionSuccess) {
+        showToast('success', 'Product deleted successfully! ⭐');
+        // renderAddedGoods(currentPage); // Reloadig the product list
+      } else {
+        // If deletion fails, show error message
+        showToast('fail', 'Product not deleted. ❎');
+      }
+    } catch (error) {
+      showToast('fail', 'Product not deleted. ❎');
+    }
+  }
+}
+
+// async function handleDeleteBtnClick(event) {
+//   const button = event.target;
+//   const productId = button.dataset.productId;
+
+//   // Get products from the current page
+//   const productData = await getProducts(currentPage, pageSize);
+
+//   // Find the product by productId
+//   const product = productData.data.find(
+//     (product) => product.id.toString() === productId.toString()
+//   );
+
+//   //   // If the product was not found, show the failure toast and return
+//   //   if (!product) {
+//   //     showToast('fail', 'Product not found. ❎');
+//   //     return;
+//   //   }
+
+//   if (product) {
+//     const documentId = product.documentId; // Get the documentId
+//   }
+
+//   try {
+//     // Call the deleteProduct function with documentId
+//     const deletionSuccess = await deleteProduct(documentId);
+
+//     // If deletion is successful, show success message
+//     if (deletionSuccess) {
+//       showToast('success', 'Product deleted successfully! ⭐');
+
+//       // Directly remove the product from the UI
+//       removeProductFromUI(productId);
+
+//       // Optionally, refetch the product list if necessary
+//       // renderAddedGoods(currentPage); // Reloading the product list if necessary
+//     } else {
+//       // If deletion fails, show error message
+//       showToast('fail', 'Product not deleted. ❎');
+//     }
+//   } catch (error) {
+//     showToast('fail', 'Product not deleted. ❎');
+//   }
+// }
+
+// Function to remove product from the UI directly
+function removeProductFromUI(productId) {
+  const productRow = document.querySelector(`[data-product-id="${productId}"]`);
+  if (productRow) {
+    productRow.remove(); // Removes the product element from the DOM
+  }
+}
+
 renderAddedGoods();
 
 // Handle form submission - UPDATE
 
 async function handleUpdateProductSubmit(e) {
-  isSubmitting = true;
   e.preventDefault();
+  isSubmitting = true;
+
+  saveProductButton.innerHTML = 'UPDATING...';
 
   const documentId = updateProductContainer.dataset.documentId;
-  //   console.log('Document ID:', documentId);
 
   const productData = await getProducts(currentPage, pageSize);
   const existingProduct = productData.data.find(
@@ -301,6 +519,8 @@ async function handleUpdateProductSubmit(e) {
     newItemNameInput.value = '';
     newItemPriceInput.value = '';
     isSubmitting = false;
+    saveProductButton.innerHTML = isSubmitting ? 'UPDATING...' : 'UPDATE';
+
     closeModal();
   }
 }
@@ -310,7 +530,7 @@ if (saveProductButton) {
     handleUpdateProductSubmit(e);
 
     isSubmitting = true
-      ? (addProductModalBtn.innerHTML = 'Submitting...')
+      ? (saveProductButton.innerHTML = 'UPDATING...')
       : 'Save';
   });
 }
@@ -336,18 +556,74 @@ function updateProductInTable(product) {
        <td class="py-1 productSellingPrice">&#x20A6;${formatAmountWithCommas(
          product.amount_to_sell
        )}</td>
-       <td class="py-1">
-         <button class="hero-btn-light updateProductButton" data-product-id="${
-           product.id
-         }">UPDATE</button>
-       </td>
+ 
+       
+            <td class="py-1 action-buttons">
+               <button class="hero-btn-outline updateProductButton" data-product-id="${
+                 product.id
+               }">
+                  <i class="fa-solid fa-pen-to-square" data-product-id="${
+                    product.id
+                  }"></i>
+                  </button>
+
+               <button class="hero-btn-outline deleteProductModalButtons" data-product-id="${
+                 product.id
+               }"><i class="fa-solid fa-trash-can" data-product-id="${
+      product.id
+    }"></i>
+                  </button>
+            </td>
      `;
 
     const updateProductButtons = document.querySelectorAll(
       '.updateProductButton'
     );
+
     updateProductButtons.forEach((button) => {
       button.addEventListener('click', handleUpdateBtnClick);
+    });
+
+    // Attach delete button modal trigger event listeners
+    const deleteProductModalButtons = document.querySelectorAll(
+      '.deleteProductModalButtons'
+    );
+
+    deleteProductModalButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const productId = button.dataset.productId; // Get product ID
+        const productName = button
+          .closest('tr')
+          .querySelector('.productName').textContent;
+
+        deleteProductButton.dataset.productId = productId; // Pass the product ID to the delete button
+        const confirmationText = document.querySelector('.confirmation-text');
+        confirmationText.textContent = `Are you sure you want to delete "${productName}"?`;
+
+        // Show modal
+        confirmation.classList.add('active');
+        main.classList.add('blur');
+        sidebar.classList.add('blur');
+        main.classList.add('no-scroll');
+
+        // Dont delete
+        //  const documentId = button.dataset.documentId; // Get the documentId
+        //  deleteProductButton.dataset.productId = button.dataset.productId; // Pass it to the modal delete button
+        //  confirmation.classList.add('active'); // Show modal
+        //  main.classList.add('blur');
+        //  sidebar.classList.add('blur');
+        //  main.classList.add('no-scroll');
+      });
+    });
+
+    // Handle actual delete in the modal
+    deleteProductButton.addEventListener('click', async function () {
+      confirmation.classList.remove('active'); // Hide modal
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+      main.classList.remove('no-scroll');
+      await handleDeleteBtnClick({ target: deleteProductButton }); // Pass button as event target
+      renderAddedGoods();
     });
   }
 }
@@ -356,8 +632,16 @@ function updateProductInTable(product) {
 const main = document.querySelector('.main');
 const sidebar = document.querySelector('.sidebar');
 
+const confirmation = document.querySelector('.confirmation');
+
 const closeModalButton = document.querySelectorAll('.closeModal');
 const closeImageModalBtn = document.querySelectorAll('.closeImageModal');
+
+const cancelDelete = document.querySelector('.cancel-delete');
+
+cancelDelete.addEventListener('click', function () {
+  closeModal();
+});
 
 closeModalButton.forEach((closeButton) => {
   closeButton.addEventListener('click', function () {
@@ -370,6 +654,7 @@ function closeModal() {
 
   updateProductContainer.classList.remove('active');
   addProductContainer.classList.remove('active');
+  confirmation.classList.remove('active');
 
   main.classList.remove('blur');
   sidebar.classList.remove('blur');

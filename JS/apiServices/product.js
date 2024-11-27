@@ -56,7 +56,7 @@ export async function getProducts(page = 1, pageSize = 25) {
 
 export async function addProduct(productData) {
   try {
-    //  console.log('Sending POST request...');
+    console.log('Sending POST request...');
     const response = await fetch(`${baseUrl}/api/products`, {
       method: 'POST',
       headers: {
@@ -66,19 +66,50 @@ export async function addProduct(productData) {
       body: JSON.stringify(productData),
     });
 
-    //  console.log('Response received...');
+    console.log('Response received...');
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    //  console.log('Product added successfully:', data);
+    console.log('Product added successfully:', data);
     return data;
   } catch (error) {
-    //  console.error('Error posting product:', error);
+    console.error('Error posting product:', error);
   }
 }
+
+// export async function addProduct(productData) {
+//   try {
+//     console.log('Sending POST request...');
+//     const response = await fetch(`${baseUrl}/api/products`, {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${apiToken}`,
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(productData),
+//     });
+
+//     console.log('Response received...');
+
+//     if (!response.ok) {
+//       // Check if the response status is OK (2xx range)
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     console.log('Product added successfully:', data);
+
+//     // Return success status and the data
+//     return { success: true, data };
+//   } catch (error) {
+//     console.error('Error posting product:', error);
+//     // Return failure status if there's an error
+//     return { success: false, error };
+//   }
+// }
 
 export async function updateProduct(documentId, productData) {
   try {
@@ -101,5 +132,30 @@ export async function updateProduct(documentId, productData) {
     return data;
   } catch (error) {
     console.error('Error updating product:', error);
+  }
+}
+
+export async function deleteProduct(documentId) {
+  try {
+    console.log('Sending DELETE request...');
+    const response = await fetch(`${baseUrl}/api/products/${documentId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Response received...');
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log('Product deleted successfully');
+    return true; // Return true if deletion was successful
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    return false; // Return false if there was an error
   }
 }

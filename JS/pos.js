@@ -136,18 +136,18 @@ const posForm = document.querySelector('.pos-method-form');
 
 const machineFeeContainer = document.querySelector('.machine-fee');
 const machineFeeInput = document.getElementById('posMachineFee');
-const posMachineFee = document.getElementById('posMachineFee');
+// const posMachineFee = document.getElementById('posMachineFee');
 
 amount.addEventListener('input', () => {
-  const value = amount.value.trim(); // Get the input value
+  const value = amount.value.trim();
 
   let machineFee = '';
 
   if (!value || value <= 0) {
-    machineFee = ''; // No machine fee if no valid amount entered
+    machineFee = '';
     machineFeeContainer.style.display = 'none';
   } else {
-    machineFeeContainer.style.display = 'block'; // Show the fee container
+    machineFeeContainer.style.display = 'block';
 
     if (value <= 100) {
       machineFee = 0.5;
@@ -176,30 +176,24 @@ amount.addEventListener('input', () => {
     }
   }
 
-  // Update the machine fee input field
-  machineFeeInput.value = machineFee ? `₦${machineFee}` : '';
+  machineFeeInput.value = machineFee ? machineFee : '';
 });
+
+// Form submission
+const transactionType = document.getElementById('transactionType');
+const withdrawalType = document.getElementById('withdrawalType');
+const posSuccessfulCheckbox = document.getElementById('posSuccessfulCheckbox');
+const posPendingCheckbox = document.getElementById('posPendingCheckbox');
+const posRemarksDiv = document.querySelector('.posRemarksDiv');
+const withdrawalTypeDiv = document.querySelector('.withdrawalTransactionType');
+const posTransactionRemark = document.getElementById('posTransactionRemark');
+const posTransactionConfirmation = document.getElementById(
+  'posTransactionConfirmation'
+);
 
 if (posForm) {
   posForm.addEventListener('submit', function (e) {
     e.preventDefault();
-
-    const transactionType = document.getElementById('transactionType');
-    const withdrawalType = document.getElementById('withdrawalType');
-    const posSuccessfulCheckbox = document.getElementById(
-      'posSuccessfulCheckbox'
-    );
-    const posPendingCheckbox = document.getElementById('posPendingCheckbox');
-    const posRemarksDiv = document.querySelector('.posRemarksDiv');
-    const withdrawalTypeDiv = document.querySelector(
-      '.withdrawalTransactionType'
-    );
-    const posTransactionRemark = document.getElementById(
-      'posTransactionRemark'
-    );
-    const posTransactionConfirmation = document.getElementById(
-      'posTransactionConfirmation'
-    );
 
     handlePosFormSubmit(
       e,
@@ -207,26 +201,41 @@ if (posForm) {
       withdrawalType,
       amount,
       fee,
+      machineFeeInput,
       posFeePaymentType,
       posTransactionRemark,
       posTransactionConfirmation
     );
 
-    transactionType.value = 'withdrawal';
-    withdrawalType.value = 'card';
-    posFeePaymentType.value = 'card';
-    amount.value = '';
-    fee.value = '';
-    posTransactionRemark.value = '';
-    posTransactionConfirmation.value = '';
-    posSuccessfulCheckbox.checked = false;
-    posPendingCheckbox.checked = false;
-    withdrawalTypeDiv.style.display = 'block';
-    posRemarksDiv.style.display = 'block';
+    //  transactionType.value = 'withdrawal';
+    //  withdrawalType.value = 'card';
+    //  posFeePaymentType.value = 'card';
+    //  amount.value = '';
+    //  fee.value = '';
+    //  machineFeeInput.value = '';
+    //  posTransactionRemark.value = '';
+    //  posTransactionConfirmation.value = '';
+    //  posSuccessfulCheckbox.checked = false;
+    //  posPendingCheckbox.checked = false;
+    //  withdrawalTypeDiv.style.display = 'block';
+    //  posRemarksDiv.style.display = 'block';
   });
 }
 
-// Form submission
+function resetFormInputs() {
+  transactionType.value = 'withdrawal';
+  withdrawalType.value = 'card';
+  posFeePaymentType.value = 'card';
+  amount.value = '';
+  fee.value = '';
+  machineFeeInput.value = '';
+  posTransactionRemark.value = '';
+  posTransactionConfirmation.value = '';
+  posSuccessfulCheckbox.checked = false;
+  posPendingCheckbox.checked = false;
+  withdrawalTypeDiv.style.display = 'block';
+  posRemarksDiv.style.display = 'block';
+}
 
 // API relations DocumentId
 
@@ -252,6 +261,7 @@ async function handlePosFormSubmit(
   withdrawalType,
   amount,
   fee,
+  machineFeeInput,
   posFeePaymentType,
   posTransactionRemark,
   posTransactionConfirmation
@@ -278,6 +288,7 @@ async function handlePosFormSubmit(
     withdrawal_type: withdrawalTypeId,
     transaction_amount: Number(amount.value),
     transaction_fee: Number(fee.value),
+    machine_fee: Number(machineFeeInput.value),
     fee_payment_type: posFeePaymentType.value.toLowerCase(),
     transaction_remark: posTransactionRemark.value,
   };
@@ -301,6 +312,9 @@ async function handlePosFormSubmit(
     //  console.error('Error sending POS transaction:', error);
     showToast('fail', 'POS transaction not sent. ❎');
   } finally {
+    // reset form inputs
+    resetFormInputs();
+
     //  addProductName.value = '';
     //  addProductBoughtPrice.value = '';
     //  addProductSellingPrice.value = '';
@@ -308,7 +322,8 @@ async function handlePosFormSubmit(
     //  closeModal();
   }
 
-  //   console.log(posFormData);
+  console.log(posFormData);
+  console.log(machineFeeInput.value);
 
   const storedData = JSON.parse(localStorage.getItem('posFormData')) || [];
 

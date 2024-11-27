@@ -94,7 +94,7 @@
          <ul class="side-nav">
             <a href="/manage.html" class="side-nav_link">
                <li class="side-nav_item active">
-                  <i class="fa-solid fa-users-gear"></i>
+                  <i class="fa-solid fa-users-gear icon"></i>
                   <span>MANAGE</span>
                </li>
             </a>
@@ -131,7 +131,10 @@
 
             <!-- <div class="table-header" style="display: flex; flex-direction: column; width: max-content;"> -->
             <div class="adminHeader">
-
+               <button class="hero-btn-dark">
+                  <a href="manage.html" class="button-link"></a>
+                  Manage
+               </button>
 
                <button class="hero-btn-dark add-user">Add Staff</button>
             </div>
@@ -181,9 +184,10 @@
                         <td class="py-1 staffPhoneNumber">08012341234</td>
                         <td class="py-1 staffGuarantorName">Edafe Monday</td>
                         <td class="py-1 staffGuarantorPhoneNumber">09087658765</td>
+
                         <td class="py-1 action-buttons">
 
-                           <button class="hero-btn-outline editStButtonaff"><i
+                           <button class="hero-btn-outline editStaffButton"><i
                                  class="fa-solid fa-pen-to-square"></i></button>
 
                            <button class="hero-btn-outline deleteStaffButton"><i
@@ -243,17 +247,17 @@
 
          <!-- State of origin -->
          <div class="addUser-form_input">
-            <label for="addStateofOrigin">State Of Origin</label>
+            <label for="addStateOfOrigin">State Of Origin</label>
 
-            <input id="addStateofOrigin" type="text" placeholder="Enter State of Origin" name="addStateofOrigin"
+            <input id="addStateOfOrigin" type="text" placeholder="Enter State of Origin" name="addStateOfOrigin"
                required>
          </div>
 
          <!-- LGA -->
          <div class="addUser-form_input">
-            <label for="addStateofOrigin">LGA</label>
+            <label for="addLgaOfOrigin">LGA</label>
 
-            <input id="addStateofOrigin" type="text" placeholder="Enter LGA" name="addStateofOrigin" required>
+            <input id="addLgaOfOrigin" type="text" placeholder="Enter LGA" name="addLgaOfOrigin" required>
          </div>
 
          <!-- Staff Phone Number -->
