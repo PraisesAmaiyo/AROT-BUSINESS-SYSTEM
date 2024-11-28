@@ -289,10 +289,8 @@ async function fetchAllTransactionsForTotals() {
     let allTransactions = [];
     while (true) {
       const { data, meta } = await getPosTransactions(page, pageSize);
-      console.log('data:', data);
 
       allTransactions = allTransactions.concat(data);
-      console.log('allTransactions:', allTransactions);
 
       if (page >= meta.pagination.pageCount) break;
       page++;
@@ -311,8 +309,6 @@ function updateTotalPosAmounts(data) {
   const totalPosFee = document.getElementById('totalPosFee');
   const totalMachineFee = document.getElementById('totalMachineFee');
   const totalDepositAmount = document.getElementById('totalDepositAmount');
-
-  console.log(data);
 
   if (!data || data.length === 0) {
     if (totalPosAmount) {
@@ -343,10 +339,6 @@ function updateTotalPosAmounts(data) {
       item.transaction_type.type !== 'deposit' &&
       item.transaction_type.type !== 'withdrawal/transfer'
   );
-
-  console.log('withdrawalTransferTransactions', withdrawalTransferTransactions);
-  console.log('depositTransactions', depositTransactions);
-  console.log('filteredTransactions', filteredTransactions);
 
   const DepositAmount = depositTransactions.reduce(
     (sum, item) => sum + item.transaction_amount,
