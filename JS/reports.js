@@ -312,6 +312,8 @@ function updateTotalPosAmounts(data) {
   const totalMachineFee = document.getElementById('totalMachineFee');
   const totalDepositAmount = document.getElementById('totalDepositAmount');
 
+  console.log(data);
+
   if (!data || data.length === 0) {
     if (totalPosAmount) {
       totalPosAmount.innerHTML = `<strong>Total Amount = &nbsp;&#x20A6;0</strong>`;
@@ -323,20 +325,35 @@ function updateTotalPosAmounts(data) {
       totalMachineFee.innerHTML = `<strong>Machine Fees = &nbsp;&#x20A6;0</strong>`;
     }
     if (totalDepositAmount) {
-      totalDepositAmount.innerHTML = `<strong>Machine Fees = &nbsp;&#x20A6;0</strong>`;
+      totalDepositAmount.innerHTML = `<strong>Total Deposit = &nbsp;&#x20A6;0</strong>`;
     }
     return;
   }
 
-  const filteredDepositTransactions = data.filter(
+  const depositTransactions = data.filter(
     (item) => item.transaction_type.type === 'deposit'
   );
 
-  const filteredTransactions = data.filter(
-    (item) => item.transaction_type.type !== 'deposit'
+  const withdrawalTransferTransactions = data.filter(
+    (item) => item.transaction_type.type === 'withdrawal/transfer'
   );
 
-  const DepositAmount = filteredDepositTransactions.reduce(
+  const filteredTransactions = data.filter(
+    (item) =>
+      item.transaction_type.type !== 'deposit' &&
+      item.transaction_type.type !== 'withdrawal/transfer'
+  );
+
+  console.log('withdrawalTransferTransactions', withdrawalTransferTransactions);
+  console.log('depositTransactions', depositTransactions);
+  console.log('filteredTransactions', filteredTransactions);
+
+  const DepositAmount = depositTransactions.reduce(
+    (sum, item) => sum + item.transaction_amount,
+    0
+  );
+
+  const withdrawalTransferAmount = withdrawalTransferTransactions.reduce(
     (sum, item) => sum + item.transaction_amount,
     0
   );
@@ -369,8 +386,8 @@ function updateTotalPosAmounts(data) {
   }
 
   if (totalDepositAmount) {
-    totalDepositAmount.innerHTML = `<strong>Total Deposits = &nbsp;&#x20A6;${formatAmountWithCommas(
-      DepositAmount
+    totalDepositAmount.innerHTML = `<strong>Total Deposit = &nbsp;&#x20A6;${formatAmountWithCommas(
+      DepositAmount + withdrawalTransferAmount
     )}</strong>`;
   }
 }
