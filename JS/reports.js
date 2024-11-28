@@ -379,7 +379,7 @@ function updateTotalPosAmounts(data) {
 
   if (totalDepositAmount) {
     totalDepositAmount.innerHTML = `<strong>Total Deposit = &nbsp;&#x20A6;${formatAmountWithCommas(
-      DepositAmount + withdrawalTransferAmount
+      DepositAmount
     )}</strong>`;
   }
 }
