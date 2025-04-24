@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+   <meta name="description" content="AROT" />
+
+   <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,600|Nunito:300,300i,400,600&display=swap"
+      rel="stylesheet" />
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+   <script src="https://kit.fontawesome.com/d0cbf0cdf0.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+   <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+
+   <!-- <script defer type="module" src="JS/script.js"></script> -->
+   <!-- <script defer type="module" src="JS/login.js"></script> -->
+
+   <script src="dist/main.bundle.js" defer></script>
+   <script src="dist/login.bundle.js" defer></script>
+
+   <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
+   <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+</head>
+
+<body class="authentication">
+
+   <div class="authentication-container" id="container">
+
+      <div class="form-container ">
+
+         <div class="signup-form_container">
+
+            <div class="signup-header">
+               <h1 class="heading-text">Sign up</h1>
+               <h2 class="heading-subtext">Business Creation</h2>
+            </div>
+
+            <form name="signup form" class="signup-form" netlify>
+
+               <!-- Business Name -->
+               <div class="signup-form_input">
+                  <label for="businessName">Business Name</label>
+
+                  <input id="businessName" type="text" placeholder="Enter Business Name" name="businessName" required>
+               </div>
+
+               <!-- Business address -->
+               <div class="signup-form_input">
+                  <label for="businessAddress">Business Address </label>
+
+                  <input id="businessAddress" type="text" placeholder="Enter Business Address" name="businessAddress"
+                     required>
+               </div>
+
+               <!-- Phone Number -->
+               <div class="signup-form_input">
+                  <label for="businessPhoneNumber">Phone Number </label>
+
+                  <input id="businessPhoneNumber" type="text" placeholder="Enter Business Phone No."
+                     name="businessPhoneNumber" required>
+               </div>
+
+               <!-- State Of Operation -->
+               <div class="signup-form_input">
+                  <label for="businessState">State Of Operatiton </label>
+
+                  <input id="businessState" type="text" placeholder="Enter Business State" name="businessState"
+                     required>
+               </div>
+
+               <!-- CAC Reg Number -->
+               <div class="signup-form_input">
+                  <label for="cacRegNo">CAC Reg Number</label>
+
+                  <input id="cacRegNo" type="text" placeholder="Enter CAC Reg Number (Optional)" name="cacRegNo">
+               </div>
+
+               <!-- Tax ID -->
+               <div class="signup-form_input">
+                  <label for="taxId">Tax ID</label>
+
+                  <input id="taxId" type="text" placeholder="Enter Tax ID (Optional)" name="taxId">
+               </div>
+
+               <!-- NIN -->
+               <div class="signup-form_input">
+                  <label for="nin">NIN</label>
+
+                  <input id="nin" type="number" placeholder="Enter NIN" name="nin" required>
+               </div>
+
+               <!-- Business Type -->
+               <div class="signup-form_input mb-1">
+                  <label for="businessType" class="heading-subtext">Business Type</label>
+
+                  <div class="checkbox">
+                     <div class="checkbox-container">
+                        <input id="posCheckbox" type="checkbox" name="posCheckbox">
+                        <label for="posCheckbox">POS</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="sellCheckbox" type="checkbox" name="sellCheckbox">
+                        <label for="sellCheckbox">SELL</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="posAndSellCheckbox" type="checkbox" name="posAndSellCheckbox">
+                        <label for="posAndSellCheckbox">POS & SELL</label>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Business Staff Size -->
+               <div class="signup-form_input">
+                  <label for="businessStaffSize">Staff Size</label>
+
+                  <input id="businessStaffSize" type="number" placeholder="Enter Staff Size" name="businessStaffSize"
+                     required>
+               </div>
+
+               <!-- Version Preference -->
+               <div class="signup-form_input  mb-1">
+                  <label for="accountType" class="heading-subtext">Version Preference</label>
+
+                  <div class="checkbox">
+                     <div class="checkbox-container">
+                        <input id="webCheckbox" type="checkbox" name="webCheckbox">
+                        <label for="webCheckbox">Web</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="mobileCheckbox" type="checkbox" name="mobileCheckbox">
+                        <label for="mobileCheckbox">Mobile</label>
+                     </div>
+
+                     <div class="checkbox-container">
+                        <input id="standaloneCheckbox" type="checkbox" name="standaloneCheckbox">
+                        <label for="standaloneCheckbox">Standalone</label>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Terms and Conditions -->
+               <div class="signup-form_input mt-2 terms-container">
+                  <div class="checkbox-container">
+                     <input id="termsCheckbox" type="checkbox" name="termsCheckbox" required>
+                     <label for="termsCheckbox">I accept the <a href="#">terms and conditions</a></label>
+                  </div>
+               </div>
+
+               <button class="hero-btn-dark mt-2" type="submit"> <a class="heading-subtext mt-2"
+                     href="/login.html">Create Business
+                  </a></button>
+
+               <p class="heading-subtext mb-1">Forgot password? <a href="#">Click here</a></p>
+
+               <p class="heading-subtext  mb-1">Do you have an account? <a href="/login.html">Login</a></p>
+
+               <a class="heading-subtext mt-2" href="/index.html">Click here for demo login to landing page &rarr;
+               </a>
+
+            </form>
+         </div>
+      </div>
+   </div>
+
+
+</body>
+
+</html>

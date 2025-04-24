@@ -27,6 +27,7 @@
 
    <script src="dist/main.bundle.js" defer></script>
    <script src="dist/login.bundle.js" defer></script>
+   <script src="dist/signup.bundle.js" defer></script>
 
    <title>AROT &mdash;BUSINESS SYSTEM 1.0</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -47,32 +48,58 @@
 
             <form name="signup form" class="signup-form" netlify>
 
+               <!-- First Name -->
                <div class="signup-form_input">
-                  <label for="businessName">Business Name</label>
+                  <label for="firstName">First Name</label>
 
-                  <input id="businessName" type="text" placeholder="Enter Business Name" name="businessName" required>
+                  <input id="firstName" type="text" placeholder="Enter First Name" name="firstName" required>
                </div>
 
+               <!-- last Name -->
                <div class="signup-form_input">
-                  <label for="businessAddress">Business Address </label>
+                  <label for="lastName">Last Name</label>
 
-                  <input id="businessAddress" type="text" placeholder="Enter Business Address" name="businessAddress"
+                  <input id="lastName" type="text" placeholder="Enter Last Name" name="lastName" required>
+               </div>
+
+               <!-- Residential Address -->
+               <div class="signup-form_input">
+                  <label for="residentialAddress">Residential Address </label>
+
+                  <input id="residentialAddress" type="text" placeholder="Enter Residential Address"
+                     name="residentialAddress" required>
+               </div>
+
+               <!-- Date of Birth -->
+               <div class="signup-form_input">
+                  <label for="dateOfBirth">Date of Birth</label>
+
+                  <input id="dateOfBirth" type="date" name="dateOfBirth" required>
+               </div>
+
+               <!-- State of Origin -->
+               <div class="signup-form_input">
+                  <label for="stateOfOrigin">State Of Origin </label>
+
+                  <input id="stateOfOrigin" type="text" placeholder="Enter State of Origin" name="stateOfOrigin"
                      required>
                </div>
 
+               <!-- L.G.A -->
                <div class="signup-form_input">
-                  <label for="businessState">State Of Operatiton </label>
+                  <label for="lga">L.G.A </label>
 
-                  <input id="businessState" type="text" placeholder="Enter Business State" name="businessState"
-                     required>
+                  <input id="lga" type="text" placeholder="Enter L.G.A" name="lga" required>
                </div>
 
+               <!-- Email -->
                <div class="signup-form_input">
-                  <label for="businessLga">L.G.A </label>
+                  <label for="email">Email </label>
 
-                  <input id="businessLga" type="text" placeholder="Enter Business L.G.A" name="businessLga" required>
+                  <input id="email" type="email" placeholder="Enter Email" name="email" required>
                </div>
 
+               <!-- Phone Number -->
                <div class="signup-form_input">
                   <label for="businessPhoneNumber">Phone Number </label>
 
@@ -80,93 +107,46 @@
                      name="businessPhoneNumber" required>
                </div>
 
+               <!-- Password -->
                <div class="signup-form_input">
-                  <label for="businessEmail">Business Email </label>
+                  <label for="password">Create Password</label>
 
-                  <input id="businessEmail" type="email" placeholder="Enter Business Email" name="businessEmail"
+                  <input id="password" type="password" placeholder="Create password" name="password" required>
+               </div>
+
+               <!-- Confirm Password -->
+               <div class="signup-form_input">
+                  <label for="password">Confirm Password</label>
+                  <input id="confirm-password" type="password" placeholder="Confirm password" required>
+               </div>
+
+               <!-- Guarantor Name -->
+               <div class="signup-form_input">
+                  <label for="guarantorName">Guarantors Name</label>
+
+                  <input id="guarantorName" type="text" placeholder="Enter Guarantor Name" name="guarantorName"
                      required>
                </div>
 
+               <!-- Guarantor Phone Number -->
                <div class="signup-form_input">
-                  <label for="businessCacRegNo">CAC Reg. Number </label>
+                  <label for="guarantorPhoneNumber">Guarantors Phone Number</label>
 
-                  <input id="businessCacRegNo" type="text" placeholder="Enter CAC Reg No (Optional)"
-                     name="businessCacRegNo" required>
+                  <input id="guarantorPhoneNumber" type="number" placeholder="Enter Guarantors Phone Number"
+                     name="guarantorPhoneNumber" required>
                </div>
 
+               <!-- Guarantor Address -->
                <div class="signup-form_input">
-                  <label for="businessCacRegNo">TAX ID</label>
+                  <label for="guarantorAddress">Guarantors Address</label>
 
-                  <input id="businessCacRegNo" type="text" placeholder="Enter Tax ID (Optional)" name="businessTaxId"
-                     required>
+                  <input id="guarantorAddress" type="text" placeholder="Enter Guarantors Address"
+                     name="guarantorAddress" required>
                </div>
 
-               <div class="signup-form_input mb-1">
-                  <label for="accountType" class="heading-subtext">Account Type</label>
-
-                  <div class="checkbox">
-                     <div class="checkbox-container">
-                        <input id="posCheckbox" type="checkbox" name="posCheckbox">
-                        <label for="posCheckbox">POS</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="sellCheckbox" type="checkbox" name="sellCheckbox">
-                        <label for="sellCheckbox">SELL</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="posAndSellCheckbox" type="checkbox" name="posAndSellCheckbox">
-                        <label for="posAndSellCheckbox">POS & SELL</label>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="signup-form_input">
-                  <label for="businessCacRegNo">Staff Size</label>
-
-                  <input id="businessCacRegNo" type="text" placeholder="Enter Staff Size" name="businessStaffSize"
-                     required>
-               </div>
-
-               <div class="signup-form_input  mb-1">
-                  <label for="accountType" class="heading-subtext">Version Preference</label>
-
-                  <div class="checkbox">
-                     <div class="checkbox-container">
-                        <input id="webCheckbox" type="checkbox" name="webCheckbox">
-                        <label for="webCheckbox">Web</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="mobileCheckbox" type="checkbox" name="mobileCheckbox">
-                        <label for="mobileCheckbox">Mobile</label>
-                     </div>
-
-                     <div class="checkbox-container">
-                        <input id="standaloneCheckbox" type="checkbox" name="standaloneCheckbox">
-                        <label for="standaloneCheckbox">Standalone</label>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="signup-form_input mt-2 terms-container">
-                  <div class="checkbox-container">
-                     <input id="termsCheckbox" type="checkbox" name="termsCheckbox" required>
-                     <label for="termsCheckbox">I accept the <a href="#">terms and conditions</a></label>
-                  </div>
-               </div>
-
-
-
-               <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign In</button>
-
-               <p class="heading-subtext mb-1">Forgot password? <a href="#">Click here</a></p>
+               <button class="hero-btn-dark mt-2" type="submit" onclick="redirect()">Sign Up</button>
 
                <p class="heading-subtext  mb-1">Do you have an account? <a href="/login.html">Login</a></p>
-
-               <a class="heading-subtext mt-2" href="/index.html">Click here for demo login to landing page &rarr;
-               </a>
 
             </form>
          </div>

@@ -11,6 +11,7 @@ module.exports = {
     sell: './JS/sell.js',
     staff: './JS/staff.js',
     simReg: './JS/simReg.js',
+    signup: './JS/signup.js',
     main: './JS/script.js', // Common JS for the main page if needed
   },
 

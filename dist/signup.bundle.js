@@ -9,13 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./JS/login.js":
-/*!*********************!*\
-  !*** ./JS/login.js ***!
-  \*********************/
+/***/ "./JS/signup.js":
+/*!**********************!*\
+  !*** ./JS/signup.js ***!
+  \**********************/
 /***/ (() => {
 
-eval("// // Dummy first login before full page\n// localStorage.setItem('isLoggedIn', true);\n\n// const signUpButton = document.getElementById('signUp');\n// const signInButton = document.getElementById('signIn');\n// const container = document.getElementById('container');\n\n// if (container) {\n//   signUpButton.addEventListener('click', () => {\n//     container.classList.add('right-panel-active');\n//   });\n\n//   signInButton.addEventListener('click', () => {\n//     container.classList.remove('right-panel-active');\n//   });\n// }\n// function redirectToIndex() {\n//   window.location.href = 'index.html';\n// }\n\n//# sourceURL=webpack://arot/./JS/login.js?");
+eval("const dobInput = document.getElementById('dateOfBirth');\ndobInput.addEventListener('focus', () => {\n  if (dobInput.showPicker) {\n    dobInput.showPicker(); // Chrome/Edge\n  }\n});\n\n//# sourceURL=webpack://arot/./JS/signup.js?");
 
 /***/ })
 
@@ -26,7 +26,7 @@ eval("// // Dummy first login before full page\n// localStorage.setItem('isLogge
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./JS/login.js"]();
+/******/ 	__webpack_modules__["./JS/signup.js"]();
 /******/ 	
 /******/ })()
 ;

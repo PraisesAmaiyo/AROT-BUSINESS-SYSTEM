@@ -675,3 +675,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+function generateReceipt() {
+  let saleData = {
+    customer: 'John Doe',
+    date: new Date().toLocaleString(),
+    items: [
+      { name: 'Laptop', qty: 1, price: 250000 },
+      { name: 'Mouse', qty: 2, price: 5000 },
+    ],
+  };
+
+  document.getElementById('rCustomer').textContent = saleData.customer;
+  document.getElementById('rDate').textContent = saleData.date;
+
+  let tbody = document.getElementById('receiptItems');
+  tbody.innerHTML = '';
+  let grandTotal = 0;
+
+  saleData.items.forEach((item) => {
+    let total = item.qty * item.price;
+    grandTotal += total;
+
+    let row = `<tr>
+           <td>${item.name}</td>
+           <td>${item.qty}</td>
+           <td>₦${item.price}</td>
+           <td>₦${total}</td>
+       </tr>`;
+    tbody.innerHTML += row;
+  });
+
+  document.getElementById('rGrandTotal').textContent = grandTotal;
+
+  // Make receipt visible
+  document.getElementById('receipt').style.display = 'block';
+}
+
+// Function to print only the receipt
+function printReceipt() {
+  let receiptContent = document.getElementById('receipt').innerHTML;
+
+  let printWindow = window.open('', '', 'width=600,height=600');
+  printWindow.document.write(`
+       <html>
+       <head>
+           <title>Print Receipt</title>
+           <link rel="stylesheet" href="styles.css">
+       </head>
+       <body>
+           <h3>Store Name</h3>
+           ${receiptContent}
+       </body>
+       </html>
+   `);
+  printWindow.document.close();
+  printWindow.print();
+  printWindow.close();
+}

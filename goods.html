@@ -187,6 +187,29 @@
             </div>
          </div>
       </div>
+
+      <h2>Sales Receipt Demo</h2>
+      <button onclick="generateReceipt()">Generate Receipt</button>
+
+      <div id="receipt" class="hidden">
+         <h3>Store Name</h3>
+         <p><strong>Date:</strong> <span id="rDate"></span></p>
+         <p><strong>Customer:</strong> <span id="rCustomer"></span></p>
+         <table border="1" width="100%">
+            <thead>
+               <tr>
+                  <th>Item</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+               </tr>
+            </thead>
+            <tbody id="receiptItems"></tbody>
+         </table>
+         <p><strong>Grand Total:</strong> ₦<span id="rGrandTotal"></span></p>
+         <button class="btn" onclick="printReceipt()">Print</button>
+      </div>
+
    </main>
 
    <div id="toast" class="toast">This is a toast message!</div>
